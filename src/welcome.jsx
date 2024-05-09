@@ -1,11 +1,12 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./welcome.css";
+import Navbar from "./Component/Navbar"
 
 function welcome() {
   return (
     <div className="App">
+      <Navbar />
       <div>
         <p className="h1">
           The provisions subject to which exhibitors may participate in the OCSC
