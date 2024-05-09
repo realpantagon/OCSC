@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Token exists, automatically log in the user
+      navigate('/welcome');
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when submitting the form
+    setLoading(true);
     try {
       const credentials = await fetchCredentials();
       const isValidCredential = credentials.some(
         (cred) => cred.username === username && cred.password === password
       );
       if (isValidCredential) {
+        const token = generateToken();
+        localStorage.setItem('token', token);
+        if (rememberMe) {
+          localStorage.setItem('rememberMe', 'true');
+        } else {
+          localStorage.removeItem('rememberMe');
+        }
         navigate('/welcome');
       } else {
         setError('Invalid username or password');
@@ -26,7 +42,7 @@ const LoginPage = () => {
       console.error(err);
       setError('An error occurred while logging in');
     }
-    setLoading(false); // Set loading back to false after the login check
+    setLoading(false);
   };
 
   const handleInputChange = () => {
@@ -45,11 +61,15 @@ const LoginPage = () => {
       }
     );
     const records = response.data.records;
-    // console.log(response.data);
     return records.map(record => ({
       username: record.fields.Username,
       password: record.fields.Password,
     }));
+  };
+
+  const generateToken = () => {
+    // Generate a random token
+    return Math.random().toString(36).substr(2);
   };
 
   return (
@@ -89,11 +109,22 @@ const LoginPage = () => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="mr-2"
+              />
+              <span className="text-gray-700">Remember me</span>
+            </label>
+          </div>
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <button
             type="submit"
             className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            disabled={loading} // Disable the button while loading
+            disabled={loading}
           >
             {loading ? (
               <div className="flex items-center justify-center">
