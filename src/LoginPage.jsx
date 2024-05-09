@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Airtable from './API/Airtable';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -30,12 +31,14 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const credentials = await fetchCredentials();
+      // <Airtable/>
       const isValidCredential = credentials.some(
         (cred) => cred.username === username && cred.password === password
       );
       if (isValidCredential) {
         const token = generateToken();
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', token); // Store the token
+        localStorage.setItem('username', username); // Store the username
         if (rememberMe) {
           localStorage.setItem('rememberMe', 'true');
         } else {
@@ -68,6 +71,7 @@ const LoginPage = () => {
       }
     );
     const records = response.data.records;
+    console.log(response.data);
     return records.map(record => ({
       username: record.fields.Username,
       password: record.fields.Password,
