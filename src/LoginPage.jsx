@@ -11,10 +11,17 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // Token exists, automatically log in the user
-      navigate('/welcome');
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      const [token, expirationTime] = storedToken.split(':');
+      const currentTime = Date.now();
+      if (currentTime < parseInt(expirationTime)) {
+        // Token is still valid, automatically log in the user
+        navigate('/welcome');
+      } else {
+        // Token has expired, remove it from local storage
+        localStorage.removeItem('token');
+      }
     }
   }, [navigate]);
 
@@ -68,8 +75,9 @@ const LoginPage = () => {
   };
 
   const generateToken = () => {
-    // Generate a random token
-    return Math.random().toString(36).substr(2);
+    const token = Math.random().toString(36).substr(2);
+    const expirationTime = Date.now() + 3 * 24 * 60 * 60 * 1000; // 3 days from now
+    return `${token}:${expirationTime}`;
   };
 
   return (
