@@ -45,6 +45,7 @@ const LoginPage = () => {
       }
     );
     const records = response.data.records;
+    // console.log(response.data);
     return records.map(record => ({
       username: record.fields.Username,
       password: record.fields.Password,
