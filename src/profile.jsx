@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Component/Navbar";
+import "./profile.css"
 
 const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   const toggleItem = (item) => {
@@ -8,7 +9,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   };
 
   return (
-    <div className="profile-page w-1/4 bg-gray-800 p-4 text-white">
+    <div className="bg1 profile-page w-1/4 p-4 text">
       <div className="my-[20px] mx-[20px]">
         <div className="sidebar-item my-[20px]">
           <button
@@ -23,7 +24,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             <ul className="mx-[30px]">
               <button
                 className={`mt-3 mb-3 ${
-                  openItem === "exhibitorProfile-generalInfo" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-generalInfo" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-generalInfo")}
               >
@@ -31,7 +32,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-contactPerson" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-contactPerson" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-contactPerson")}
               >
@@ -39,7 +40,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-levelOfStudies" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-levelOfStudies" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-levelOfStudies")}
               >
@@ -47,7 +48,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-topMajors" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-topMajors" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-topMajors")}
               >
@@ -55,7 +56,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-promotion" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-promotion" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-promotion")}
               >
@@ -63,7 +64,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-scholarship" ? "bg-gray-600" : ""
+                  openItem === "exhibitorProfile-scholarship" ? "rounded-lg bg-gray-200" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-scholarship")}
               >
