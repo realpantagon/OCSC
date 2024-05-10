@@ -13,7 +13,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
       <div className="mb-2">
         <div className="">
           <button
-            className={`border-2 border-slate-300 text-blue-500 hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+            className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
               openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile") ? "active bg-blue-700 text-white" : ""
             } w-full text-left font-semibold`}
             onClick={() => toggleItem("exhibitorProfile")}
@@ -75,7 +75,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
         </div>
         <div className="mb-2 mt-2">
           <button
-            className={`border-2 border-slate-300 text-blue-500 hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+            className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
               openItem === "exhibitorSpace" ? "active bg-blue-700 text-white" : ""
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("exhibitorSpace")}
@@ -85,7 +85,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
         </div>
         <div className="mb-2">
           <button
-            className={`border-2 border-slate-300 text-blue-500 hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+            className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
               openItem === "billingInfo" ? "active bg-blue-700 text-white" : ""
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("billingInfo")}
