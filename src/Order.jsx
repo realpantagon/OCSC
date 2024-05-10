@@ -53,8 +53,44 @@ function Order() {
     <div>
       <Navbar />
       <div className="flex">
-        <div className="w-1/4 p-4 bg-white ">
+        <div className="w-1/4 p-4 bg-white">
           <ul>
+            <li className="mb-2">
+              <button
+                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  selectedForm === "r4 service(Form 1)"
+                    ? "bg-blue-700 text-white shadow-lg"
+                    : "bg-white text-black"
+                }`}
+                onClick={() => openJotForm("r4 service(Form 1)")}
+              >
+                Form 1: Exhibitor badge
+              </button>
+            </li>
+            <li className="mb-2">
+              <button
+                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  selectedForm === "r5 service(Form 2)"
+                    ? "bg-blue-700 text-white shadow-lg"
+                    : "bg-white text-black"
+                }`}
+                onClick={() => openJotForm("r5 service(Form 2)")}
+              >
+                Form 2: Additional logo
+              </button>
+            </li>
+            <li className="mb-2">
+              <button
+                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  selectedForm === "r6 service(Form 3)"
+                    ? "bg-blue-700 text-white shadow-lg"
+                    : "bg-white text-black"
+                }`}
+                onClick={() => openJotForm("r6 service(Form 3)")}
+              >
+                Form 3: Booth assistant
+              </button>
+            </li>
             <li className="mb-2">
               <button
                 className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
@@ -64,7 +100,7 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("r1 service(Furniture)")}
               >
-                Furniture Order
+                Form 4: Furniture & carpet
               </button>
             </li>
             <li className="mb-2">
@@ -76,7 +112,7 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("r2 service(Electric)")}
               >
-                Electric Order
+                Form 5: Electrical items
               </button>
             </li>
             <li className="mb-2">
@@ -88,7 +124,19 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("r3 service(A/V&Computer)")}
               >
-                A/V & Computer Order
+                Form 6: AV equipment
+              </button>
+            </li>
+            <li className="mb-2">
+              <button
+                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  selectedForm === "r7 service(Form 7)"
+                    ? "bg-blue-700 text-white shadow-lg"
+                    : "bg-white text-black"
+                }`}
+                onClick={() => openJotForm("r7 service(Form 7)")}
+              >
+                Form 7: Visa invitation letter
               </button>
             </li>
             <li>
@@ -100,7 +148,7 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("Payment link")}
               >
-                Payment
+                Confirm Payment
               </button>
             </li>
           </ul>
