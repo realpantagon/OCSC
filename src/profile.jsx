@@ -28,7 +28,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-generalInfo")}
               >
-                General Information
+                &nbsp;&nbsp;General Information
               </button>
               <button
                 className={`mb-3 ${
@@ -36,7 +36,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-contactPerson")}
               >
-                Contact Person
+                &nbsp;&nbsp;Contact Person
               </button>
               <button
                 className={`mb-3 ${
@@ -44,7 +44,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-levelOfStudies")}
               >
-                Level of Studies Offer
+                &nbsp;&nbsp;Level of Studies Offer
               </button>
               <button
                 className={`mb-3 ${
@@ -52,7 +52,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-topMajors")}
               >
-                Top 10 Majors
+                &nbsp;&nbsp;Top 10 Majors
               </button>
               <button
                 className={`mb-3 ${
@@ -60,7 +60,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-promotion")}
               >
-                Promotion
+                &nbsp;&nbsp;Promotion
               </button>
               <button
                 className={`mb-3 ${
@@ -68,7 +68,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-scholarship")}
               >
-                Scholarship
+                &nbsp;&nbsp;Scholarship
               </button>
             </ul>
           )}

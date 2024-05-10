@@ -59,7 +59,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("officialContractor.showOrganizer")}
               >
-                Show Organizer
+                &nbsp;&nbsp;Show Organizer
               </button>
               <button
                 className={`mb-3 ${
@@ -69,7 +69,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("officialContractor.venue")}
               >
-                Venue
+                &nbsp;&nbsp;Venue
               </button>
               <button
                 className={`mb-3 ${
@@ -79,7 +79,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("officialContractor.accommodation")}
               >
-                Accommodation
+                &nbsp;&nbsp;Accommodation
               </button>
               <button
                 className={`mb-3 ${
@@ -89,7 +89,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("officialContractor.standFitting")}
               >
-                Stand Fitting
+                &nbsp;&nbsp;Stand Fitting
               </button>
               <button
                 className={`mb-3 ${
@@ -99,7 +99,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("officialContractor.utility")}
               >
-                Utility
+                &nbsp;&nbsp;Utility
               </button>
               <button
                 className={`mb-3 ${
@@ -111,7 +111,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                   toggleItem("officialContractor.freightForwarder")
                 }
               >
-                Freight Forwarder
+                &nbsp;&nbsp;Freight Forwarder
               </button>
             </ul>
           )}
@@ -259,7 +259,7 @@ const MainSection = ({ userRecord, openItem }) => {
             <p className="font-bold ml-[40px]">
               DEADLINE: the parcel(s) must be arrived in our office by
             </p>
-            <p className="text-rose-600 font-bold">4 October 2024.</p>
+            <p className="text-rose-600 font-bold">&nbsp;4 October 2024.</p>
           </div>
         </div>
     );
