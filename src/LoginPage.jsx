@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Airtable from './API/Airtable';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Airtable from "./API/Airtable";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
+    const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      const [token, expirationTime] = storedToken.split(':');
+      const [token, expirationTime] = storedToken.split(":");
       const currentTime = Date.now();
       if (currentTime < parseInt(expirationTime)) {
         // Token is still valid, automatically log in the user
-        navigate('/welcome');
+        navigate("/welcome");
       } else {
         // Token has expired, remove it from local storage
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
       }
     }
   }, [navigate]);
@@ -37,42 +37,43 @@ const LoginPage = () => {
       );
       if (isValidCredential) {
         const token = generateToken();
-        localStorage.setItem('token', token); // Store the token
-        localStorage.setItem('username', username); // Store the username
+        localStorage.setItem("token", token); // Store the token
+        localStorage.setItem("username", username); // Store the username
         if (rememberMe) {
-          localStorage.setItem('rememberMe', 'true');
+          localStorage.setItem("rememberMe", "true");
         } else {
-          localStorage.removeItem('rememberMe');
+          localStorage.removeItem("rememberMe");
         }
-        navigate('/welcome');
+        navigate("/welcome");
       } else {
-        setError('Invalid username or password');
+        setError("Invalid username or password");
       }
     } catch (err) {
       console.error(err);
-      setError('An error occurred while logging in');
+      setError("An error occurred while logging in");
     }
     setLoading(false);
   };
 
   const handleInputChange = () => {
     if (error) {
-      setError('');
+      setError("");
     }
   };
 
   const fetchCredentials = async () => {
     const response = await axios.get(
-      'https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors',
+      "https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors",
       {
         headers: {
-          Authorization: 'Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83',
+          Authorization:
+            "Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83",
         },
       }
     );
     const records = response.data.records;
     console.log(response.data);
-    return records.map(record => ({
+    return records.map((record) => ({
       username: record.fields.Username,
       password: record.fields.Password,
     }));
@@ -85,14 +86,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6">Login</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center ">
+      <h1 className="text-2xl font-bold mb-6">Online Manual Portal</h1>
+      <div className="bg-yellow-300 p-8 rounded-lg shadow-md">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 font-bold mb-2">
-              Username
-            </label>
             <input
               type="text"
               id="username"
@@ -101,14 +99,12 @@ const LoginPage = () => {
                 setUsername(e.target.value);
                 handleInputChange();
               }}
+              placeholder="USERNAME"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
-              Password
-            </label>
             <input
               type="password"
               id="password"
@@ -117,6 +113,7 @@ const LoginPage = () => {
                 setPassword(e.target.value);
                 handleInputChange();
               }}
+              placeholder="PASSWORD"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -163,7 +160,7 @@ const LoginPage = () => {
                 <span>Loading...</span>
               </div>
             ) : (
-              'Login'
+              "Login"
             )}
           </button>
         </form>
