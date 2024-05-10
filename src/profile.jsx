@@ -9,13 +9,13 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   };
 
   return (
-    <div className="profile-page w-1/4 p-4 bg-gray-800 p-4 text-white">
-      <div className="my-[20px] mx-[20px]">
-        <div className="sidebar-item my-[20px]">
+    <div className="profile-page w-1/4 p-4 text-blue-500 bg-white">
+      <div className="mb-2">
+        <div className="">
           <button
-            className={`sidebar-header text-xl ${
-              openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile") ? "active" : ""
-            } w-full text-left p-2 font-semibold`}
+            className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+              openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile") ? "active bg-blue-500 text-white" : ""
+            } w-full text-left font-semibold`}
             onClick={() => toggleItem("exhibitorProfile")}
           >
             Exhibitor Profile
@@ -23,8 +23,8 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
           {(openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile")) && (
             <ul className="mx-[30px]">
               <button
-                className={`mt-3 mb-3 ${
-                  openItem === "exhibitorProfile-generalInfo" ? "rounded-lg bg-gray-600" : ""
+                className={`mt-3 mb-3  ${
+                  openItem === "exhibitorProfile-generalInfo" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-generalInfo")}
               >
@@ -32,7 +32,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-contactPerson" ? "rounded-lg bg-gray-600" : ""
+                  openItem === "exhibitorProfile-contactPerson" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-contactPerson")}
               >
@@ -40,7 +40,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-levelOfStudies" ? "rounded-lg bg-gray-600" : ""
+                  openItem === "exhibitorProfile-levelOfStudies" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-levelOfStudies")}
               >
@@ -48,7 +48,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-topMajors" ? "rounded-lg bg-gray-600" : ""
+                  openItem === "exhibitorProfile-topMajors" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-topMajors")}
               >
@@ -56,7 +56,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-promotion" ? "rounded-lg bg-gray-600" : ""
+                  openItem === "exhibitorProfile-promotion" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-promotion")}
               >
@@ -64,7 +64,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-scholarship" ? "rounded-lg bg-gray-600" : ""
+                  openItem === "exhibitorProfile-scholarship" ? "rounded-full bg-blue-500 text-white hover:text-blue-700 focus:outline-none transition duration-300 ease-in-out" : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-scholarship")}
               >
@@ -73,20 +73,20 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             </ul>
           )}
         </div>
-        <div className="sidebar-item my-[20px]">
+        <div className="mb-2 mt-2">
           <button
-            className={`sidebar-header text-xl ${
-              openItem === "exhibitorSpace" ? "active" : ""
+            className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+              openItem === "exhibitorSpace" ? "active bg-blue-500 text-white" : ""
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("exhibitorSpace")}
           >
             Exhibitor Space
           </button>
         </div>
-        <div className="sidebar-item my-[20px]">
+        <div className="mb-2">
           <button
-            className={`sidebar-header text-xl ${
-              openItem === "billingInfo" ? "active" : ""
+            className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+              openItem === "billingInfo" ? "active bg-blue-500 text-white" : ""
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("billingInfo")}
           >
@@ -105,7 +105,7 @@ const MainSection = ({ userRecord, openItem }) => {
         <div>
           <h2 className="text-2xl font-semibold mb-4">General Information</h2>
           <ul className="ml-4">
-            <li>
+            <li >
               Organization Name: {userRecord.fields["Organization Name"] || "-"}
             </li>
             <li>

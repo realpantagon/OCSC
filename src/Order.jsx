@@ -57,7 +57,7 @@ function Order() {
           <ul>
             <li className="mb-2">
               <button
-                className={`text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
                   selectedForm === "r1 service(Furniture)"
                     ? "bg-blue-500 text-white shadow-lg"
                     : "bg-white text-black"
@@ -69,7 +69,7 @@ function Order() {
             </li>
             <li className="mb-2">
               <button
-                className={`text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
                   selectedForm === "r2 service(Electric)"
                     ? "bg-blue-500 text-white shadow-lg"
                     : "bg-white text-black"
@@ -81,7 +81,7 @@ function Order() {
             </li>
             <li className="mb-2">
               <button
-                className={`text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
                   selectedForm === "r3 service(A/V&Computer)"
                     ? "bg-blue-500 text-white shadow-lg"
                     : "bg-white text-black"
@@ -93,7 +93,7 @@ function Order() {
             </li>
             <li>
               <button
-                className={`text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                className={`border-2 border-slate-300 text-blue-500 hover:text-blue-700 w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
                   selectedForm === "Payment link"
                     ? "bg-blue-500 text-white shadow-lg"
                     : "bg-white text-black"
