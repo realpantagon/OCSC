@@ -115,35 +115,44 @@ const MainSection = ({ userRecord, openItem }) => {
 };
 
 function Profile() {
-  const [userRecord, setUserRecord] = useState(null);
-  const [username, setUsername] = useState('2024ocscexpo1');
-  const [isLoading, setIsLoading] = useState(true);
-  const [openItem, setOpenItem] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          'https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors',
-          {
-            headers: {
-              Authorization: 'Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83',
-            },
-          }
-        );
-        const records = response.data.records;
-        const userRecord = records.find(record => record.fields.Username === username);
-        setUserRecord(userRecord);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setIsLoading(false);
+    const [userRecord, setUserRecord] = useState(null);
+    const [username, setUsername] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [openItem, setOpenItem] = useState(null);
+  
+    useEffect(() => {
+      const storedUsername = localStorage.getItem('username');
+      if (storedUsername) {
+        setUsername(storedUsername);
       }
-    };
-
-    fetchUserData();
-  }, [username]);
+    }, []);
+  
+    useEffect(() => {
+      const fetchUserData = async () => {
+        try {
+          setIsLoading(true);
+          const response = await axios.get(
+            'https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors',
+            {
+              headers: {
+                Authorization: 'Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83',
+              },
+            }
+          );
+          const records = response.data.records;
+          const userRecord = records.find(record => record.fields.Username === username);
+          setUserRecord(userRecord);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+  
+      if (username) {
+        fetchUserData();
+      }
+    }, [username]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
