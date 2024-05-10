@@ -18,8 +18,9 @@ function Welcome() {
   return (
     <div className="App">
       <Navbar />
+      <div className="m-[30px]">
       <div>
-        <p className="h1">
+        <p className="text-xs m-2">
           The provisions subject to which exhibitors may participate in the OCSC
           International Education Expo (hereinafter referred to as the
           exhibition). are laid down in these Conditions of Participation and in
@@ -28,7 +29,7 @@ function Welcome() {
           Constructions (Thailand) Co., Ltd. – (hereinafter referred to as the
           General Rules). 
         </p>
-        <p className="h1">
+        <p className="text-xs m-2">
           CONTRACT - This application, properly executed by the
           applicant ('Exhibitor') shall, upon written acceptance by Cityneon
           ('Organiser') constitute a valid and binding contract. The Organiser
@@ -39,7 +40,7 @@ function Welcome() {
           are made a part hereof as though fully incorporated herein, and that
           the said exhibitor agrees to be bound by each and every one thereof.
           </p>
-          <p className="h1">
+          <p className="text-xs m-2">
           USE OF SPACE - Organiser reserves the right to decline, prohibit or
           expel an exhibit which, in its jurisdiction, is out of keeping with
           the character of the exhibition, this reservation being all inclusive
@@ -57,7 +58,7 @@ function Welcome() {
           Deposits will be forfeited unless special arrangements have been
           approved by the Organiser. Exhibitor will keep his exhibit open and
           staffed at all times during the show hours.</p>
-          <p className="h1">BOOTHS – Standard booth
+          <p className="text-xs m-2">BOOTHS – Standard booth
           package, as ordered by Exhibitor, refers to the following items: back
           and two side walls (or one side wall in the case of corner booth, or
           no sides in the case of a peninsula booth); fascia board; table and
@@ -73,7 +74,7 @@ function Welcome() {
           material for wings to booths must be covered or painted if they are
           visible from the adjacent booth. 
           </p>
-          <p className="h1">Failure to comply with the rules and
+          <p className="text-xs m-2">Failure to comply with the rules and
           regulations of this contract and as stated in the exhibitor's manual
           will result in the alteration or removal of the booth at the
           exhibitor's expense. Rental fees for services and exhibit space are
@@ -82,11 +83,11 @@ function Welcome() {
           jurisdiction over the exhibit facility or the conducting of said
           exhibit, together with the rules and regulations of the owners and/or
           operators of the facility in which the exhibition is held.</p>
-          <p className="h1">
+          <p className="text-xs m-2">
           CANCELLATION AND REFUND POLICY - Exhibitors after submit the
           application form, exhibitors are responsible for the full payment of
           booking space fee.</p>
-          <p className="h1">In the event the Exhibitor cancels but has not yet
+          <p className="text-xs m-2">In the event the Exhibitor cancels but has not yet
           paid the fees due, the Exhibitor is still liable for the amount due.
           It is agreed that if the Exhibitor fails to comply in any respect with
           the terms of agreement, then Organiser shall have the right without
@@ -105,7 +106,7 @@ function Welcome() {
           releasing said Exhibitor from any liability hereunder. Said Exhibitor
           expressly agrees to pay the exhibition the full sum as herein set
           forth.</p>
-          <p className="h1">In the event that the organiser is not able to hold the OCSC
+          <p className="text-xs m-2">In the event that the organiser is not able to hold the OCSC
           event due to natural disaster, acts of God, outbreak, public enemy,
           war or insurrection, strikes, the authority of law, or any cause
           beyond its control or without its fault or negligence (the “Force
@@ -117,7 +118,7 @@ function Welcome() {
           administrative expenses incurred to the organiser, such as but not
           limited to rent, advertising, salaries, operating costs, etc. without
           interest.</p>
-          <p className="h1">INSURANCE - Exhibitors must carry workers compensation,
+          <p className="text-xs m-2">INSURANCE - Exhibitors must carry workers compensation,
           comprehensive, general liability including products and completed
           operations, independent contractors, personal injury, and blanket
           contractual liability. It is strongly recommended that Exhibitors
@@ -134,7 +135,7 @@ function Welcome() {
           and losses for injuries to persons (including death) or damage to
           property arising in connection with Exhibitor's use of the exhibit
           space.</p>
-          <p className="h1">AVAILABLE SERVICES - On behalf of the Exhibitors, the Organiser
+          <p className="text-xs m-2">AVAILABLE SERVICES - On behalf of the Exhibitors, the Organiser
           has designated the Official Exhibition Contractors to provide the
           following: drainage, cartage, furniture, booth and floor decorations,
           signs, photographs, telephone services, etc. as stated in the
@@ -146,7 +147,7 @@ function Welcome() {
           the foregoing persons, parties and organisations. Arrangements for
           these services and payments are to be made between Exhibitors and
           Official Exhibition Contractors directly.</p>
-          <p className="h1">PROTECTION OF FACILITIES -
+          <p className="text-xs m-2">PROTECTION OF FACILITIES -
           Nothing shall be posted on, or tacked, nailed, screwed. or otherwise
           attached to the columns, walls, floors or other parts of the
           convention hall exhibit area without permission from the proper
@@ -154,7 +155,7 @@ function Welcome() {
           be done only in designated areas and in conformity with directions of
           the Organiser, the convention hall manager or their assistants.
           </p>
-          <p className="h1">INSTALLATION & DISMANTLING - The specific requirements as to the time
+          <p className="text-xs m-2">INSTALLATION & DISMANTLING - The specific requirements as to the time
           for installation and dismantling of exhibits shall be as set forth in
           the Exhibitor Manual supplied to each Exhibitor for this particular
           Exhibition. Such requirements shall be binding upon the Exhibitor as
@@ -162,7 +163,7 @@ function Welcome() {
           of july.
         </p>
         </div>
-      <div className="text">
+      <div className="text-base mt-3 ml-2">
         <input
           type="checkbox"
           id="terms-checkbox"
@@ -195,6 +196,7 @@ function Welcome() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }
