@@ -80,7 +80,7 @@ function Profile() {
                   <td className="px-4 py-2">{userRecord.fields['Organization Name 2 (from Booth no.)'] || '-'}</td>
                 </tr>
                 <tr className="odd:bg-gray-100">
-                  <td className="px-4 py-2 font-medium">Street Address</td>
+                  <td className="px-4 py-2 font-medium">Street Addressdfdsfdsfdsfs</td>
                   <td className="px-4 py-2">{userRecord.fields['Street Address (from Booth no.)'] || '-'}</td>
                 </tr>
                 <tr className="odd:bg-gray-100">
