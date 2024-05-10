@@ -44,7 +44,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 ? "active bg-blue-700 text-white"
                 : ""
             } w-full text-left p-2 font-semibold`}
-            onClick={() => toggleItem("officialContractor")}
+            onClick={() => toggleItem("officialContractor.showOrganizer")}
           >
             Official Contractor
           </button>
