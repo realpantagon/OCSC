@@ -1,18 +1,27 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
 import Navbar from "./Component/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
   const [isChecked, setIsChecked] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedIsChecked = localStorage.getItem("termsChecked");
+    if (storedIsChecked === "true") {
+      setIsChecked(true);
+      navigate("/profile");
+    }
+  }, [navigate]);
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    const newIsChecked = !isChecked;
+    setIsChecked(newIsChecked);
+    localStorage.setItem("termsChecked", newIsChecked.toString());
   };
 
   const handleConfirm = () => {
-    setShowPopup(true);
+    navigate("/profile");
   };
 
   return (
@@ -212,21 +221,6 @@ function Welcome() {
         >
           Confirm
         </button>
-
-        {showPopup && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white rounded p-6">
-              <h2 className="text-xl font-bold mb-4">Confirmation</h2>
-              <p>You have agreed to the terms and conditions.</p>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-                onClick={() => setShowPopup(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
