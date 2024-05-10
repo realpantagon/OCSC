@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const ProfilePage = () => {
+const ProfilePageSidebar = () => {
   const [openItem, setOpenItem] = useState(null);
 
   const toggleItem = (item) => {
@@ -60,4 +60,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfilePageSidebar;
