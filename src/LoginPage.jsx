@@ -86,12 +86,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="pb-[300px] h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen pb-[300px] flex flex-col items-center justify-center">
       {/* <h1 className="text-2xl font-bold mb-6">Online Manual Portal</h1> */}
-      <img src="/OCSC_pose PopHead.png" className="w-1/6 relative top-16"></img>
-      <div className="bg-yellow-300 -z-50 p-8 rounded-lg shadow-md relative w-1/3">
+      <img src="/OCSC_pose PopHead.png" className="w-40 relative top-10"></img>
+      <div className="bg-yellow-300 p-8 rounded-lg shadow-md relative w-96">
         <form onSubmit={handleSubmit}>
-          <div className="my-5">
+          <div className="mb-4">
             <input
               type="text"
               id="username"
@@ -133,7 +133,7 @@ const LoginPage = () => {
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <button
             type="submit"
-            className="text-[15px] w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={loading}
           >
             {loading ? (
