@@ -5,7 +5,7 @@ function FFaq() {
   return (
     <div>
         <Navbar/>
-        FFaq</div>
+        Faq</div>
   )
 }
 

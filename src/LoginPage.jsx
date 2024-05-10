@@ -86,11 +86,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center ">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       {/* <h1 className="text-2xl font-bold mb-6">Online Manual Portal</h1> */}
-
       <img src="/OCSC_pose PopHead.png" className="w-40 relative top-10"></img>
-      <div className="bg-yellow-300 p-8 rounded-lg shadow-md relative ">
+      <div className="bg-yellow-300 p-8 rounded-lg shadow-md relative w-96">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
