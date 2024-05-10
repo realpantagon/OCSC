@@ -64,7 +64,7 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("r4 service(Form 1)")}
               >
-                <div className="text-left">Form 1: Exhibitor badge</div>
+                Form 1: Exhibitor badge
               </button>
             </li>
             <li className="mb-2">
