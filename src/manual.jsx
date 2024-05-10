@@ -271,7 +271,7 @@ const MainSection = ({ userRecord, openItem }) => {
 };
 
 function Manual() {
-  const [openItem, setOpenItem] = useState(null);
+  const [openItem, setOpenItem] = useState("entranceRoute");
 
   return (
     <div className="">

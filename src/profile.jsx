@@ -16,7 +16,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
               openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile") ? "active bg-blue-700 text-white" : ""
             } w-full text-left font-semibold`}
-            onClick={() => toggleItem("exhibitorProfile")}
+            onClick={() => toggleItem("exhibitorProfile-generalInfo")}
           >
             Exhibitor Profile
           </button>
@@ -419,7 +419,7 @@ function Profile() {
   const [userRecord, setUserRecord] = useState(null);
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [openItem, setOpenItem] = useState(null);
+  const [openItem, setOpenItem] = useState("exhibitorProfile-generalInfo");
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
