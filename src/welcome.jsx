@@ -1,9 +1,20 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import Navbar from "./Component/Navbar"
+import Navbar from "./Component/Navbar";
 
-function welcome() {
+function Welcome() {
+  const [isChecked, setIsChecked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleConfirm = () => {
+    setShowPopup(true);
+  };
+
   return (
     <div className="App">
       <Navbar />
@@ -150,15 +161,42 @@ function welcome() {
           set forth.The Exhibition Manual will be sent to Exhibitors by early
           of july.
         </p>
-      </div>
+        </div>
       <div className="text">
-
-      <input type="checkbox" id="" name="" value=""></input>
-      <p className="h2">&nbsp;&nbsp;I agree to&nbsp;</p>
-      <p className="h3">terms & conditions.</p>
+        <input
+          type="checkbox"
+          id="terms-checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="terms-checkbox" className="ml-2">
+          I agree to terms & conditions.
+        </label>
       </div>
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+        onClick={handleConfirm}
+        disabled={!isChecked}
+      >
+        Confirm
+      </button>
+
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded p-6">
+            <h2 className="text-xl font-bold mb-4">Confirmation</h2>
+            <p>You have agreed to the terms and conditions.</p>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+              onClick={() => setShowPopup(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default welcome;
+export default Welcome;
