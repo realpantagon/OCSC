@@ -126,8 +126,8 @@ const MainSection = ({ userRecord, openItem }) => {
 
   if (openItem === "entranceRoute") {
     content = (
-      <div className="text-2xl">
-        <div className="mt-[20px] flex flex-wrap">
+      <div className="text-xl">
+        <div className="ml-[50px] mt-[20px] flex flex-wrap">
           <p>1. Entrance before operating hours (10:00 AM)&nbsp;</p>
           <a
             href="https://drive.google.com/file/d/1RueVPBb45_g7kJzgqvxr6TLyOsX_sX3C/view"
@@ -138,7 +138,7 @@ const MainSection = ({ userRecord, openItem }) => {
             Click
           </a>
         </div>
-        <div className="flex flex-wrap">
+        <div className="ml-[50px] flex flex-wrap">
           <p>2. Loading Route&nbsp;</p>
           <a
             href="https://drive.google.com/file/d/1UMi4n5n05Yj1Va-WKmToiQgWFWaePEzb/view"
