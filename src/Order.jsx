@@ -58,11 +58,11 @@ function Order() {
             <li className="mb-2">
               <button
                 className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r4 service(Form 1)"
+                  selectedForm === "r4 service(ExhibitorBadge)"
                     ? "bg-blue-700 text-white shadow-lg"
                     : "bg-white text-black"
                 }`}
-                onClick={() => openJotForm("r4 service(Form 1)")}
+                onClick={() => openJotForm("r4 service(ExhibitorBadge)")}
               >
                 Form 1: Exhibitor badge
               </button>
