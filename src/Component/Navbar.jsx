@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-1 flex justify-center">
             <div>
-              <div className="flex space-x-4">
+              <div className="flex space-x-8">
                 <Link
                   to="/profile"
                   className={`${
