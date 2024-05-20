@@ -29,21 +29,34 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
     try {
-      const credentials = await fetchCredentials();
-      // <Airtable/>
-      const isValidCredential = credentials.some(
-        (cred) => cred.username === username && cred.password === password
+      const response = await axios.get(
+        "https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors",
+        {
+          headers: {
+            Authorization: "Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83",
+          },
+          params: {
+            filterByFormula: `AND({Username} = '${username}', {Password} = '${password}')`,
+            fields: ["Username", "Password"],
+          },
+        }
       );
-      if (isValidCredential) {
+      console.log(response);
+      const records = response.data.records;
+  
+      if (records.length > 0) {
         const token = generateToken();
         localStorage.setItem("token", token); // Store the token
         localStorage.setItem("username", username); // Store the username
+  
         if (rememberMe) {
           localStorage.setItem("rememberMe", "true");
         } else {
           localStorage.removeItem("rememberMe");
         }
+  
         navigate("/welcome");
       } else {
         setError("Invalid username or password");
@@ -52,6 +65,7 @@ const LoginPage = () => {
       console.error(err);
       setError("An error occurred while logging in");
     }
+  
     setLoading(false);
   };
 
@@ -61,23 +75,6 @@ const LoginPage = () => {
     }
   };
 
-  const fetchCredentials = async () => {
-    const response = await axios.get(
-      "https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors",
-      {
-        headers: {
-          Authorization:
-            "Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83",
-        },
-      }
-    );
-    const records = response.data.records;
-    console.log(response.data);
-    return records.map((record) => ({
-      username: record.fields.Username,
-      password: record.fields.Password,
-    }));
-  };
 
   const generateToken = () => {
     const token = Math.random().toString(36).substr(2);
