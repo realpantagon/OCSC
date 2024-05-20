@@ -232,7 +232,7 @@ const MainSection = ({ userRecord, openItem }) => {
             SMALL TO MEDIUM PARCEL COURIER
           </li>
           <p>
-            If you have a small to medium parcel(s) to be sent to theexhibition,
+            If you have a small to medium parcel(s) to be sent to the exhibition,
             please do send it to us and
           </p>
 
