@@ -20,11 +20,11 @@ function Order() {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          "https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors",
+          "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
           {
             headers: {
               Authorization:
-                "Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83",
+                "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
             },
           }
         );

@@ -119,44 +119,43 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Organization Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Organization Name"] || "-"}
+                  {userRecord.fields["Organization Name (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address (from Booth no.)"] || "-"}
+                  {userRecord.fields["Street Address (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address Line 2</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address Line 2 (from Booth no.)"] ||
-                    "-"}
+                  {userRecord.fields["Street Address Line 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">City</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["City (from Booth no.)"] || "-"}
+                  {userRecord.fields["City (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">State / Province</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["State / Province (from Booth no.)"] || "-"}
+                  {userRecord.fields["State / Province (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Postal / Zip Code</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Postal / Zip Code (from Booth no.)"] || "-"}
+                  {userRecord.fields["Postal / Zip Code (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Country</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Country (from Booth no.)"] || "-"}
+                  {userRecord.fields["Country (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -181,37 +180,37 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Prefix</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Prefix (from Booth no.)"] || "-"}
+                  {userRecord.fields["Prefix (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">First Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["First Name (from Booth no.)"] || "-"}
+                  {userRecord.fields["First Name (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Last Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Last Name (from Booth no.)"] || "-"}
+                  {userRecord.fields["Last Name (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Position</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Position (from Booth no.)"] || "-"}
+                  {userRecord.fields["Position (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Email</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Email (from Booth no.)"] || "-"}
+                  {userRecord.fields["Email (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Phone Number</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Phone Number (from Booth no.)"] || "-"}
+                  {userRecord.fields["Phone Number (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -236,8 +235,7 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Level of Studies Offered</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Level of Studies Offered (from Booth no.)"] ||
-                    "-"}
+                  {userRecord.fields["Level of Studies Offered (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -259,8 +257,7 @@ const MainSection = ({ userRecord, openItem }) => {
               {[...Array(10)].map((_, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
-                    {userRecord.fields[`Famous #${index + 1} (from Booth no.)`] ||
-                      "-"}
+                    {userRecord.fields[`Famous #${index + 1} (from Booth No. for edit)`] || "-"}
                   </td>
                 </tr>
               ))}
@@ -286,7 +283,7 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Promotion Detail</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Promotion Detail (from Booth no.)"] || "-"}
+                  {userRecord.fields["Promotion Detail (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -311,7 +308,7 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Scholarship</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Scholarship (from Booth no.)"] || "-"}
+                  {userRecord.fields["Scholarship (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -336,24 +333,19 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Total Booths Required</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Total Booths Required (from Booth no.)"] ||
-                    "-"}
+                  {userRecord.fields["Total Booths Required (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Institution Name on Booth Fascia</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields[
-                    "Institution name to be put on booth fascia (from Booth no.)"
-                  ] || "-"}
+                  {userRecord.fields["Institution name to be put on booth fascia (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">National Flag on Booth & Media for PR</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields[
-                    "National flag on booth & Media for PR (from Booth no.)"
-                  ] || "-"}
+                  {userRecord.fields["National flag on booth & Media for PR (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -378,33 +370,43 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Organization Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Organization Name 2 (from Booth no.)"] ||
-                    "-"}
+                  {userRecord.fields["Organization Name 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address 2 (from Booth no.)"] || "-"}
+                  {userRecord.fields["Street Address 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address Line 2</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address Line 2 2 (from Booth no.)"] ||
-                    "-"}
+                  {userRecord.fields["Street Address Line 2 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">City</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["City 2 (from Booth no.)"] || "-"}
+                  {userRecord.fields["City 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">State / Province</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["State / Province 2 (from Booth no.)"] || "-"}
+                  {userRecord.fields["State / Province 2 (from Booth No. for edit)"] || "-"}
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50">
+                <td className="px-6 py-4">Postal / Zip Code</td>
+                <td className="px-6 py-4">
+                  {userRecord.fields["Postal / Zip Code 2 (from Booth No. for edit)"] || "-"}
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50">
+                <td className="px-6 py-4">Country</td>
+                <td className="px-6 py-4">
+                  {userRecord.fields["Country 2 (from Booth No. for edit)"] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -432,31 +434,42 @@ function Profile() {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "https://api.airtable.com/v0/appuJ44jDsA3MjkPx/Approved%20Exhibitors",
-          {
-            headers: {
-              Authorization:
-                "Bearer pat0OBMDNs4sQDmvL.46e6a60992296cd058398c5407b91169e9764861003a751a45e2e37c2fa4cc83",
-            },
+  
+        // Retrieve the username from localStorage
+        const storedUsername = localStorage.getItem('username');
+  
+        if (storedUsername) {
+          const response = await axios.get(
+            "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
+            {
+              headers: {
+                Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+              },
+              params: {
+                filterByFormula: `{Username} = '${storedUsername}'`,
+              },
+            }
+          );
+  
+          console.log(response.data);
+          const records = response.data.records;
+  
+          if (records.length > 0) {
+            const userRecord = records[0];
+            setUserRecord(userRecord);
+          } else {
+            console.log("No matching record found");
           }
-        );
-        const records = response.data.records;
-        const userRecord = records.find(
-          (record) => record.fields.Username === username
-        );
-        setUserRecord(userRecord);
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {
         setIsLoading(false);
       }
     };
-
-    if (username) {
-      fetchUserData();
-    }
-  }, [username]);
+  
+    fetchUserData();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
