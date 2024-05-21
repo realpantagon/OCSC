@@ -12,7 +12,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("ocsctoken");
     if (storedToken) {
       const [token, expirationTime] = storedToken.split(":");
       const currentTime = Date.now();
@@ -21,7 +21,8 @@ const LoginPage = () => {
         navigate("/welcome");
       } else {
         // Token has expired, remove it from local storage
-        localStorage.removeItem("token");
+        localStorage.removeItem("ocsctoken");
+        localStorage.removeItem("ocscusername");
       }
     }
   }, [navigate]);
@@ -55,8 +56,8 @@ const LoginPage = () => {
 
       if (records.length > 0) {
         const token = generateToken();
-        localStorage.setItem("token", token); // Store the token
-        localStorage.setItem("username", username); // Store the username
+        localStorage.setItem("ocsctoken", token); // Store the token as ocsctoken
+        localStorage.setItem("ocscusername", username); // Store the username as ocscusername
 
         if (rememberMe) {
           localStorage.setItem("rememberMe", "true");

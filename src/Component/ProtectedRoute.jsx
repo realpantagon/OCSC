@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const isAuthenticated = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('ocsctoken');
     return token !== null;
   };
 
