@@ -29,15 +29,15 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Form validation
     if (!username.trim() || !password.trim()) {
       setError("Please enter both username and password");
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       const response = await axios.get(
         "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
@@ -51,20 +51,24 @@ const LoginPage = () => {
           },
         }
       );
-
+  
       const records = response.data.records;
-
+  
       if (records.length > 0) {
         const token = generateToken();
-        localStorage.setItem("ocsctoken", token); // Store the token as ocsctoken
-        localStorage.setItem("ocscusername", username); // Store the username as ocscusername
-
+        localStorage.setItem("ocsctoken", token);
+        localStorage.setItem("ocscusername", username);
+        
+        // Store the record ID in local storage
+        const recordId = records[0].id;
+        localStorage.setItem("ocscexhibitorrecordid", recordId);
+  
         if (rememberMe) {
           localStorage.setItem("rememberMe", "true");
         } else {
           localStorage.removeItem("rememberMe");
         }
-
+  
         navigate("/welcome");
       } else {
         setError("Invalid username or password");
@@ -73,7 +77,7 @@ const LoginPage = () => {
       console.error(err);
       setError("An error occurred while logging in. Please try again later.");
     }
-
+  
     setLoading(false);
   };
 
