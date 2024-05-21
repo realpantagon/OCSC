@@ -1,28 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Component/Navbar";
 import { useNavigate } from "react-router-dom";
+import "./welcome.css"
 
 function Welcome() {
-  const [isChecked, setIsChecked] = useState(false);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedIsChecked = localStorage.getItem("termsChecked");
-    if (storedIsChecked === "true") {
-      setIsChecked(true);
-      navigate("/profile");
-    }
-  }, [navigate]);
-
-  const handleCheckboxChange = () => {
-    const newIsChecked = !isChecked;
-    setIsChecked(newIsChecked);
-    localStorage.setItem("termsChecked", newIsChecked.toString());
-  };
-
-  const handleConfirm = () => {
-    navigate("/profile");
-  };
 
   return (
     <div className="App">
@@ -198,8 +180,9 @@ function Welcome() {
           <input
             type="checkbox"
             id="terms-checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
+            checked={true}
+            onChange={() => {}}
+            className="checkbox-grey"
           />
           <label htmlFor="terms-checkbox" className="ml-2">
             I agree to{" "}
@@ -214,13 +197,6 @@ function Welcome() {
             .
           </label>
         </div>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-          onClick={handleConfirm}
-          disabled={!isChecked}
-        >
-          Confirm
-        </button>
       </div>
     </div>
   );

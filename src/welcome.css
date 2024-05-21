@@ -1,0 +1,15 @@
+.checkbox-grey {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  .checkbox-grey:checked {
+    background-color: #e0e0e0;
+  }
