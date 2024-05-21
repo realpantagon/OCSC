@@ -204,7 +204,7 @@ const MainSection = ({ userRecord, openItem }) => {
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
           <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
-          <p>436/36-39 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
+          <p>436/36-39, 436/87-95 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
           <p>Huaykwang Bangkok 10310 Thailand</p>
           <p>Tel: +66 2 690 2682-4 ext 17</p>
           <div className="flex flex-wrap">
@@ -245,6 +245,67 @@ const MainSection = ({ userRecord, openItem }) => {
     content = (
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
+          <img
+            className="object-contain h-36 w-36"
+            src="/novotellogo.jpeg"
+          ></img>
+          <p className="font-bold">SPECIAL RATE FOR OCSC EXHIBITORS</p>
+          <br />
+          <p className="font-bold">
+            Room with breakfast: Single and Twin or Double
+          </p>
+          <br />
+          <li className="ml-[10px]">
+            Superior Room (single stay): THB 3,600 net
+          </li>
+          <li className="ml-[10px]">
+            Superior Room (double stay): THB 3,900 net
+          </li>
+          <br />
+          <p className="italic">
+            *The rates are net, per room per night inclusive of 17.7%
+            government taxes & service charge,
+          </p>
+          <p className="italic">including buffet breakfast.</p>
+          <br />
+          <div className="flex flex-wrap">
+            <p className="font-bold">ONLINE BOOKING is available at&nbsp;</p>
+            <a
+              href="https://novotelsiam.hotels-boutique.com/product/ocsc-expo-2024/"
+              style={{ textDecoration: "underline", color: "blue" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://novotelsiam.hotels-boutique.com/product/ocsc-expo-2024/
+            </a>
+          </div>
+          <br />
+          <p className="font-bold ml-[30px]">ROOM TYPES:</p>
+          <br/>
+          <div className="flex flex-wrap">
+            <div className="grid justify-items-center ml-[40px]">
+              <img
+                className="drop-shadow-lg shadow-gray-600 object-contain h-26 w-36"
+                src="/novotellogo.jpeg"
+              ></img><br/>
+              <p>Superior room</p>
+            </div>
+            <div className="grid justify-items-center ml-[40px]">
+              <img
+                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                src="/novotellogo.jpeg"
+              ></img><br/>
+              <p>Deluxe room</p>
+            </div>
+            <div className="grid justify-items-center ml-[40px]">
+              <img
+                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                src="/novotellogo.jpeg"
+              ></img><br/>
+              <p>The SQUARE</p>
+            </div>
+          </div>
+          <br/>
           <p className="font-bold">Novotel Bangkok on Siam Square</p>
           <p>Siam Square Soi 6, Rama 1 Road. </p>
           <p>Bangkok 10330 Thailand</p>
@@ -267,7 +328,7 @@ const MainSection = ({ userRecord, openItem }) => {
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
           <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
-          <p>436/36-39 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
+          <p>436/36-39, 436/87-95 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
           <p>Huaykwang Bangkok 10310 Thailand</p>
           <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
           <div className="flex flex-wrap">
@@ -344,7 +405,7 @@ const MainSection = ({ userRecord, openItem }) => {
       </div>
     );
   } else {
-    content = "Manual";
+    content = "";
   }
 
   return <div className="flex-1 p-6">{content}</div>;
