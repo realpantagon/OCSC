@@ -125,28 +125,38 @@ const MainSection = ({ userRecord, openItem }) => {
   let content;
 
   if (openItem === "entranceRoute") {
-  content = (
-    <div className="ml-[50px] mr-[50px] mt-[20px] text-xl border-2 border-gray-300 rounded-lg p-6 bg-white">
-      <div className="ml-[30px] flex flex-wrap mb-[10px]">
-        <p>1. Entrance before operating hours (10:00 AM)&nbsp;</p>
-        <button
-          onClick={() => window.open("https://drive.google.com/file/d/1RueVPBb45_g7kJzgqvxr6TLyOsX_sX3C/view", "_blank")}
-          className="bg-blue-500 text-white px-1 pb-1 ml-2 rounded-lg text-xl hover:bg-blue-700 focus:outline-none"
-        >
-          Click
-        </button>
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] text-xl border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px] flex flex-wrap mb-[10px]">
+          <p>1. Entrance before operating hours (10:00 AM)&nbsp;</p>
+          <button
+            onClick={() =>
+              window.open(
+                "https://drive.google.com/file/d/1RueVPBb45_g7kJzgqvxr6TLyOsX_sX3C/view",
+                "_blank"
+              )
+            }
+            className="bg-blue-500 text-white px-1 pb-1 ml-2 rounded-lg text-xl hover:bg-blue-700 focus:outline-none"
+          >
+            Click
+          </button>
+        </div>
+        <div className="ml-[30px] flex flex-wrap">
+          <p>2. Loading Route&nbsp;</p>
+          <button
+            onClick={() =>
+              window.open(
+                "https://drive.google.com/file/d/1UMi4n5n05Yj1Va-WKmToiQgWFWaePEzb/view",
+                "_blank"
+              )
+            }
+            className="bg-blue-500 text-white px-1 pb-1 ml-2 rounded-lg text-xl hover:bg-blue-700 focus:outline-none"
+          >
+            Click
+          </button>
+        </div>
       </div>
-      <div className="ml-[30px] flex flex-wrap">
-        <p>2. Loading Route&nbsp;</p>
-        <button
-          onClick={() => window.open("https://drive.google.com/file/d/1UMi4n5n05Yj1Va-WKmToiQgWFWaePEzb/view", "_blank")}
-          className="bg-blue-500 text-white px-1 pb-1 ml-2 rounded-lg text-xl hover:bg-blue-700 focus:outline-none"
-        >
-          Click
-        </button>
-      </div>
-    </div>
-  );
+    );
   } else if (openItem === "importanceAgenda") {
     content = (
       <div className="ml-[50px] mr-[50px] mt-[20px] text-sm flex flex-wrap gap-[100px] border-2 border-gray-300 rounded-lg p-6 bg-white">
@@ -162,7 +172,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <p>Build-up Date:</p>
           <br />
           <br />
-          <p>Expo Dates:</p>
+          <p>Dismantlement:</p>
         </div>
         <div className="leading-loose">
           <p>The OCSC International Education Expo 2024, Bangkok</p>
@@ -190,75 +200,147 @@ const MainSection = ({ userRecord, openItem }) => {
       </div>
     );
   } else if (openItem === "officialContractor.showOrganizer") {
-    content = "Show Organizer";
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px]">
+          <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
+          <p>436/36-39 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
+          <p>Huaykwang Bangkok 10310 Thailand</p>
+          <p>Tel: +66 2 690 2682-4 ext 17</p>
+          <div className="flex flex-wrap">
+            <p>E-mail:&nbsp;</p>
+            <a
+              className="underline underline-offset-2"
+              href="mailto:ladda@cityneonthailand.com"
+            >
+              ladda@cityneonthailand.com
+            </a>
+          </div>
+          <p>Contact: Ms. Ladda Chaiprasert, Managing Director</p>
+        </div>
+      </div>
+    );
   } else if (openItem === "officialContractor.venue") {
-    content = "Venue";
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px]">
+          <p className="font-bold">Paragon Hall</p>
+          <p>991 Siam Paragon Shopping Center, Rama 1 Road, Pathumwan, </p>
+          <p> Bangkok 10330 Thailand </p>
+          <p>Tel: +66 2 610 8011 , Phone no.: +66 81-935-6154</p>
+          <div className="flex flex-wrap">
+            <p>E-mail:&nbsp;</p>
+            <a
+              className="underline underline-offset-2"
+              href="mailto:sirinapa.s@siamparagon.co.th"
+            >
+              sirinapa.s@siamparagon.co.th
+            </a>
+          </div>
+          <p>Contact: Ms. Sirinapa Sikarinporn, Sales Manager</p>
+        </div>
+      </div>
+    );
   } else if (openItem === "officialContractor.accommodation") {
-    content = "Accommodation";
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px]">
+          <p className="font-bold">Novotel Bangkok on Siam Square</p>
+          <p>Siam Square Soi 6, Rama 1 Road. </p>
+          <p>Bangkok 10330 Thailand</p>
+          <p>Tel: +66 2 209 8888 Ext. 2415</p>
+          <div className="flex flex-wrap">
+            <p>E-mail:&nbsp;</p>
+            <a
+              className="underline underline-offset-2"
+              href="mailto:H1031-SL2@accor.com "
+            >
+              H1031-SL2@accor.com
+            </a>
+          </div>
+          <p>Contact: Ms. Pan Panmarerng, Senior Sales Manager</p>
+        </div>
+      </div>
+    );
   } else if (openItem === "officialContractor.standFitting") {
-    content = "Stand Fitting";
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px]">
+          <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
+          <p>436/36-39 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
+          <p>Huaykwang Bangkok 10310 Thailand</p>
+          <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
+          <div className="flex flex-wrap">
+            <p>E-mail:&nbsp;</p>
+            <a
+              className="underline underline-offset-2"
+              href="mailto:op@cityneonthailand.com "
+            >
+              op@cityneonthailand.com
+            </a>
+          </div>
+          <p>Contact: Ms. Pratchayaporn Phonwaritkul, Project Manager</p>
+        </div>
+      </div>
+    );
   } else if (openItem === "officialContractor.utility") {
-    content = "Utility";
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px]">
+          <p className="font-bold">A PLUS UTILITY MANAGEMENT CO., LTD.</p>
+          <p>50/259 Moo 9 Bangpood, Pakkred, Nonthaburi, 11120 Thailand</p>
+          <p>Tel: +66 2 090 2542-46</p>
+          <div className="flex flex-wrap">
+            <p>E-mail:&nbsp;</p>
+            <a
+              className="underline underline-offset-2"
+              href="mailto:info@aplusutility.com "
+            >
+              info@aplusutility.com
+            </a>
+          </div>
+          <p>Contact: Ms. Phiangrudee Srinamuang</p>
+        </div>
+      </div>
+    );
   } else if (openItem === "officialContractor.freightForwarder") {
     content = (
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
-        <li className="underline underline-offset-2 font-bold ml-2">
-          OFFICIAL FREIGHT FORWARDER
-        </li>
-        <p>
-          We have appointed APT as the official freight for the event. If you
-          need to use its shipping
-        </p>
-        <p>service, you can contact them at:</p>
-        <br />
-        <div className="ml-[50px] mr-[50px]">
-          <p className="font-bold">APT SHOWFREIGHT (THAILAND) LIMITED</p>
+          <li className="underline underline-offset-2 font-bold ml-2">
+            SMALL TO MEDIUM PARCEL COURIER
+          </li>
           <p>
-            11/24, Ratchadapisek road, Chongnonsee, Yannawa, Bangkok 10210,
-            Thailand
+            If you have a small to medium parcel(s) to be sent to the
+            exhibition, please do send it to us and
           </p>
-          <p>Tel: (66)(2) 285 3060 (auto)</p>
-          <p>Fax: (66)(2) 285 3068</p>
-          <p>E-mail : hasnai@aptshowfreight.com</p>
-          <p>Contact: Mr. Hasnai Kongkaew</p>
-          <br />
-          <br />
-        </div>
-        <li className="underline underline-offset-2 font-bold ml-2">
-          SMALL TO MEDIUM PARCEL COURIER
-        </li>
-        <p>
-          If you have a small to medium parcel(s) to be sent to the exhibition,
-          please do send it to us and
-        </p>
 
-        <p>
-          we will bring to your booth on Friday 25 October. Please make on the
-          box your institution name
-        </p>
-
-        <p>and booth number. Our office address is:</p>
-        <br />
-        <div className="ml-[50px]">
-          <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
-          <p>436/36-39 Sol 20 Mithuna 11, 20 Mithuna Road.,</p>
-          <p className="mb-3">Huaykwang Bangkok 10310 Thailand</p>
-          <p>Tel: +66 2 690 2682-4 ext 17</p>
-          <p>E-mail: ladda@cityneonthailand.com</p>
-          <p>Contact: Ms. Ladda Chaiprasert, Managing Director</p>
-          <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
-          <p>E-mall: op@cityneonthalland.com</p>
-          <p>Contact: Ms. Pratchayaporn Phonwaritkul, Project</p>
-          <p> Manager</p>
-        </div>
-        <div className="flex flex-wrap">
-          <p className="font-bold ml-[40px]">
-            DEADLINE: the parcel(s) must be arrived in our office by
+          <p>
+            we will bring to your booth on Friday 25 October. Please make on the
+            box your institution name
           </p>
-          <p className="text-rose-600 font-bold">&nbsp;4 October 2024.</p>
+
+          <p>and booth number. Our office address is:</p>
+          <br />
+          <div className="ml-[50px]">
+            <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
+            <p>436/36-39 Sol 20 Mithuna 11, 20 Mithuna Road.,</p>
+            <p className="mb-3">Huaykwang Bangkok 10310 Thailand</p>
+            <p>Tel: +66 2 690 2682-4 ext 17</p>
+            <p>E-mail: ladda@cityneonthailand.com</p>
+            <p>Contact: Ms. Ladda Chaiprasert, Managing Director</p>
+            <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
+            <p>E-mall: op@cityneonthalland.com</p>
+            <p>Contact: Ms. Pratchayaporn Phonwaritkul, Project</p>
+            <p> Manager</p>
+          </div>
+          <div className="flex flex-wrap">
+            <p className="font-bold ml-[40px]">
+              DEADLINE: the parcel(s) must be arrived in our office by
+            </p>
+            <p className="text-rose-600 font-bold">&nbsp;4 October 2024.</p>
+          </div>
         </div>
-      </div>
       </div>
     );
   } else {

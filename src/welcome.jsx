@@ -177,26 +177,26 @@ function Welcome() {
           </p>
         </div>
         <div className="text-base mt-3 ml-2">
-          <input
-            type="checkbox"
-            id="terms-checkbox"
-            checked={true}
-            onChange={() => {}}
-            className="checkbox-grey"
-          />
-          <label htmlFor="terms-checkbox" className="ml-2">
-            I agree to{" "}
-            <a
-              href="https://www.example.com/"
-              style={{ textDecoration: "underline", color: "blue" }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              terms & conditions
-            </a>
-            .
-          </label>
-        </div>
+  <input
+    type="checkbox"
+    id="terms-checkbox"
+    checked={true}
+    onChange={() => {}}
+    className="checkbox-grey"
+  />
+  <label htmlFor="terms-checkbox" className="ml-2">
+    I agree to{" "}
+    <a
+      href="https://www.example.com/"
+      style={{ textDecoration: "underline", color: "blue" }}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      terms & conditions
+    </a>
+    .
+  </label>
+</div>
       </div>
     </div>
   );

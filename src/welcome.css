@@ -1,15 +1,27 @@
 .checkbox-grey {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #e0e0e0;
-    cursor: pointer;
-    vertical-align: middle;
-    margin-right: 5px;
-  }
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative;
+}
 
-  .checkbox-grey:checked {
-    background-color: #e0e0e0;
-  }
+.checkbox-grey:checked {
+  background-color: #e0e0e0;
+}
+
+.checkbox-grey:checked::before {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
