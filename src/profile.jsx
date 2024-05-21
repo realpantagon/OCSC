@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Component/Navbar";
-import "./profile.css"
+import "./profile.css";
 
 const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   const toggleItem = (item) => {
@@ -14,17 +14,23 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
         <div className="">
           <button
             className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-              openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile") ? "active bg-blue-700 text-white" : ""
+              openItem === "exhibitorProfile" ||
+              openItem?.startsWith("exhibitorProfile")
+                ? "active bg-blue-700 text-white"
+                : ""
             } w-full text-left font-semibold`}
             onClick={() => toggleItem("exhibitorProfile-generalInfo")}
           >
             Exhibitor Profile
           </button>
-          {(openItem === "exhibitorProfile" || openItem?.startsWith("exhibitorProfile")) && (
+          {(openItem === "exhibitorProfile" ||
+            openItem?.startsWith("exhibitorProfile")) && (
             <ul className="mx-[30px]">
               <button
                 className={`mt-3 mb-3  ${
-                  openItem === "exhibitorProfile-generalInfo" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-generalInfo"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-generalInfo")}
               >
@@ -32,7 +38,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-contactPerson" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-contactPerson"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-contactPerson")}
               >
@@ -40,7 +48,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-levelOfStudies" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-levelOfStudies"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-levelOfStudies")}
               >
@@ -48,7 +58,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-topMajors" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-topMajors"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-topMajors")}
               >
@@ -56,7 +68,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-promotion" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-promotion"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-promotion")}
               >
@@ -64,7 +78,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
               </button>
               <button
                 className={`mb-3 ${
-                  openItem === "exhibitorProfile-scholarship" ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out" : ""
+                  openItem === "exhibitorProfile-scholarship"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-scholarship")}
               >
@@ -76,7 +92,9 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
         <div className="mb-2 mt-2">
           <button
             className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-              openItem === "exhibitorSpace" ? "active bg-blue-700 text-white" : ""
+              openItem === "exhibitorSpace"
+                ? "active bg-blue-700 text-white"
+                : ""
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("exhibitorSpace")}
           >
@@ -119,19 +137,25 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Organization Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Organization Name (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Organization Name (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Street Address (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address Line 2</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address Line 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Street Address Line 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
@@ -143,23 +167,44 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">State / Province</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["State / Province (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "State / Province (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Postal / Zip Code</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Postal / Zip Code (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Postal / Zip Code (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Country</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Country (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["Country (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
             </tbody>
           </table>
+          <div className="mt-6">
+            <label
+              htmlFor="additionalInfo"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Organization highlight (for PR purpose)
+            </label>
+            <textarea
+              id="additionalInfo"
+              name="additionalInfo"
+              rows={4}
+              maxLength={400}
+              className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
+              placeholder="Enter additional information (max 400 characters)"
+            ></textarea>
+          </div>
         </div>
       )}
       {openItem === "exhibitorProfile-contactPerson" && (
@@ -186,19 +231,22 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">First Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["First Name (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["First Name (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Last Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Last Name (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["Last Name (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Position</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Position (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["Position (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
@@ -210,7 +258,9 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Phone Number</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Phone Number (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Phone Number (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -219,7 +269,9 @@ const MainSection = ({ userRecord, openItem }) => {
       )}
       {openItem === "exhibitorProfile-levelOfStudies" && (
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Level of Studies Offer</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+            Level of Studies Offer
+          </h2>
           <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">
               <tr>
@@ -235,7 +287,9 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Level of Studies Offered</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Level of Studies Offered (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Level of Studies Offered (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -257,7 +311,9 @@ const MainSection = ({ userRecord, openItem }) => {
               {[...Array(10)].map((_, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
-                    {userRecord.fields[`Famous #${index + 1} (from Booth No. for edit)`] || "-"}
+                    {userRecord.fields[
+                      `Famous #${index + 1} (from Booth No. for edit)`
+                    ] || "-"}
                   </td>
                 </tr>
               ))}
@@ -283,7 +339,9 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Promotion Detail</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Promotion Detail (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Promotion Detail (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -308,7 +366,8 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Scholarship</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Scholarship (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["Scholarship (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
             </tbody>
@@ -333,19 +392,27 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Total Booths Required</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Total Booths Required (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Total Booths Required (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Institution Name on Booth Fascia</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Institution name to be put on booth fascia (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Institution name to be put on booth fascia (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4">National Flag on Booth & Media for PR</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["National flag on booth & Media for PR (from Booth No. for edit)"] || "-"}
+                  National Flag on Booth & Media for PR
+                </td>
+                <td className="px-6 py-4">
+                  {userRecord.fields[
+                    "National flag on booth & Media for PR (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
             </tbody>
@@ -370,19 +437,25 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Organization Name</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Organization Name 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Organization Name 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Street Address 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Street Address Line 2</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Street Address Line 2 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Street Address Line 2 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
@@ -394,19 +467,24 @@ const MainSection = ({ userRecord, openItem }) => {
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">State / Province</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["State / Province 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "State / Province 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Postal / Zip Code</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Postal / Zip Code 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields[
+                    "Postal / Zip Code 2 (from Booth No. for edit)"
+                  ] || "-"}
                 </td>
               </tr>
               <tr className="hover:bg-gray-50">
                 <td className="px-6 py-4">Country</td>
                 <td className="px-6 py-4">
-                  {userRecord.fields["Country 2 (from Booth No. for edit)"] || "-"}
+                  {userRecord.fields["Country 2 (from Booth No. for edit)"] ||
+                    "-"}
                 </td>
               </tr>
             </tbody>
@@ -434,26 +512,27 @@ function Profile() {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
-  
+
         // Retrieve the username from localStorage
-        const storedUsername = localStorage.getItem('username');
-  
+        const storedUsername = localStorage.getItem("username");
+
         if (storedUsername) {
           const response = await axios.get(
             "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
             {
               headers: {
-                Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+                Authorization:
+                  "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
               },
               params: {
                 filterByFormula: `{Username} = '${storedUsername}'`,
               },
             }
           );
-  
+
           console.log(response.data);
           const records = response.data.records;
-  
+
           if (records.length > 0) {
             const userRecord = records[0];
             setUserRecord(userRecord);
@@ -467,7 +546,7 @@ function Profile() {
         setIsLoading(false);
       }
     };
-  
+
     fetchUserData();
   }, []);
 
@@ -498,7 +577,9 @@ function Profile() {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
-              <span className="text-gray-600 text-lg">Loading user data...</span>
+              <span className="text-gray-600 text-lg">
+                Loading user data...
+              </span>
             </div>
           </div>
         ) : userRecord ? (
@@ -517,7 +598,7 @@ function Profile() {
         )}
       </main>
     </div>
-  );  
+  );
 }
 
 export default Profile;
