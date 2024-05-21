@@ -24,7 +24,7 @@ function Profile() {
         setIsLoading(true);
 
         // Retrieve the username from localStorage
-        const storedUsername = localStorage.getItem("username");
+        const storedUsername = localStorage.getItem("ocscusername");
 
         if (storedUsername) {
           const response = await axios.get(
