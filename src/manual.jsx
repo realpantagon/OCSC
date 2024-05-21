@@ -5,7 +5,7 @@ import axios from "axios";
 
 const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   const toggleItem = (item) => {
-    setOpenItem(openItem === item ? null : item);
+    setOpenItem(item);
   };
 
   return (

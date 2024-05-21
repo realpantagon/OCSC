@@ -1,9 +1,9 @@
 import React from "react";
 
 const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
-    const toggleItem = (item) => {
-      setOpenItem(openItem === item ? null : item);
-    };
+  const toggleItem = (item) => {
+    setOpenItem(item);
+  };
   
     return (
       <div className="profile-page w-1/4 p-4 text-black bg-white">
