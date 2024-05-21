@@ -134,7 +134,7 @@ function Order() {
                     ? "bg-blue-700 text-white shadow-lg"
                     : "bg-white text-black"
                 }`}
-                onClick={() => openJotForm("r7 service(Form 7)")}
+                onClick={() => openJotForm("r7 service(VISA)")}
               >
                 Form 7: Visa invitation letter
               </button>
