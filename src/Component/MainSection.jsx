@@ -53,7 +53,8 @@ const MainSection = ({ userRecord, openItem }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setChangedFields({ ...changedFields, [name]: value });
+    const fieldName = name.replace(" (from Booth No. for edit)", "");
+    setChangedFields({ ...changedFields, [fieldName]: value });
   };
 
   const handleUpdateField = (fields) => {
