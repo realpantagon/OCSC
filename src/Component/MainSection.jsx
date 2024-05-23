@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const MainSection = ({ userRecord, openItem }) => {
+  const [formData, setFormData] = useState(userRecord.fields);
+  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [changedFields, setChangedFields] = useState({});
+
   const sections = {
     "exhibitorProfile-generalInfo": [
       ["Organization Name", "Organization Name (from Booth No. for edit)"],
@@ -29,12 +34,12 @@ const MainSection = ({ userRecord, openItem }) => {
     "exhibitorProfile-scholarship": [
       ["Scholarship", "Scholarship (from Booth No. for edit)"],
     ],
-    "exhibitorSpace": [
+    exhibitorSpace: [
       ["Total Booths Required", "Total Booths Required (from Booth No. for edit)"],
       ["Institution Name on Booth Fascia", "Institution name to be put on booth fascia (from Booth No. for edit)"],
       ["National Flag on Booth & Media for PR", "National flag on booth & Media for PR (from Booth No. for edit)"],
     ],
-    "billingInfo": [
+    billingInfo: [
       ["Organization Name", "Organization Name 2 (from Booth No. for edit)"],
       ["Street Address", "Street Address 2 (from Booth No. for edit)"],
       ["Street Address Line 2", "Street Address Line 2 2 (from Booth No. for edit)"],
@@ -43,6 +48,53 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Postal / Zip Code", "Postal / Zip Code 2 (from Booth No. for edit)"],
       ["Country", "Country 2 (from Booth No. for edit)"],
     ],
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setChangedFields({ ...changedFields, [name]: value });
+  };
+
+  const handleUpdateField = (fields) => {
+    console.log("Fields to update:", fields);
+    // Prepare the data to send an update API request to Airtable
+    const recordId = localStorage.getItem("ocscrecordid");
+    const updateData = {
+      records: [
+        {
+          id: recordId,
+          fields: fields,
+        },
+      ],
+    };
+    console.log("Update data:", updateData);
+    // Send the update API request to Airtable using fetch
+    fetch("https://api.airtable.com/v0/appVADkxTuwcN78c6/%F0%9F%93%9AExhibitors", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+      },
+      body: JSON.stringify(updateData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Record updated successfully:", data);
+        setChangedFields({}); // Clear the changedFields state after saving
+      })
+      .catch((error) => {
+        console.error("Error updating record:", error);
+      });
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    handleUpdateField(changedFields); // Send the update API request with changedFields
   };
 
   return (
@@ -56,15 +108,31 @@ const MainSection = ({ userRecord, openItem }) => {
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">Field</th>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">Value</th>
+                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                    Field
+                  </th>
+                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                    Value
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {sections[openItem].map(([label, field], index) => (
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-6 py-4">{label}</td>
-                    <td className="px-6 py-4">{userRecord.fields[field] || "-"}</td>
+                    <td className="px-6 py-4">
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name={field}
+                          value={formData[field] || ""}
+                          onChange={handleChange}
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                        />
+                      ) : (
+                        formData[field] || "-"
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -75,34 +143,69 @@ const MainSection = ({ userRecord, openItem }) => {
               <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700 mb-1">
                 Organization highlight (for PR purpose)
               </label>
-              <textarea
-                id="additionalInfo"
-                name="additionalInfo"
-                rows={4}
-                maxLength={400}
-                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
-                placeholder="Enter additional information (max 400 characters)"
-              ></textarea>
+              {isEditing ? (
+                <textarea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  rows={4}
+                  maxLength={400}
+                  value={additionalInfo}
+                  onChange={(e) => setAdditionalInfo(e.target.value)}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
+                  placeholder="Enter additional information (max 400 characters)"
+                ></textarea>
+              ) : (
+                <p>{additionalInfo || "-"}</p>
+              )}
             </div>
           )}
           {openItem === "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">Major</th>
+                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                    Major
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {[...Array(10)].map((_, index) => (
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
-                      {index + 1}. {userRecord.fields[`Famous #${index + 1} (from Booth No. for edit)`] || "-"}
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name={`Famous #${index + 1} (from Booth No. for edit)`}
+                          value={formData[`Famous #${index + 1} (from Booth No. for edit)`] || ""}
+                          onChange={handleChange}
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                        />
+                      ) : (
+                        formData[`Famous #${index + 1} (from Booth No. for edit)`] || "-"
+                      )}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           )}
+          <div className="mt-6">
+            {isEditing ? (
+              <button
+                onClick={handleSave}
+                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              >
+                Save
+              </button>
+            ) : (
+              <button
+                onClick={handleEdit}
+                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              >
+                Edit
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
