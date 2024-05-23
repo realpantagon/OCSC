@@ -7,6 +7,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('ocsctoken');
+    localStorage.removeItem('ocscusername');
+    // localStorage.removeItem('ocscusername');
     localStorage.removeItem('rememberMe');
     navigate('/');
   };

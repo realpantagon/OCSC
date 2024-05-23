@@ -27,59 +27,82 @@ const LoginPage = () => {
     }
   }, [navigate]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    // Form validation
-    if (!username.trim() || !password.trim()) {
-      setError("Please enter both username and password");
-      return;
-    }
-  
-    setLoading(true);
-  
-    try {
-      const response = await axios.get(
-        "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Form validation
+  if (!username.trim() || !password.trim()) {
+    setError("Please enter both username and password");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await axios.get(
+      "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
+      {
+        headers: {
+          Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+        },
+        params: {
+          filterByFormula: `AND({Username} = '${username}', {Password} = '${password}')`,
+          fields: ["Username", "Password", "Booth"],
+        },
+      }
+    );
+
+    console.log(response.data);
+    const records = response.data.records;
+
+    if (records.length > 0) {
+      const token = generateToken();
+      localStorage.setItem("ocsctoken", token);
+      localStorage.setItem("ocscusername", username);
+
+      if (rememberMe) {
+        localStorage.setItem("rememberMe", "true");
+      } else {
+        localStorage.removeItem("rememberMe");
+      }
+
+      // Get the Booth value from the response
+      const booth = records[0].fields.Booth;
+
+
+      // Make a second API request to search for the record ID in the other table
+      const searchResponse = await axios.get(
+        "https://api.airtable.com/v0/appVADkxTuwcN78c6/%F0%9F%93%9AExhibitors",
         {
           headers: {
             Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
           },
           params: {
-            filterByFormula: `AND({Username} = '${username}', {Password} = '${password}')`,
-            fields: ["Username", "Password"],
+            filterByFormula: `{Booth No. for edit} = '${booth}'`,
           },
         }
       );
-  
-      const records = response.data.records;
-  
-      if (records.length > 0) {
-        const token = generateToken();
-        localStorage.setItem("ocsctoken", token);
-        localStorage.setItem("ocscusername", username);
-        
-        // Store the record ID in local storage
-        const recordId = records[0].id;
-        localStorage.setItem("ocscexhibitorrecordid", recordId);
-  
-        if (rememberMe) {
-          localStorage.setItem("rememberMe", "true");
-        } else {
-          localStorage.removeItem("rememberMe");
-        }
-  
-        navigate("/welcome");
-      } else {
-        setError("Invalid username or password");
+
+      console.log(searchResponse.data);
+      const searchRecords = searchResponse.data.records;
+
+      if (searchRecords.length > 0) {
+        const recordId = searchRecords[0].id;
+        // Store the record ID in localStorage
+        localStorage.setItem("ocscrecordid", recordId);
       }
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred while logging in. Please try again later.");
+
+      navigate("/welcome");
+    } else {
+      setError("Invalid username or password");
     }
-  
-    setLoading(false);
-  };
+  } catch (err) {
+    console.error(err);
+    setError("An error occurred while logging in. Please try again later.");
+  }
+
+  setLoading(false);
+};
 
   const handleInputChange = () => {
     if (error) {
