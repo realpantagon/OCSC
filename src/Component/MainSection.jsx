@@ -5,6 +5,7 @@ const MainSection = ({ userRecord, openItem }) => {
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [changedFields, setChangedFields] = useState({});
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   const sections = {
     "exhibitorProfile-generalInfo": [
@@ -36,6 +37,7 @@ const MainSection = ({ userRecord, openItem }) => {
     ],
     exhibitorSpace: [
       ["Total Booths Required", "Total Booths Required (from Booth No. for edit)"],
+      ["Booth", "Booth"],
       ["Institution Name on Booth Fascia", "Institution name to be put on booth fascia (from Booth No. for edit)"],
       ["National Flag on Booth & Media for PR", "National flag on booth & Media for PR (from Booth No. for edit)"],
     ],
@@ -54,7 +56,13 @@ const MainSection = ({ userRecord, openItem }) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     const fieldName = name.replace(" (from Booth No. for edit)", "");
-    setChangedFields({ ...changedFields, [fieldName]: value });
+    setChangedFields((prevChangedFields) => ({
+      ...prevChangedFields,
+      [fieldName]: {
+        oldValue: formData[name],
+        newValue: value,
+      },
+    }));
   };
 
   const handleUpdateField = (fields) => {
@@ -65,7 +73,9 @@ const MainSection = ({ userRecord, openItem }) => {
       records: [
         {
           id: recordId,
-          fields: fields,
+          fields: Object.fromEntries(
+            Object.entries(fields).map(([field, { newValue }]) => [field, newValue])
+          ),
         },
       ],
     };
@@ -94,8 +104,19 @@ const MainSection = ({ userRecord, openItem }) => {
   };
 
   const handleSave = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmSave = () => {
     setIsEditing(false);
-    handleUpdateField(changedFields); // Send the update API request with changedFields
+    handleUpdateField(changedFields);
+    setShowConfirmDialog(false);
+  };
+
+  const handleCancelSave = () => {
+    setShowConfirmDialog(false);
+    setIsEditing(false);
+
   };
 
   return (
@@ -161,35 +182,38 @@ const MainSection = ({ userRecord, openItem }) => {
             </div>
           )}
           {openItem === "exhibitorProfile-topMajors" && (
-            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                    Major
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {[...Array(10)].map((_, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          name={`Famous #${index + 1} (from Booth No. for edit)`}
-                          value={formData[`Famous #${index + 1} (from Booth No. for edit)`] || ""}
-                          onChange={handleChange}
-                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                        />
-                      ) : (
-                        formData[`Famous #${index + 1} (from Booth No. for edit)`] || "-"
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+  <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead className="bg-gray-50">
+      <tr>
+        <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+          Major
+        </th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+      {[...Array(10)].map((_, index) => (
+        <tr key={index} className="hover:bg-gray-50">
+          <td className="px-6 py-4">
+            <div className="flex items-center">
+              <span className="mr-2">{index + 1}.</span>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name={`Famous #${index + 1} (from Booth No. for edit)`}
+                  value={formData[`Famous #${index + 1} (from Booth No. for edit)`] || ""}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              ) : (
+                formData[`Famous #${index + 1} (from Booth No. for edit)`] || "-"
+              )}
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
           <div className="mt-6">
             {isEditing ? (
               <button
@@ -206,6 +230,62 @@ const MainSection = ({ userRecord, openItem }) => {
                 Edit
               </button>
             )}
+          </div>
+        </div>
+      )}
+      {showConfirmDialog && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">
+                      Confirm Changes
+                    </h3>
+                    <div className="mt-2">
+                      <p className="text-sm leading-5 text-gray-500">
+                        The following changes will be saved:
+                      </p>
+                      <ul className="mt-4 text-sm leading-5 text-gray-700">
+                        {Object.entries(changedFields).map(([field, { oldValue, newValue }]) => (
+                          <li key={field}>
+                            <strong>{field}:</strong>
+                            <br />
+                            Old Value: {oldValue || "-"}
+                            <br />
+                            New Value: {newValue || "-"}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                  <button
+                    onClick={handleConfirmSave}
+                    type="button"
+                    className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                  >
+                    Save
+                  </button>
+                </span>
+                <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                  <button
+                    onClick={handleCancelSave}
+                    type="button"
+                    className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                  >
+                    Cancel
+                  </button>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       )}
