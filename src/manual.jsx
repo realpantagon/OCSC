@@ -33,7 +33,7 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             } w-full text-left p-2 font-semibold`}
             onClick={() => toggleItem("importanceAgenda")}
           >
-            Importance agenda
+            Important agenda
           </button>
         </div>
         <div className="mb-2">
@@ -180,7 +180,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <p>Gross area 5,000 Sq.m.</p>
           <p>26 - 27 October 2024</p>
           <p>26 October 2024 :11:30 hrs. - 12:00 hrs.</p>
-          <p>26 October 2024 :12;00 hrs. - 19:00 hrs.</p>
+          <p>26 October 2024 :12:00 hrs. - 19:00 hrs.</p>
           <p>27 October 2024 :12:00 hrs. - 19:00 hrs.</p>
           <p>
             (Exhibitors are allowed to access to the exhibition hall from 09:00
@@ -248,7 +248,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <div className="">
           <img
             className="object-contain h-36 w-36"
-            src="/novotellogo.jpeg"
+            src="/Novotel.png"
           ></img></div>
           <p className="font-bold">SPECIAL RATE FOR OCSC EXHIBITORS</p>
           <br />
