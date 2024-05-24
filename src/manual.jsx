@@ -245,10 +245,11 @@ const MainSection = ({ userRecord, openItem }) => {
     content = (
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
+          <div className="">
           <img
             className="object-contain h-36 w-36"
             src="/novotellogo.jpeg"
-          ></img>
+          ></img></div>
           <p className="font-bold">SPECIAL RATE FOR OCSC EXHIBITORS</p>
           <br />
           <p className="font-bold">
@@ -285,22 +286,22 @@ const MainSection = ({ userRecord, openItem }) => {
           <div className="flex flex-wrap">
             <div className="grid justify-items-center ml-[40px]">
               <img
-                className="drop-shadow-lg shadow-gray-600 object-contain h-26 w-36"
-                src="/novotellogo.jpeg"
+                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                src="/Superior-Room-2.jpg"
               ></img><br/>
               <p>Superior room</p>
             </div>
             <div className="grid justify-items-center ml-[40px]">
               <img
                 className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
-                src="/novotellogo.jpeg"
+                src="/Deluxe-Room-Queen.jpg"
               ></img><br/>
               <p>Deluxe room</p>
             </div>
             <div className="grid justify-items-center ml-[40px]">
               <img
                 className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
-                src="/novotellogo.jpeg"
+                src="/Bars-Restaurant-Bars-Restaurants-32.jpg"
               ></img><br/>
               <p>The SQUARE</p>
             </div>
