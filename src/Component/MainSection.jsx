@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 
 const MainSection = ({ userRecord, openItem }) => {
-  const [formData, setFormData] = useState(userRecord.fields);
-  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [formData, setFormData] = useState({
+    ...userRecord.fields,
+    "Organization highlight (for PR purpose)":
+      userRecord.fields["Organization highlight (for PR purpose)"],
+  });
+  const [originalFormData, setOriginalFormData] = useState({
+    ...userRecord.fields,
+    "Organization highlight (for PR purpose)":
+      userRecord.fields["Organization highlight (for PR purpose)"],
+  });
+  const [additionalInfo, setAdditionalInfo] = useState(
+    userRecord.fields["Organization highlight (for PR purpose)"]
+  );
   const [isEditing, setIsEditing] = useState(false);
   const [changedFields, setChangedFields] = useState({});
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -11,11 +22,15 @@ const MainSection = ({ userRecord, openItem }) => {
     "exhibitorProfile-generalInfo": [
       ["Organization Name", "Organization Name (from Booth No. for edit)"],
       ["Street Address", "Street Address (from Booth No. for edit)"],
-      ["Street Address Line 2", "Street Address Line 2 (from Booth No. for edit)"],
+      [
+        "Street Address Line 2",
+        "Street Address Line 2 (from Booth No. for edit)",
+      ],
       ["City", "City (from Booth No. for edit)"],
       ["State / Province", "State / Province (from Booth No. for edit)"],
       ["Postal / Zip Code", "Postal / Zip Code (from Booth No. for edit)"],
       ["Country", "Country (from Booth No. for edit)"],
+      // ["Organization highlight (for PR purpose)", "Organization highlight (for PR purpose) (from Booth No. for edit)"],
     ],
     "exhibitorProfile-contactPerson": [
       ["Prefix", "Prefix (from Booth No. for edit)"],
@@ -26,7 +41,10 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Phone Number", "Phone Number (from Booth No. for edit)"],
     ],
     "exhibitorProfile-levelOfStudies": [
-      ["Level of Studies Offered", "Level of Studies Offered (from Booth No. for edit)"],
+      [
+        "Level of Studies Offered",
+        "Level of Studies Offered (from Booth No. for edit)",
+      ],
     ],
     "exhibitorProfile-topMajors": [],
     "exhibitorProfile-promotion": [
@@ -36,15 +54,27 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Scholarship", "Scholarship (from Booth No. for edit)"],
     ],
     exhibitorSpace: [
-      ["Total Booths Required", "Total Booths Required (from Booth No. for edit)"],
+      [
+        "Total Booths Required",
+        "Total Booths Required (from Booth No. for edit)",
+      ],
       ["Booth", "Booth"],
-      ["Institution Name on Booth Fascia", "Institution name to be put on booth fascia (from Booth No. for edit)"],
-      ["National Flag on Booth & Media for PR", "National flag on booth & Media for PR (from Booth No. for edit)"],
+      [
+        "Institution Name on Booth Fascia",
+        "Institution name to be put on booth fascia (from Booth No. for edit)",
+      ],
+      [
+        "National Flag on Booth & Media for PR",
+        "National flag on booth & Media for PR (from Booth No. for edit)",
+      ],
     ],
     billingInfo: [
       ["Organization Name", "Organization Name 2 (from Booth No. for edit)"],
       ["Street Address", "Street Address 2 (from Booth No. for edit)"],
-      ["Street Address Line 2", "Street Address Line 2 2 (from Booth No. for edit)"],
+      [
+        "Street Address Line 2",
+        "Street Address Line 2 2 (from Booth No. for edit)",
+      ],
       ["City", "City 2 (from Booth No. for edit)"],
       ["State / Province", "State / Province 2 (from Booth No. for edit)"],
       ["Postal / Zip Code", "Postal / Zip Code 2 (from Booth No. for edit)"],
@@ -54,15 +84,26 @@ const MainSection = ({ userRecord, openItem }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    const fieldName = name.replace(" (from Booth No. for edit)", "");
-    setChangedFields((prevChangedFields) => ({
-      ...prevChangedFields,
-      [fieldName]: {
-        oldValue: formData[name],
-        newValue: value,
-      },
-    }));
+    if (name === "additionalInfo") {
+      setAdditionalInfo(value);
+      setChangedFields((prevChangedFields) => ({
+        ...prevChangedFields,
+        "Organization highlight (for PR purpose)": {
+          oldValue: formData["Organization highlight (for PR purpose) "],
+          newValue: value,
+        },
+      }));
+    } else {
+      setFormData({ ...formData, [name]: value });
+      const fieldName = name.replace(" (from Booth No. for edit)", "");
+      setChangedFields((prevChangedFields) => ({
+        ...prevChangedFields,
+        [fieldName]: {
+          oldValue: formData[name],
+          newValue: value,
+        },
+      }));
+    }
   };
 
   const handleUpdateField = (fields) => {
@@ -74,21 +115,31 @@ const MainSection = ({ userRecord, openItem }) => {
         {
           id: recordId,
           fields: Object.fromEntries(
-            Object.entries(fields).map(([field, { newValue }]) => [field, newValue])
+            Object.entries(fields).map(([field, { newValue }]) => [
+              field,
+              newValue,
+            ])
           ),
         },
       ],
     };
-    console.log("Update data:", updateData);
+  
+    // Update the 'Update' column with the fields data
+    updateData.records[0].fields["Update"] = JSON.stringify(fields);
+  
     // Send the update API request to Airtable using fetch
-    fetch("https://api.airtable.com/v0/appVADkxTuwcN78c6/%F0%9F%93%9AExhibitors", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-      },
-      body: JSON.stringify(updateData),
-    })
+    fetch(
+      "https://api.airtable.com/v0/appVADkxTuwcN78c6/%F0%9F%93%9AExhibitors",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+        },
+        body: JSON.stringify(updateData),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Record updated successfully:", data);
@@ -98,14 +149,22 @@ const MainSection = ({ userRecord, openItem }) => {
         console.error("Error updating record:", error);
       });
   };
+  
 
   const handleEdit = () => {
+    setOriginalFormData(formData);
     setIsEditing(true);
   };
 
   const handleSave = () => {
+    // Log changed fields in the desired format
+    console.log("Changed fields:");
+    Object.entries(changedFields).forEach(([field, { oldValue, newValue }]) => {
+      console.log(`${field}: ${oldValue} → ${newValue}`);
+    });
     setShowConfirmDialog(true);
   };
+  
 
   const handleConfirmSave = () => {
     setIsEditing(false);
@@ -116,7 +175,11 @@ const MainSection = ({ userRecord, openItem }) => {
   const handleCancelSave = () => {
     setShowConfirmDialog(false);
     setIsEditing(false);
-
+    setFormData(originalFormData);
+    setAdditionalInfo(
+      originalFormData["Organization highlight (for PR purpose)"]
+    );
+    setChangedFields({});
   };
 
   return (
@@ -124,16 +187,24 @@ const MainSection = ({ userRecord, openItem }) => {
       {openItem in sections && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">
-            {openItem.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
+            {openItem
+              .replace(/([A-Z])/g, " $1")
+              .replace(/^./, (str) => str.toUpperCase())}
           </h2>
           {openItem !== "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Field
                   </th>
-                  <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
                     Value
                   </th>
                 </tr>
@@ -162,66 +233,157 @@ const MainSection = ({ userRecord, openItem }) => {
           )}
           {openItem === "exhibitorProfile-generalInfo" && (
             <div className="mt-6">
-              <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="additionalInfo"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Organization highlight (for PR purpose)
               </label>
               {isEditing ? (
                 <textarea
                   id="additionalInfo"
-                  name="additionalInfo"
+                  name="Organization highlight (for PR purpose) (from Booth No. for edit)"
                   rows={4}
                   maxLength={400}
-                  value={additionalInfo}
-                  onChange={(e) => setAdditionalInfo(e.target.value)}
+                  value={
+                    formData[
+                      "Organization highlight (for PR purpose) (from Booth No. for edit)"
+                    ]
+                  }
+                  onChange={handleChange}
                   className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
                   placeholder="Enter additional information (max 400 characters)"
                 ></textarea>
               ) : (
-                <p>{additionalInfo || "-"}</p>
+                <textarea
+                  id="additionalInfo"
+                  name="Organization highlight (for PR purpose) (from Booth No. for edit)"
+                  rows={4}
+                  maxLength={400}
+                  value={
+                    formData[
+                      "Organization highlight (for PR purpose) (from Booth No. for edit)"
+                    ]
+                  }
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none resize-none"
+                  placeholder="Enter additional information (max 400 characters)"
+                  readOnly
+                  disabled
+                ></textarea>
               )}
             </div>
           )}
+          {/* {openItem === "exhibitorSpace" && (
+            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+              <thead className="bg-gray-50">
+                
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Field
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Value
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                {sections[openItem].map(([label, field], index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-6 py-4">
+                      {label}
+                      {label === "Institution Name on Booth Fascia" && (
+                        <div className="text-red-500 text-xs mt-1">
+                          (any revisions can be made until 15 September, after
+                          deadline there is a fee THB1,070net)
+                        </div>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name={field}
+                          value={formData[field] || ""}
+                          onChange={handleChange}
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                        />
+                      ) : (
+                        formData[field] || "-"
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )} */}
+
           {openItem === "exhibitorProfile-topMajors" && (
-  <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-    <thead className="bg-gray-50">
-      <tr>
-        <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-          Major
-        </th>
-      </tr>
-    </thead>
-    <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-      {[...Array(10)].map((_, index) => (
-        <tr key={index} className="hover:bg-gray-50">
-          <td className="px-6 py-4">
-            <div className="flex items-center">
-              <span className="mr-2">{index + 1}.</span>
-              {isEditing ? (
-                <input
-                  type="text"
-                  name={`Famous #${index + 1} (from Booth No. for edit)`}
-                  value={formData[`Famous #${index + 1} (from Booth No. for edit)`] || ""}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              ) : (
-                formData[`Famous #${index + 1} (from Booth No. for edit)`] || "-"
-              )}
-            </div>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-)}
+            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Major
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                {[...Array(10)].map((_, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center">
+                        <span className="mr-2">{index + 1}.</span>
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            name={`Famous #${
+                              index + 1
+                            } (from Booth No. for edit)`}
+                            value={
+                              formData[
+                                `Famous #${index + 1} (from Booth No. for edit)`
+                              ] || ""
+                            }
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          />
+                        ) : (
+                          formData[
+                            `Famous #${index + 1} (from Booth No. for edit)`
+                          ] || "-"
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
           <div className="mt-6">
             {isEditing ? (
-              <button
-                onClick={handleSave}
-                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-              >
-                Save
-              </button>
+              <>
+                <button
+                  onClick={handleSave}
+                  className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-2"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={handleCancelSave}
+                  className="px-4 py-2 font-semibold text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+                >
+                  Cancel
+                </button>
+              </>
             ) : (
               <button
                 onClick={handleEdit}
@@ -250,17 +412,42 @@ const MainSection = ({ userRecord, openItem }) => {
                       <p className="text-sm leading-5 text-gray-500">
                         The following changes will be saved:
                       </p>
-                      <ul className="mt-4 text-sm leading-5 text-gray-700">
-                        {Object.entries(changedFields).map(([field, { oldValue, newValue }]) => (
-                          <li key={field}>
-                            <strong>{field}:</strong>
-                            <br />
-                            Old Value: {oldValue || "-"}
-                            <br />
-                            New Value: {newValue || "-"}
-                          </li>
-                        ))}
-                      </ul>
+                      <table className="mt-4 w-full text-sm leading-5 text-gray-700">
+                        <thead>
+                          <tr>
+                            <th className="px-4 py-2 border-b font-medium text-gray-900">
+                              Field
+                            </th>
+                            <th className="px-4 py-2 border-b font-medium text-gray-900">
+                              Previous
+                            </th>
+                            <th className="px-4 py-2 border-b font-medium text-gray-900">
+                              New
+                            </th>
+                          </tr>
+                          {/* <ul>
+              {Object.entries(changedFields).map(([field, { oldValue, newValue }], index) => (
+                <li key={index} className="mb-2">
+                  <strong>{field}:</strong> {oldValue} <strong>→</strong> {newValue}
+                </li>
+              ))}
+            </ul> */}
+                        </thead>
+                        <tbody>
+  {Object.entries(changedFields).map(([field, { oldValue, newValue }]) => (
+    <tr key={field}>
+      <td className="px-4 py-2 border-b font-semibold">{field}</td>
+      <td className="px-4 py-2 border-b">
+        <span className="text-gray-500">Previous:</span> {oldValue}
+      </td>
+      <td className="px-4 py-2 border-b">
+        <span className="text-gray-500">New:</span> {newValue}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+                      </table>
                     </div>
                   </div>
                 </div>
