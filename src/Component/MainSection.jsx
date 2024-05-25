@@ -30,7 +30,6 @@ const MainSection = ({ userRecord, openItem }) => {
       ["State / Province", "State / Province (from Booth No. for edit)"],
       ["Postal / Zip Code", "Postal / Zip Code (from Booth No. for edit)"],
       ["Country", "Country (from Booth No. for edit)"],
-      // ["Organization highlight (for PR purpose)", "Organization highlight (for PR purpose) (from Booth No. for edit)"],
     ],
     "exhibitorProfile-contactPerson": [
       ["Prefix", "Prefix (from Booth No. for edit)"],
@@ -51,22 +50,9 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Promotion Detail", "Promotion Detail (from Booth No. for edit)"],
     ],
     "exhibitorProfile-scholarship": [
-      ["Scholarship", "Scholarship (from Booth No. for edit)"],
-    ],
-    exhibitorSpace: [
-      [
-        "Total Booths Required",
-        "Total Booths Required (from Booth No. for edit)",
-      ],
-      ["Booth", "Booth"],
-      [
-        "Institution Name on Booth Fascia",
-        "Institution name to be put on booth fascia (from Booth No. for edit)",
-      ],
-      [
-        "National Flag on Booth & Media for PR",
-        "National flag on booth & Media for PR (from Booth No. for edit)",
-      ],
+      ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
+      ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
+      ["Scholarship Criteria", "Scholarship (from Booth No. for edit)"],
     ],
     billingInfo: [
       ["Organization Name", "Organization Name 2 (from Booth No. for edit)"],
@@ -81,6 +67,26 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Country", "Country 2 (from Booth No. for edit)"],
     ],
   };
+
+  const scholarshipFields = [
+    ["Scholarship", "Scholarship (from Booth No. for edit)"],
+  ];
+
+  const exhibitorSpaceFields = [
+    [
+      "Total Booths Required",
+      "Total Booths Required (from Booth No. for edit)",
+    ],
+    ["Booth", "Booth"],
+    [
+      "Institution Name on Booth Fascia",
+      "Institution name to be put on booth fascia (from Booth No. for edit)",
+    ],
+    [
+      "National Flag on Booth & Media for PR",
+      "National flag on booth & Media for PR (from Booth No. for edit)",
+    ],
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -108,7 +114,6 @@ const MainSection = ({ userRecord, openItem }) => {
 
   const handleUpdateField = (fields) => {
     console.log("Fields to update:", fields);
-    // Prepare the data to send an update API request to Airtable
     const recordId = localStorage.getItem("ocscrecordid");
     const updateData = {
       records: [
@@ -123,11 +128,9 @@ const MainSection = ({ userRecord, openItem }) => {
         },
       ],
     };
-  
-    // Update the 'Update' column with the fields data
+
     updateData.records[0].fields["Update"] = JSON.stringify(fields);
-  
-    // Send the update API request to Airtable using fetch
+
     fetch(
       "https://api.airtable.com/v0/appVADkxTuwcN78c6/%F0%9F%93%9AExhibitors",
       {
@@ -143,13 +146,12 @@ const MainSection = ({ userRecord, openItem }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Record updated successfully:", data);
-        setChangedFields({}); // Clear the changedFields state after saving
+        setChangedFields({});
       })
       .catch((error) => {
         console.error("Error updating record:", error);
       });
   };
-  
 
   const handleEdit = () => {
     setOriginalFormData(formData);
@@ -157,14 +159,12 @@ const MainSection = ({ userRecord, openItem }) => {
   };
 
   const handleSave = () => {
-    // Log changed fields in the desired format
     console.log("Changed fields:");
     Object.entries(changedFields).forEach(([field, { oldValue, newValue }]) => {
       console.log(`${field}: ${oldValue} → ${newValue}`);
     });
     setShowConfirmDialog(true);
   };
-  
 
   const handleConfirmSave = () => {
     setIsEditing(false);
@@ -231,6 +231,7 @@ const MainSection = ({ userRecord, openItem }) => {
               </tbody>
             </table>
           )}
+
           {openItem === "exhibitorProfile-generalInfo" && (
             <div className="mt-6">
               <label
@@ -273,55 +274,6 @@ const MainSection = ({ userRecord, openItem }) => {
               )}
             </div>
           )}
-          {/* {openItem === "exhibitorSpace" && (
-            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-              <thead className="bg-gray-50">
-                
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Field
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Value
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {sections[openItem].map(([label, field], index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      {label}
-                      {label === "Institution Name on Booth Fascia" && (
-                        <div className="text-red-500 text-xs mt-1">
-                          (any revisions can be made until 15 September, after
-                          deadline there is a fee THB1,070net)
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          name={field}
-                          value={formData[field] || ""}
-                          onChange={handleChange}
-                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                        />
-                      ) : (
-                        formData[field] || "-"
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )} */}
 
           {openItem === "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -395,6 +347,41 @@ const MainSection = ({ userRecord, openItem }) => {
           </div>
         </div>
       )}
+      {openItem === "exhibitorSpace" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Exhibitor Space</h2>
+          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                  Field
+                </th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                  Value
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+              {exhibitorSpaceFields.map(([label, field], index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-6 py-4">{label} {label === "Institution Name on Booth Fascia" && (
+                        <p className="text-red-500 text-xs mt-1">
+                          (any revisions can be made until 15 September, after
+                          deadline there is a fee THB1,070net)
+                        </p>
+                      )}</td>
+                  <td className="px-6 py-4">
+                    <div>
+                      {formData[field] || "-"}
+                      
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       {showConfirmDialog && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
@@ -425,28 +412,28 @@ const MainSection = ({ userRecord, openItem }) => {
                               New
                             </th>
                           </tr>
-                          {/* <ul>
-              {Object.entries(changedFields).map(([field, { oldValue, newValue }], index) => (
-                <li key={index} className="mb-2">
-                  <strong>{field}:</strong> {oldValue} <strong>→</strong> {newValue}
-                </li>
-              ))}
-            </ul> */}
                         </thead>
                         <tbody>
-  {Object.entries(changedFields).map(([field, { oldValue, newValue }]) => (
-    <tr key={field}>
-      <td className="px-4 py-2 border-b font-semibold">{field}</td>
-      <td className="px-4 py-2 border-b">
-        <span className="text-gray-500">Previous:</span> {oldValue}
-      </td>
-      <td className="px-4 py-2 border-b">
-        <span className="text-gray-500">New:</span> {newValue}
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+                          {Object.entries(changedFields).map(
+                            ([field, { oldValue, newValue }]) => (
+                              <tr key={field}>
+                                <td className="px-4 py-2 border-b font-semibold">
+                                  {field}
+                                </td>
+                                <td className="px-4 py-2 border-b">
+                                  <span className="text-gray-500">
+                                    Previous:
+                                  </span>{" "}
+                                  {oldValue}
+                                </td>
+                                <td className="px-4 py-2 border-b">
+                                  <span className="text-gray-500">New:</span>{" "}
+                                  {newValue}
+                                </td>
+                              </tr>
+                            )
+                          )}
+                        </tbody>
                       </table>
                     </div>
                   </div>
