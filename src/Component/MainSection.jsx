@@ -31,14 +31,7 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Postal / Zip Code", "Postal / Zip Code (from Booth No. for edit)"],
       ["Country", "Country (from Booth No. for edit)"],
     ],
-    "exhibitorProfile-contactPerson": [
-      ["Prefix", "Prefix (from Booth No. for edit)"],
-      ["First Name", "First Name (from Booth No. for edit)"],
-      ["Last Name", "Last Name (from Booth No. for edit)"],
-      ["Position", "Position (from Booth No. for edit)"],
-      ["Email", "Email (from Booth No. for edit)"],
-      ["Phone Number", "Phone Number (from Booth No. for edit)"],
-    ],
+
     "exhibitorProfile-levelOfStudies": [
       [
         "Level of Studies Offered",
@@ -70,6 +63,24 @@ const MainSection = ({ userRecord, openItem }) => {
 
   const scholarshipFields = [
     ["Scholarship", "Scholarship (from Booth No. for edit)"],
+  ];
+
+  const contactPersonFields = [
+    ["First Name", "First Name (from Booth No. for edit)"],
+    ["Last Name", "Last Name (from Booth No. for edit)"],
+    ["Position", "Position (from Booth No. for edit)"],
+    ["Email", "Email (from Booth No. for edit)"],
+    ["Phone Number", "Phone Number (from Booth No. for edit)"],
+    ["First Name2", "First Name2 (from Booth No. for edit)"],
+    ["Last Name2", "Last Name2 (from Booth No. for edit)"],
+    ["Position2", "Position2 (from Booth No. for edit)"],
+    ["Email2", "Email2 (from Booth No. for edit)"],
+    ["Phone Number2", "Phone Number2 (from Booth No. for edit)"],
+    ["First Name3", "First Name3 (from Booth No. for edit)"],
+    ["Last Name3", "Last Name3 (from Booth No. for edit)"],
+    ["Position3", "Position3 (from Booth No. for edit)"],
+    ["Email3", "Email3 (from Booth No. for edit)"],
+    ["Phone Number3", "Phone Number3 (from Booth No. for edit)"],
   ];
 
   const exhibitorSpaceFields = [
@@ -347,6 +358,90 @@ const MainSection = ({ userRecord, openItem }) => {
           </div>
         </div>
       )}
+      {openItem === "exhibitorProfile-contactPerson" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Contact Persons</h2>
+          <div className="space-y-8">
+            {contactPersonFields
+              .reduce((result, _, index) => {
+                if (index % 5 === 0) {
+                  result.push(contactPersonFields.slice(index, index + 5));
+                }
+                return result;
+              }, [])
+              .map((personFields, personIndex) => (
+                <div key={personIndex}>
+                  <h3 className="text-xl font-semibold mb-2">{`Person ${
+                    personIndex + 1
+                  }`}</h3>
+                  <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-6 py-4 font-medium text-gray-900"
+                        >
+                          Field
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-4 font-medium text-gray-900"
+                        >
+                          Value
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                      {personFields.map(([label, field], fieldIndex) => (
+                        <tr key={fieldIndex} className="hover:bg-gray-50">
+                          <td className="px-6 py-4">{label}</td>
+                          <td className="px-6 py-4">
+                            {isEditing ? (
+                              <input
+                                type="text"
+                                name={field}
+                                value={formData[field] || ""}
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                              />
+                            ) : (
+                              formData[field] || "-"
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ))}
+          </div>
+          <div className="mt-6">
+            {isEditing ? (
+              <>
+                <button
+                  onClick={handleSave}
+                  className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-2"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={handleCancelSave}
+                  className="px-4 py-2 font-semibold text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleEdit}
+                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              >
+                Edit
+              </button>
+            )}
+          </div>
+        </div>
+      )}
       {openItem === "exhibitorSpace" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Exhibitor Space</h2>
@@ -364,17 +459,17 @@ const MainSection = ({ userRecord, openItem }) => {
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
               {exhibitorSpaceFields.map(([label, field], index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">{label} {label === "Institution Name on Booth Fascia" && (
-                        <p className="text-red-500 text-xs mt-1">
-                          (any revisions can be made until 15 September, after
-                          deadline there is a fee THB1,070net)
-                        </p>
-                      )}</td>
                   <td className="px-6 py-4">
-                    <div>
-                      {formData[field] || "-"}
-                      
-                    </div>
+                    {label}{" "}
+                    {label === "Institution Name on Booth Fascia" && (
+                      <p className="text-red-500 text-xs mt-1">
+                        (any revisions can be made until 15 September, after
+                        deadline there is a fee THB1,070net)
+                      </p>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div>{formData[field] || "-"}</div>
                   </td>
                 </tr>
               ))}
