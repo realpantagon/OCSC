@@ -128,29 +128,17 @@ function Order() {
               </button>
             </li>
             <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r7 service(Form 7)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r7 service(VISA)")}
-              >
-                Form 7: Visa invitation letter
-              </button>
-            </li>
-            <li>
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "Payment link"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("Payment link")}
-              >
-                Confirm Payment
-              </button>
-            </li>
+  <button
+    className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+      selectedForm === "r7 service(VISA)"
+        ? "bg-blue-700 text-white shadow-lg"
+        : "bg-white text-black"
+    }`}
+    onClick={() => openJotForm("r7 service(VISA)")}
+  >
+    Form 7: Visa invitation letter
+  </button>
+</li>
           </ul>
         </div>
 
