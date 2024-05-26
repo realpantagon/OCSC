@@ -41,6 +41,8 @@ const MainSection = ({ userRecord, openItem }) => {
     "exhibitorProfile-topMajors": [],
     "exhibitorProfile-promotion": [
       ["Promotion Detail", "Promotion Detail (from Booth No. for edit)"],
+      ["Promotion Detail 2", "Promotion Detail 2 (from Booth No. for edit)"],
+      ["Promotion Detail 3", "Promotion Detail 3 (from Booth No. for edit)"],
     ],
     "exhibitorProfile-scholarship": [
       ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
