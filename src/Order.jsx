@@ -9,7 +9,7 @@ function Order() {
   const [selectedForm, setSelectedForm] = useState(null);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
+    const storedUsername = localStorage.getItem("ocscusername");
     if (storedUsername) {
       setUsername(storedUsername);
     }
@@ -29,12 +29,20 @@ function Order() {
           }
         );
         const records = response.data.records;
+        console.log(response.data);
+        console.log(response.data.records);
         const userRecord = records.find(
           (record) => record.fields.Username === username
         );
-        setUserRecord(userRecord);
+
+        if (userRecord) {
+          setUserRecord(userRecord);
+        } else {
+          console.log("User record not found for username:", username);
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
+
       } finally {
         setIsLoading(false);
       }
@@ -46,6 +54,9 @@ function Order() {
   }, [username]);
 
   const openJotForm = (formKey) => {
+    console.log("User Record:", userRecord);
+    console.log("Selected Form:", formKey);
+    console.log("Form URL:", userRecord && userRecord.fields ? userRecord.fields[formKey] : null);
     setSelectedForm(formKey);
   };
 
@@ -128,17 +139,17 @@ function Order() {
               </button>
             </li>
             <li className="mb-2">
-  <button
-    className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-      selectedForm === "r7 service(VISA)"
-        ? "bg-blue-700 text-white shadow-lg"
-        : "bg-white text-black"
-    }`}
-    onClick={() => openJotForm("r7 service(VISA)")}
-  >
-    Form 7: Visa invitation letter
-  </button>
-</li>
+              <button
+                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  selectedForm === "r7 service(VISA)"
+                    ? "bg-blue-700 text-white shadow-lg"
+                    : "bg-white text-black"
+                }`}
+                onClick={() => openJotForm("r7 service(VISA)")}
+              >
+                Form 7: Visa invitation letter
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -171,7 +182,7 @@ function Order() {
                 </span>
               </div>
             </div>
-          ) : userRecord && selectedForm ? (
+          ) : userRecord && userRecord.fields && selectedForm && userRecord.fields[selectedForm] ? (
             <iframe
               src={userRecord.fields[selectedForm]}
               width="100%"

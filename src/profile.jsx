@@ -12,7 +12,7 @@ function Profile() {
   const [openItem, setOpenItem] = useState("exhibitorProfile-generalInfo");
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
+    const storedUsername = localStorage.getItem("ocscusername");
     if (storedUsername) {
       setUsername(storedUsername);
     }
