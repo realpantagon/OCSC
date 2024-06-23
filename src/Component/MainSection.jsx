@@ -38,6 +38,12 @@ const MainSection = ({ userRecord, openItem }) => {
         "Level of Studies Offered (from Booth No. for edit)",
       ],
     ],
+    "exhibitorProfile-shortcourse": [
+      ["Subject", "Subject (from Booth No. for edit)"],
+      ["Period", "Period (from Booth No. for edit)"],
+      ["Description", "Description (from Booth No. for edit)"],
+      ["Value", "Value (from Booth No. for edit)"],
+    ],
     "exhibitorProfile-topMajors": [],
     "exhibitorProfile-promotion": [
       ["Promotion Detail", "Promotion Detail (from Booth No. for edit)"],
@@ -247,12 +253,15 @@ const MainSection = ({ userRecord, openItem }) => {
 
           {openItem === "exhibitorProfile-generalInfo" && (
             <div className="mt-6">
-              <label
-                htmlFor="additionalInfo"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Organization highlight (for PR purpose)
-              </label>
+              <div className="flex">
+                <label
+                  htmlFor="additionalInfo"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Organization highlight (for PR purpose)
+                </label>
+                <p className="text-red-600 ml-2 font-bold">*</p>
+              </div>
               {isEditing ? (
                 <textarea
                   id="additionalInfo"
