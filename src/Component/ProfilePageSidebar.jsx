@@ -54,14 +54,17 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 &nbsp;&nbsp;Level of Studies Offer
               </button>
               <button
-                className=
-                {`mb-3 ${
+                className={`mb-3 ${
                   openItem === "exhibitorProfile-shortcourse"
                     ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
                     : ""
                 } w-full text-left p-2`}
-                onClick={() => toggleItem("exhibitorProfile-shortcourse")}>
-                &nbsp;&nbsp;Short course
+                onClick={() => toggleItem("exhibitorProfile-shortcourse")}
+              >
+                <div className="flex">
+                  &nbsp;&nbsp;Short course{" "}
+                  <p className="text-red-600 ml-1">*</p>
+                </div>
               </button>
               <button
                 className={`mb-3 ${
