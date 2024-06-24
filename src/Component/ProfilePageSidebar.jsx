@@ -61,10 +61,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-shortcourse")}
               >
-                <div className="flex">
-                  &nbsp;&nbsp;Short course{" "}
-                  <p className="text-red-600 ml-1">*</p>
-                </div>
+                  &nbsp;&nbsp;Short Course
               </button>
               <button
                 className={`mb-3 ${
