@@ -42,7 +42,6 @@ function Order() {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-
       } finally {
         setIsLoading(false);
       }
@@ -56,7 +55,10 @@ function Order() {
   const openJotForm = (formKey) => {
     console.log("User Record:", userRecord);
     console.log("Selected Form:", formKey);
-    console.log("Form URL:", userRecord && userRecord.fields ? userRecord.fields[formKey] : null);
+    console.log(
+      "Form URL:",
+      userRecord && userRecord.fields ? userRecord.fields[formKey] : null
+    );
     setSelectedForm(formKey);
   };
 
@@ -81,11 +83,11 @@ function Order() {
             <li className="mb-2">
               <button
                 className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r5 service(Form 2)"
+                  selectedForm === "r5 service(Additionallogo)"
                     ? "bg-blue-700 text-white shadow-lg"
                     : "bg-white text-black"
                 }`}
-                onClick={() => openJotForm("r5 service(Form 2)")}
+                onClick={() => openJotForm("r5 service(Additionallogo)")}
               >
                 Form 2: Additional logo
               </button>
@@ -182,7 +184,10 @@ function Order() {
                 </span>
               </div>
             </div>
-          ) : userRecord && userRecord.fields && selectedForm && userRecord.fields[selectedForm] ? (
+          ) : userRecord &&
+            userRecord.fields &&
+            selectedForm &&
+            userRecord.fields[selectedForm] ? (
             <iframe
               src={userRecord.fields[selectedForm]}
               width="100%"
