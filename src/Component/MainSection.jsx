@@ -5,6 +5,8 @@ const MainSection = ({ userRecord, openItem }) => {
     ...userRecord.fields,
     "Organization highlight (for PR purpose)":
       userRecord.fields["Organization highlight (for PR purpose)"],
+    Logo: userRecord.fields["LogoURL"],
+    Uploadlogo: userRecord.fields["Upload Logo"]
   });
   const [originalFormData, setOriginalFormData] = useState({
     ...userRecord.fields,
@@ -17,9 +19,21 @@ const MainSection = ({ userRecord, openItem }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [changedFields, setChangedFields] = useState({});
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [showLogoUploadPopup, setShowLogoUploadPopup] = useState(false);
+
+  const openJotForm = (formType) => {
+    if (formType === "Upload Logo") {
+      setShowLogoUploadPopup(true);
+    }
+  };
+
+  const closeLogoUploadPopup = () => {
+    setShowLogoUploadPopup(false);
+  };
 
   const sections = {
     "exhibitorProfile-generalInfo": [
+      // ["Logo", "LogoURL (from Booth No. for edit)"],
       ["Organization Name", "Organization Name (from Booth No. for edit)"],
       ["Street Address", "Street Address (from Booth No. for edit)"],
       [
@@ -150,8 +164,10 @@ const MainSection = ({ userRecord, openItem }) => {
   ];
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "additionalInfo") {
+    const { name, value, files } = e.target;
+    if (files && files.length > 0) {
+      // Handle file upload logic separately if needed
+    } else if (name === "additionalInfo") {
       setAdditionalInfo(value);
       setChangedFields((prevChangedFields) => ({
         ...prevChangedFields,
@@ -283,7 +299,71 @@ const MainSection = ({ userRecord, openItem }) => {
               .replace(/([A-Z])/g, " $1")
               .replace(/^./, (str) => str.toUpperCase())}
           </h2>
-
+          {openItem === "exhibitorProfile-generalInfo" && (
+            <>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name="Logo"
+                  value={formData["Logo"] || ""}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              ) : (
+                <div className="flex flex-col items-center mb-4">
+                  <img
+                    src={formData["Logo"]}
+                    alt="Logo"
+                    className="w-44 h-44 object-contain rounded-md mb-2"
+                  />
+                  <button
+                    onClick={() => openJotForm("Upload Logo")}
+                    className="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+                  >
+                    Upload Logo
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          {showLogoUploadPopup && (
+  <div className="fixed z-10 inset-0 overflow-y-auto">
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="fixed inset-0 transition-opacity">
+        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+      </div>
+      <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
+        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div className="sm:flex sm:items-start">
+            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                Upload Logo
+              </h3>
+              <div className="mt-2">
+                <iframe
+                  src={formData["Uploadlogo"]}
+                  title="Logo Upload Form"
+                  width="100%"
+                  height="600px"
+                  frameBorder="0"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button
+            onClick={closeLogoUploadPopup}
+            type="button"
+            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
           {openItem !== "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
