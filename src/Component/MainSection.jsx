@@ -50,11 +50,25 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Promotion Detail 2", "Promotion Detail 2 (from Booth No. for edit)"],
       ["Promotion Detail 3", "Promotion Detail 3 (from Booth No. for edit)"],
     ],
-    "exhibitorProfile-scholarship": [
-      ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
-      ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
-      ["Scholarship Criteria", "Scholarship (from Booth No. for edit)"],
-    ],
+    // "exhibitorProfile-scholarship": [
+    //   ["Scholarship", "Scholarship (from Booth No. for edit)"],
+    //   ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
+    //   ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
+    //   ["Scholarship Criteria", "Scholarship Criteria (from Booth No. for edit)"],
+    //   ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
+    //   ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
+    //   ["Scholarship Criteria 2", "Scholarship 2 (from Booth No. for edit)"],
+    //   ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
+    //   ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
+    //   ["Scholarship Criteria 3", "Scholarship 3 (from Booth No. for edit)"],
+    //   ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
+    //   ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
+    //   ["Scholarship Criteria 4", "Scholarship 4 (from Booth No. for edit)"],
+    //   ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
+    //   ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
+    //   ["Scholarship Criteria 5", "Scholarship 5 (from Booth No. for edit)"],
+
+    // ],
     billingInfo: [
       ["Organization Name", "Organization Name 2 (from Booth No. for edit)"],
       ["Street Address", "Street Address 2 (from Booth No. for edit)"],
@@ -70,7 +84,35 @@ const MainSection = ({ userRecord, openItem }) => {
   };
 
   const scholarshipFields = [
-    ["Scholarship", "Scholarship (from Booth No. for edit)"],
+    [
+      ["Scholarship", "Scholarship (from Booth No. for edit)"],
+      ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
+      ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
+      [
+        "Scholarship Criteria",
+        "Scholarship Criteria (from Booth No. for edit)",
+      ],
+    ],
+    [
+      ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
+      ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
+      ["Scholarship Criteria 2", "Scholarship 2 (from Booth No. for edit)"],
+    ],
+    [
+      ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
+      ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
+      ["Scholarship Criteria 3", "Scholarship 3 (from Booth No. for edit)"],
+    ],
+    [
+      ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
+      ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
+      ["Scholarship Criteria 4", "Scholarship 4 (from Booth No. for edit)"],
+    ],
+    [
+      ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
+      ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
+      ["Scholarship Criteria 5", "Scholarship 5 (from Booth No. for edit)"],
+    ],
   ];
 
   const contactPersonFields = [
@@ -178,6 +220,37 @@ const MainSection = ({ userRecord, openItem }) => {
   };
 
   const handleSave = () => {
+    const requiredFields1 = [
+      "Organization highlight (for PR purpose) (from Booth No. for edit)",
+    ];
+
+    const requiredFields2 = [
+      "Subject (from Booth No. for edit)",
+      "Period (from Booth No. for edit)",
+      "Description (from Booth No. for edit)",
+      "Value (from Booth No. for edit)",
+    ];
+
+    for (const field of requiredFields1) {
+      if (!formData[field]) {
+        const fieldName = field.replace(" (from Booth No. for edit)", "");
+        alert(
+          `**Please enter your detail.**\n\nMissing ${fieldName} field in General Information.`
+        );
+        return;
+      }
+    }
+
+    for (const field of requiredFields2) {
+      if (!formData[field]) {
+        const fieldName = field.replace(" (from Booth No. for edit)", "");
+        alert(
+          `**Please enter your detail.**\n\nMissing ${fieldName} field in Short Course.`
+        );
+        return;
+      }
+    }
+
     console.log("Changed fields:");
     Object.entries(changedFields).forEach(([field, { oldValue, newValue }]) => {
       console.log(`${field}: ${oldValue} → ${newValue}`);
@@ -210,6 +283,7 @@ const MainSection = ({ userRecord, openItem }) => {
               .replace(/([A-Z])/g, " $1")
               .replace(/^./, (str) => str.toUpperCase())}
           </h2>
+
           {openItem !== "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
@@ -231,7 +305,15 @@ const MainSection = ({ userRecord, openItem }) => {
               <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {sections[openItem].map(([label, field], index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">{label}</td>
+                    <td className="px-6 py-4">
+                      {label}
+                      {(openItem === "exhibitorProfile-shortcourse" ||
+                        (openItem === "exhibitorProfile-generalInfo" &&
+                          label ===
+                            "Organization highlight (for PR purpose)")) && (
+                        <span className="text-red-600 ml-1">*</span>
+                      )}
+                    </td>
                     <td className="px-6 py-4">
                       {isEditing ? (
                         <input
@@ -240,6 +322,12 @@ const MainSection = ({ userRecord, openItem }) => {
                           value={formData[field] || ""}
                           onChange={handleChange}
                           className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          required={
+                            openItem === "exhibitorProfile-shortcourse" ||
+                            (openItem === "exhibitorProfile-generalInfo" &&
+                              label ===
+                                "Organization highlight (for PR purpose)")
+                          }
                         />
                       ) : (
                         formData[field] || "-"
@@ -276,6 +364,7 @@ const MainSection = ({ userRecord, openItem }) => {
                   onChange={handleChange}
                   className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
                   placeholder="Enter additional information (max 400 characters)"
+                  required
                 ></textarea>
               ) : (
                 <textarea
@@ -342,6 +431,83 @@ const MainSection = ({ userRecord, openItem }) => {
             </table>
           )}
 
+          <div className="mt-6">
+            {isEditing ? (
+              <>
+                <button
+                  onClick={handleSave}
+                  className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-2"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={handleCancelSave}
+                  className="px-4 py-2 font-semibold text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleEdit}
+                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              >
+                Edit
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+      {openItem === "exhibitorProfile-scholarship" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Scholarships</h2>
+          <div className="space-y-8">
+            {scholarshipFields.map((scholarshipGroup, groupIndex) => (
+              <div key={groupIndex}>
+                <h3 className="text-xl font-semibold mb-2">{`Scholarship ${
+                  groupIndex + 1
+                }`}</h3>
+                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Field
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                    {scholarshipGroup.map(([label, field], fieldIndex) => (
+                      <tr key={fieldIndex} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">{label}</td>
+                        <td className="px-6 py-4">
+                          {isEditing ? (
+                            <input
+                              type="text"
+                              name={field}
+                              value={formData[field] || ""}
+                              onChange={handleChange}
+                              className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                            />
+                          ) : (
+                            formData[field] || "-"
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
           <div className="mt-6">
             {isEditing ? (
               <>
