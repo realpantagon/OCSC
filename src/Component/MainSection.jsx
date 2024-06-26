@@ -20,6 +20,8 @@ const MainSection = ({ userRecord, openItem }) => {
   const [changedFields, setChangedFields] = useState({});
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [showLogoUploadPopup, setShowLogoUploadPopup] = useState(false);
+  const [showRequiredFieldsPopup, setShowRequiredFieldsPopup] = useState(false);
+const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
 
   const openJotForm = (formType) => {
     if (formType === "Upload Logo") {
@@ -108,25 +110,25 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Scholarship", "Scholarship full2 (from Booth No. for edit)"],
       ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
       ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
-      ["Scholarship Criteria 2", "Scholarship 2 (from Booth No. for edit)"],
+      ["Scholarship Criteria 2", "Scholarship Criteria 2 (from Booth No. for edit)"],
     ],
     [
       ["Scholarship", "Scholarship full3 (from Booth No. for edit)"],
       ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
       ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
-      ["Scholarship Criteria 3", "Scholarship 3 (from Booth No. for edit)"],
+      ["Scholarship Criteria 3", "Scholarship Criteria 3 (from Booth No. for edit)"],
     ],
     [
       ["Scholarship", "Scholarship full4 (from Booth No. for edit)"],
       ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
       ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
-      ["Scholarship Criteria 4", "Scholarship 4 (from Booth No. for edit)"],
+      ["Scholarship Criteria 4", "Scholarship Criteria 4 (from Booth No. for edit)"],
     ],
     [
       ["Scholarship", "Scholarship full5 (from Booth No. for edit)"],
       ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
       ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
-      ["Scholarship Criteria 5", "Scholarship 5 (from Booth No. for edit)"],
+      ["Scholarship Criteria 5", "Scholarship Criteria 5 (from Booth No. for edit)"],
     ],
   ];
 
@@ -251,19 +253,17 @@ const MainSection = ({ userRecord, openItem }) => {
     for (const field of requiredFields1) {
       if (!formData[field]) {
         const fieldName = field.replace(" (from Booth No. for edit)", "");
-        alert(
-          `**Please enter your detail.**\n\nMissing ${fieldName} field in General Information.`
-        );
+        setRequiredFieldsMessage(`Missing ${fieldName} in General Information.`);
+        setShowRequiredFieldsPopup(true);
         return;
       }
     }
-
+  
     for (const field of requiredFields2) {
       if (!formData[field]) {
         const fieldName = field.replace(" (from Booth No. for edit)", "");
-        alert(
-          `**Please enter your detail.**\n\nMissing ${fieldName} field in Short Course.`
-        );
+        setRequiredFieldsMessage(`Missing ${fieldName} field in Short Course.`);
+        setShowRequiredFieldsPopup(true);
         return;
       }
     }
@@ -290,6 +290,43 @@ const MainSection = ({ userRecord, openItem }) => {
     );
     setChangedFields({});
   };
+
+  const RequiredFieldsPopup = ({ message, onClose }) => (
+    <div className="fixed z-10 inset-0 overflow-y-auto">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="fixed inset-0 transition-opacity">
+          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div className="sm:flex sm:items-start">
+              <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  **Please enter your detail**
+                </h3>
+                <div className="mt-2">
+                  <p className="text-sm leading-5 text-gray-500">
+                    {message}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+              <button
+                onClick={onClose}
+                type="button"
+                className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                OK
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="flex-1 p-6">
@@ -816,6 +853,12 @@ const MainSection = ({ userRecord, openItem }) => {
           </div>
         </div>
       )}
+      {showRequiredFieldsPopup && (
+  <RequiredFieldsPopup
+    message={requiredFieldsMessage}
+    onClose={() => setShowRequiredFieldsPopup(false)}
+  />
+)}
     </div>
   );
 };
