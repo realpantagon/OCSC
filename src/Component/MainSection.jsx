@@ -6,7 +6,7 @@ const MainSection = ({ userRecord, openItem }) => {
     "Organization highlight (for PR purpose)":
       userRecord.fields["Organization highlight (for PR purpose)"],
     Logo: userRecord.fields["LogoURL"],
-    Uploadlogo: userRecord.fields["Upload Logo"]
+    Uploadlogo: userRecord.fields["Upload Logo"],
   });
   const [originalFormData, setOriginalFormData] = useState({
     ...userRecord.fields,
@@ -99,30 +99,31 @@ const MainSection = ({ userRecord, openItem }) => {
 
   const scholarshipFields = [
     [
-      ["Scholarship", "Scholarship (from Booth No. for edit)"],
+      ["Scholarship", "Scholarship full1 (from Booth No. for edit)"],
       ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
       ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
-      [
-        "Scholarship Criteria",
-        "Scholarship Criteria (from Booth No. for edit)",
-      ],
+      ["Scholarship Criteria","Scholarship Criteria (from Booth No. for edit)",],
     ],
     [
+      ["Scholarship", "Scholarship full2 (from Booth No. for edit)"],
       ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
       ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
       ["Scholarship Criteria 2", "Scholarship 2 (from Booth No. for edit)"],
     ],
     [
+      ["Scholarship", "Scholarship full3 (from Booth No. for edit)"],
       ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
       ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
       ["Scholarship Criteria 3", "Scholarship 3 (from Booth No. for edit)"],
     ],
     [
+      ["Scholarship", "Scholarship full4 (from Booth No. for edit)"],
       ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
       ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
       ["Scholarship Criteria 4", "Scholarship 4 (from Booth No. for edit)"],
     ],
     [
+      ["Scholarship", "Scholarship full5 (from Booth No. for edit)"],
       ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
       ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
       ["Scholarship Criteria 5", "Scholarship 5 (from Booth No. for edit)"],
@@ -327,43 +328,43 @@ const MainSection = ({ userRecord, openItem }) => {
             </>
           )}
           {showLogoUploadPopup && (
-  <div className="fixed z-10 inset-0 overflow-y-auto">
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="fixed inset-0 transition-opacity">
-        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-      </div>
-      <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
-        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div className="sm:flex sm:items-start">
-            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                Upload Logo
-              </h3>
-              <div className="mt-2">
-                <iframe
-                  src={formData["Uploadlogo"]}
-                  title="Logo Upload Form"
-                  width="100%"
-                  height="600px"
-                  frameBorder="0"
-                ></iframe>
+            <div className="fixed z-10 inset-0 overflow-y-auto">
+              <div className="flex items-center justify-center min-h-screen p-4">
+                <div className="fixed inset-0 transition-opacity">
+                  <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
+                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div className="sm:flex sm:items-start">
+                      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                          Upload Logo
+                        </h3>
+                        <div className="mt-2">
+                          <iframe
+                            src={formData["Uploadlogo"]}
+                            title="Logo Upload Form"
+                            width="100%"
+                            height="600px"
+                            frameBorder="0"
+                          ></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button
+                      onClick={closeLogoUploadPopup}
+                      type="button"
+                      className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button
-            onClick={closeLogoUploadPopup}
-            type="button"
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+          )}
           {openItem !== "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
