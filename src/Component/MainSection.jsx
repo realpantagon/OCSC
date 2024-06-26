@@ -586,7 +586,7 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
   <div key={groupIndex}>
     <h3 className="text-xl font-semibold mb-2">
       {groupIndex === scholarshipFields.length - 1
-        ? "Else Scholarship"
+        ? "Other Scholarship"
         : `Scholarship ${groupIndex + 1}`}
     </h3>
     <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
