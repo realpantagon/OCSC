@@ -101,34 +101,36 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
 
   const scholarshipFields = [
     [
-      ["Scholarship", "Scholarship full1 (from Booth No. for edit)"],
       ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
       ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
       ["Scholarship Criteria","Scholarship Criteria (from Booth No. for edit)",],
     ],
     [
-      ["Scholarship", "Scholarship full2 (from Booth No. for edit)"],
+      
       ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
       ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
       ["Scholarship Criteria 2", "Scholarship Criteria 2 (from Booth No. for edit)"],
     ],
     [
-      ["Scholarship", "Scholarship full3 (from Booth No. for edit)"],
+      
       ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
       ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
       ["Scholarship Criteria 3", "Scholarship Criteria 3 (from Booth No. for edit)"],
     ],
     [
-      ["Scholarship", "Scholarship full4 (from Booth No. for edit)"],
+      
       ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
       ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
       ["Scholarship Criteria 4", "Scholarship Criteria 4 (from Booth No. for edit)"],
     ],
     [
-      ["Scholarship", "Scholarship full5 (from Booth No. for edit)"],
+      
       ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
       ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
       ["Scholarship Criteria 5", "Scholarship Criteria 5 (from Booth No. for edit)"],
+    ],
+    [
+      ["Else Scholarship", "else Scholarship(more than 5) (from Booth No. for edit)"],
     ],
   ];
 
@@ -580,51 +582,49 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
         <div>
           <h2 className="text-2xl font-semibold mb-4">Scholarships</h2>
           <div className="space-y-8">
-            {scholarshipFields.map((scholarshipGroup, groupIndex) => (
-              <div key={groupIndex}>
-                <h3 className="text-xl font-semibold mb-2">{`Scholarship ${
-                  groupIndex + 1
-                }`}</h3>
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Field
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Value
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {scholarshipGroup.map(([label, field], fieldIndex) => (
-                      <tr key={fieldIndex} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">{label}</td>
-                        <td className="px-6 py-4">
-                          {isEditing ? (
-                            <input
-                              type="text"
-                              name={field}
-                              value={formData[field] || ""}
-                              onChange={handleChange}
-                              className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                            />
-                          ) : (
-                            formData[field] || "-"
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
+          {scholarshipFields.map((scholarshipGroup, groupIndex) => (
+  <div key={groupIndex}>
+    <h3 className="text-xl font-semibold mb-2">
+      {groupIndex === scholarshipFields.length - 1
+        ? "Else Scholarship"
+        : `Scholarship ${groupIndex + 1}`}
+    </h3>
+    <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+      <thead className="bg-gray-50">
+        <tr>
+          <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+            Field
+          </th>
+          <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+        {scholarshipGroup.map(([label, field], fieldIndex) => (
+          <tr key={fieldIndex} className="hover:bg-gray-50">
+            <td className="px-6 py-4">
+              {groupIndex === scholarshipFields.length - 1 ? "Else Scholarship" : label}
+            </td>
+            <td className="px-6 py-4">
+              {isEditing ? (
+                <input
+                  type="text"
+                  name={field}
+                  value={formData[field] || ""}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              ) : (
+                formData[field] || "-"
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+))}
           </div>
           <div className="mt-6">
             {isEditing ? (
