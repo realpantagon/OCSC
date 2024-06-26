@@ -340,51 +340,58 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
               .replace(/^./, (str) => str.toUpperCase())}
           </h2>
           {openItem === "exhibitorProfile-generalInfo" && (
-            <>
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="Logo"
-                  value={formData["Logo"] || ""}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              ) : (
-                <div className="flex flex-col items-center mb-4">
-                  <img
-                    src={formData["Logo"]}
-                    alt="Logo"
-                    className="w-44 h-44 object-contain rounded-md mb-2"
-                  />
-                  <button
-                    onClick={() => openJotForm("Upload Logo")}
-                    className="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
-                  >
-                    Upload Logo
-                  </button>
-                </div>
-              )}
-            </>
-          )}
+  <>
+    {isEditing ? (
+      <input
+        type="text"
+        name="Logo"
+        value={formData["Logo"] || ""}
+        onChange={handleChange}
+        className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+      />
+    ) : (
+      <div className="flex flex-col items-center mb-4">
+        {formData["Logo"] ? (
+          <img
+            src={formData["Logo"]}
+            alt="Logo"
+            className="w-44 h-44 object-contain rounded-md mb-2"
+          />
+        ) : (
+          <div
+            className="w-44 h-44 border-2 border-white bg-gray-300 rounded-md mb-2"
+          ></div>
+        )}
+        <button
+          onClick={() => openJotForm("Upload Logo")}
+          className="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+        >
+          Upload Logo
+        </button>
+      </div>
+    )}
+  </>
+)}
+
           {showLogoUploadPopup && (
             <div className="fixed z-10 inset-0 overflow-y-auto">
               <div className="flex items-center justify-center min-h-screen p-4">
                 <div className="fixed inset-0 transition-opacity">
                   <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
                 </div>
-                <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
+                <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-3xl sm:w-full">
                   <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                         <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                          Upload Logo
+                          
                         </h3>
                         <div className="mt-2">
                           <iframe
                             src={formData["Uploadlogo"]}
                             title="Logo Upload Form"
                             width="100%"
-                            height="600px"
+                            height="500px"
                             frameBorder="0"
                           ></iframe>
                         </div>
