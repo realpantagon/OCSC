@@ -21,7 +21,7 @@ const MainSection = ({ userRecord, openItem }) => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [showLogoUploadPopup, setShowLogoUploadPopup] = useState(false);
   const [showRequiredFieldsPopup, setShowRequiredFieldsPopup] = useState(false);
-const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
+  const [requiredFieldsMessage, setRequiredFieldsMessage] = useState("");
 
   const openJotForm = (formType) => {
     if (formType === "Upload Logo") {
@@ -103,34 +103,48 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
     [
       ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
       ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
-      ["Scholarship Criteria","Scholarship Criteria (from Booth No. for edit)",],
+      [
+        "Scholarship Criteria",
+        "Scholarship Criteria (from Booth No. for edit)",
+      ],
     ],
     [
-      
       ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
       ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
-      ["Scholarship Criteria 2", "Scholarship Criteria 2 (from Booth No. for edit)"],
+      [
+        "Scholarship Criteria 2",
+        "Scholarship Criteria 2 (from Booth No. for edit)",
+      ],
     ],
     [
-      
       ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
       ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
-      ["Scholarship Criteria 3", "Scholarship Criteria 3 (from Booth No. for edit)"],
+      [
+        "Scholarship Criteria 3",
+        "Scholarship Criteria 3 (from Booth No. for edit)",
+      ],
     ],
     [
-      
       ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
       ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
-      ["Scholarship Criteria 4", "Scholarship Criteria 4 (from Booth No. for edit)"],
+      [
+        "Scholarship Criteria 4",
+        "Scholarship Criteria 4 (from Booth No. for edit)",
+      ],
     ],
     [
-      
       ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
       ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
-      ["Scholarship Criteria 5", "Scholarship Criteria 5 (from Booth No. for edit)"],
+      [
+        "Scholarship Criteria 5",
+        "Scholarship Criteria 5 (from Booth No. for edit)",
+      ],
     ],
     [
-      ["Else Scholarship", "else Scholarship(more than 5) (from Booth No. for edit)"],
+      [
+        "Other Scholarship",
+        "else Scholarship(more than 5) (from Booth No. for edit)",
+      ],
     ],
   ];
 
@@ -255,12 +269,14 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
     for (const field of requiredFields1) {
       if (!formData[field]) {
         const fieldName = field.replace(" (from Booth No. for edit)", "");
-        setRequiredFieldsMessage(`Missing ${fieldName} in General Information.`);
+        setRequiredFieldsMessage(
+          `Missing ${fieldName} in General Information.`
+        );
         setShowRequiredFieldsPopup(true);
         return;
       }
     }
-  
+
     for (const field of requiredFields2) {
       if (!formData[field]) {
         const fieldName = field.replace(" (from Booth No. for edit)", "");
@@ -307,9 +323,7 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
                   **Please enter your detail**
                 </h3>
                 <div className="mt-2">
-                  <p className="text-sm leading-5 text-gray-500">
-                    {message}
-                  </p>
+                  <p className="text-sm leading-5 text-gray-500">{message}</p>
                 </div>
               </div>
             </div>
@@ -340,38 +354,36 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
               .replace(/^./, (str) => str.toUpperCase())}
           </h2>
           {openItem === "exhibitorProfile-generalInfo" && (
-  <>
-    {isEditing ? (
-      <input
-        type="text"
-        name="Logo"
-        value={formData["Logo"] || ""}
-        onChange={handleChange}
-        className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-      />
-    ) : (
-      <div className="flex flex-col items-center mb-4">
-        {formData["Logo"] ? (
-          <img
-            src={formData["Logo"]}
-            alt="Logo"
-            className="w-44 h-44 object-contain rounded-md mb-2"
-          />
-        ) : (
-          <div
-            className="w-44 h-44 border-2 border-white bg-gray-300 rounded-md mb-2"
-          ></div>
-        )}
-        <button
-          onClick={() => openJotForm("Upload Logo")}
-          className="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
-        >
-          Upload Logo
-        </button>
-      </div>
-    )}
-  </>
-)}
+            <>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name="Logo"
+                  value={formData["Logo"] || ""}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              ) : (
+                <div className="flex flex-col items-center mb-4">
+                  {formData["Logo"] ? (
+                    <img
+                      src={formData["Logo"]}
+                      alt="Logo"
+                      className="w-44 h-44 object-contain rounded-md mb-2"
+                    />
+                  ) : (
+                    <div className="w-44 h-44 border-2 border-white bg-gray-300 rounded-md mb-2"></div>
+                  )}
+                  <button
+                    onClick={() => openJotForm("Upload Logo")}
+                    className="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+                  >
+                    Upload Logo
+                  </button>
+                </div>
+              )}
+            </>
+          )}
 
           {showLogoUploadPopup && (
             <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -383,9 +395,7 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
                   <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                          
-                        </h3>
+                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4"></h3>
                         <div className="mt-2">
                           <iframe
                             src={formData["Uploadlogo"]}
@@ -586,80 +596,49 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
         </div>
       )}
       {openItem === "exhibitorProfile-scholarship" && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Scholarships</h2>
-          <div className="space-y-8">
-          {scholarshipFields.map((scholarshipGroup, groupIndex) => (
-  <div key={groupIndex}>
-    <h3 className="text-xl font-semibold mb-2">
-      {groupIndex === scholarshipFields.length - 1
-        ? "Other Scholarship"
-        : `Scholarship ${groupIndex + 1}`}
-    </h3>
-    <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-      <thead className="bg-gray-50">
-        <tr>
-          <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-            Field
-          </th>
-          <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-            Value
-          </th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-        {scholarshipGroup.map(([label, field], fieldIndex) => (
-          <tr key={fieldIndex} className="hover:bg-gray-50">
-            <td className="px-6 py-4">
-              {groupIndex === scholarshipFields.length - 1 ? "Else Scholarship" : label}
-            </td>
-            <td className="px-6 py-4">
-              {isEditing ? (
-                <input
-                  type="text"
-                  name={field}
-                  value={formData[field] || ""}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              ) : (
-                formData[field] || "-"
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-))}
-          </div>
-          <div className="mt-6">
-            {isEditing ? (
-              <>
-                <button
-                  onClick={handleSave}
-                  className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-2"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={handleCancelSave}
-                  className="px-4 py-2 font-semibold text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={handleEdit}
-                className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-              >
-                Edit
-              </button>
-            )}
-          </div>
+  <div>
+    <h2 className="text-2xl font-semibold mb-4">Scholarships</h2>
+    <div className="space-y-8">
+      {scholarshipFields.map((scholarshipGroup, groupIndex) => (
+        <div key={groupIndex}>
+          <h3 className="text-xl font-semibold mb-2">
+            {groupIndex === scholarshipFields.length - 1 ? "Other Scholarship" : `Scholarship ${groupIndex + 1}`}
+          </h3>
+          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900 w-1/2">Field</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900 w-1/2">Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+              {scholarshipGroup.map(([label, field], fieldIndex) => (
+                <tr key={fieldIndex} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 w-1/2">
+                    {groupIndex === scholarshipFields.length - 1 ? "Other Scholarship" : label}
+                  </td>
+                  <td className="px-6 py-4 w-1/2">
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        name={field}
+                        value={formData[field] || ""}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                      />
+                    ) : (
+                      formData[field] || "-"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
+      ))}
+    </div>
+  </div>
+)}
       {openItem === "exhibitorProfile-contactPerson" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Contact Persons</h2>
@@ -861,11 +840,11 @@ const [requiredFieldsMessage, setRequiredFieldsMessage] = useState('');
         </div>
       )}
       {showRequiredFieldsPopup && (
-  <RequiredFieldsPopup
-    message={requiredFieldsMessage}
-    onClose={() => setShowRequiredFieldsPopup(false)}
-  />
-)}
+        <RequiredFieldsPopup
+          message={requiredFieldsMessage}
+          onClose={() => setShowRequiredFieldsPopup(false)}
+        />
+      )}
     </div>
   );
 };
