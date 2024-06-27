@@ -89,7 +89,7 @@ function Order() {
                 }`}
                 onClick={() => openJotForm("r5 service(Additionallogo)")}
               >
-                Form 2: Additional logo
+                Form 2: Advertisement (media PR)
               </button>
             </li>
             <li className="mb-2">
