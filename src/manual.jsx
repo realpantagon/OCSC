@@ -116,6 +116,42 @@ const ManualPageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             </ul>
           )}
         </div>
+        <div className="mb-2">
+          <button
+            className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+              openItem === "rules" || openItem?.startsWith("rules")
+                ? "active bg-blue-700 text-white"
+                : ""
+            } w-full text-left p-2 font-semibold`}
+            onClick={() => toggleItem("rules")}
+          >
+            Rules & Regulations
+          </button>
+          {(openItem === "rules" || openItem?.startsWith("rules")) && (
+            <ul className="mx-[30px]">
+              <button
+                className={`mt-3 mb-3 ${
+                  openItem === "rules.standard"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("rules.standard")}
+              >
+                &nbsp;&nbsp;Standard Booth
+              </button>
+              <button
+                className={`mb-3 ${
+                  openItem === "rules.raw"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("rules.raw")}
+              >
+                &nbsp;&nbsp;Raw Space
+              </button>
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -403,6 +439,266 @@ const MainSection = ({ userRecord, openItem }) => {
             </p>
             <p className="text-rose-600 font-bold">&nbsp;4 October 2024.</p>
           </div>
+        </div>
+      </div>
+    );
+  } else if (openItem === "rules") {
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] text-sm flex flex-wrap gap-[100px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px] leading-loose">
+          <p className="font-bold">EXHIBITION RULES & REGULATIONS</p>
+          <p>
+            1) All materials used for decorating or covering of booths must be
+            non-flammable material. Exhibitors must comply with any instruction
+            given by the relevant authority in order to avoid any risk of fire.
+          </p>
+          <p>
+            2) All amenities listed power, lighting/electrical equipment,
+            internet LAN and other IT services can only be obtained through
+            Royal Paragon Hall.
+          </p>
+          <p>
+            3) All electrical installations on stands must comply through the
+            official utility contractor (A PLUS UTILITY MANAGEMENT Co., Ltd.)
+            with the regulations and requirements currently in force of the
+            relevant authorities and the additional regulations issued by Royal
+            Paragon Hall.{" "}
+          </p>
+          <p>
+            4) No exhibitors may alter or interfere with the structure of the
+            exhibition premises without the written consent of the show manager.{" "}
+          </p>
+          <p>
+            5) Exhibitors must obtain from the show manager the necessary passes
+            for their executives, representatives, booth personnel, workmen or
+            contractors during the installation, exhibition and dismantling
+            periods.{" "}
+          </p>
+          <p>
+            6) It is not permissible for the exhibitor to place objects outside
+            the booth area or to obstruct fire safety devices, emergency exits,
+            air-conditioning units and electrical control cabinets.{" "}
+          </p>
+          <p>
+            7) Use of the hall ceiling by any exhibitors is only allowed after
+            receiving written permission by the show manager to have any hanging
+            signs or materials.{" "}
+          </p>
+          <p>
+            8) An exhibitor, who has bulky exhibits which cannot be transported
+            freely along the aisles of the exhibition, shall contact the show
+            manger and the official freight forwarder{" "}
+            <span className="font-bold">(APT SHOWFREIGHT)</span> in good time
+            prior to the set-up and show days in order to plan their
+            inward/outward transport.{" "}
+          </p>
+          <p>
+            9) The show manager may make arrangements for any objects left on
+            the booth after the final clearance date to be removed at the risk
+            and expense of the exhibitor. As security against the discharge of
+            all obligations to the show manager which the exhibitor has or may
+            have, the organiser shall be entitled to retain the exhibitor’s
+            property until such time as payment in full has been effected. The
+            show manager shall enjoy the same entitlement referred to above in
+            the event of the exhibitor having left behind objects after the
+            final clearance date.{" "}
+          </p>
+          <p className="font-bold">
+            10) The condition of payment must be fully completed in every
+            respect prior to the build-up date (25 October 2024).{" "}
+          </p>
+          <p className="font-bold">
+            11) If an exhibitor fails to pay any sum due to the organiser/show
+            manager or contravenes or fails to comply with the rules and
+            regulations the organiser/show manager reserve the right to revoke
+            his allotments of space and prohibit his participation in the
+            exhibition. Such action by the show manager shall not prejudice any
+            other remedy, which they shall have against the exhibitor nor reduce
+            the amount paid or owing by him.{" "}
+          </p>
+          <p>
+            12) The official logo of the OCSC International Education Expo can’t
+            be used without prior permission from the organiser/show manager.{" "}
+          </p>
+          <p>
+            13) In the event of a special tax or some other duty being imposed
+            on undertaking made in accordance with this contract, the exhibitors
+            shall pay the sum in question.{" "}
+          </p>
+          <p>
+            14) A booth may only be occupied by the exhibitor to whom it has
+            been allocated and by his accredited agents as approved by the show
+            manager.{" "}
+          </p>
+          <p className="font-bold">
+            15) Sub-contracted exhibiting company is not allowed and will be
+            penalized by the show manager at his own discretion.{" "}
+          </p>
+          <p>
+            16) There must be a competent representative of the exhibitor in
+            charge of exhibits at all times that the exhibition is open to
+            visitors.{" "}
+          </p>
+          <p>
+            17) The exhibitors during the exhibition period are required to wear
+            the badge designated by the show manager and must attend the booth
+            in order to welcome visitors and administer the exhibits.{" "}
+          </p>
+          <p>
+            18) Exhibitors must not operate or put in motion any exhibits
+            without prior permission from the show manager.{" "}
+          </p>
+          <p>
+            19) Written permission from the show manager is required for
+            exhibits or demonstrations, which are likely to emit dust, fumes,
+            loud noises or strong odors.{" "}
+          </p>
+          <p>
+            20) Guidance and approval should be obtained from the show manager
+            when the exhibits contain motor spirit, oils, calcium, acetylene gas
+            apparatus or any combustible or flammable material.{" "}
+          </p>
+          <p>
+            21) The exhibitors shall keep their booth safe and in the best
+            possible condition and shall at the request of the show manager and
+            at the exhibitor’s own expense improve the stand if the show manager
+            considers it unsafe or if it creates a poor impression. Exhibited
+            products may not be removed during the period of the exhibition
+            without the special authorization of the show manager.{" "}
+          </p>
+          <p>
+            22) Without the authorization of the fire authorities and the show
+            manager it is not permissible for the exhibitor to use a naked flame
+            and to store gasses and flammable liquids within the exhibition
+            area.{" "}
+          </p>
+          <p className="font-bold">
+            23) Written consent is required from the show manager for the use of
+            audio, video and lighting equipment (including video bulletins),
+            live music and performances. “Special effects” lighting (disruptive
+            for the neighboring stands), smoke machines and laser projection
+            must not be used in the booth without prior written consent from the
+            show manager.{" "}
+          </p>
+          <p className="font-bold">
+            24) All exhibitors are asked to keep noise levels to a minimum as
+            not to disrupt other exhibitors during the event. In case of any
+            complaints in regard to noise levels, the exhibitor must reduce the
+            volume as per the show manager’s instructions.{" "}
+          </p>
+
+          <p className="">
+            25) Literature on display and promotional "give-away" items shall be
+            limited to reasonable quantities. Reserve supplies shall be kept in
+            closed containers and stored in a neat and compact manner.{" "}
+            <span className="font-bold">
+              Distribution will not be permitted outside of the booth.
+            </span>
+          </p>
+          <p>
+            26) The exhibitors are responsible for all personal injury or damage
+            to property arising in connection with the erection and dismantling
+            of the booth on anything permitted, omitted or done thereon or there
+            from during the period of exhibition or the construction and
+            dismantling periods.{" "}
+          </p>
+          <p>
+            27) The exhibitors will indemnify the show manager in respect to
+            each and every such claim and all actions proceedings, costs, claims
+            and demands in respect thereof. The exhibitors must take out
+            adequate insurance in respect to such claims.{" "}
+          </p>
+          <p>
+            28) The show manager shall not be responsible in any way for the
+            personal injury to the exhibitor or his contractors, invitees, or
+            licensees, cause nor for the loss of or damage to exhibits or to
+            property of the exhibitor.{" "}
+          </p>
+          <p>
+            29) Each exhibitor exhibits entirely at his own risk and must insure
+            himself to cover the above-mentioned conditions.
+          </p>
+          <p>
+            30) Exhibitors are advised to insure against costs and losses, which
+            may incur in the event of the exhibition being abandoned, cancelled
+            or suspended in whole or part for clauses not within the show
+            manager’s control, since the show manager accept no liability in
+            such an eventuality.{" "}
+          </p>
+          <p className="font-bold">
+            31) Although security will be provided for the overall protection of
+            the exhibition, exhibitors are entirely responsible for the security
+            of any goods or personal belongings brought to the exhibition.{" "}
+          </p>
+          <p>
+            32) Smoking is strictly prohibited in the exhibition hall at all
+            times.{" "}
+          </p>
+          <p>
+            33) If, for any reasons over which the show manager has no control,
+            restrictions occur in respect to cooling or the supply of
+            electricity and water, the exhibitor shall not be entitled to
+            receive a refund of the stand or part thereof. The exhibitors shall
+            also not be entitled to any form of compensation.{" "}
+          </p>
+          <p>
+            34) All exhibits, products or displays must be placed within the
+            exhibit area. In all case, exhibitors must keep the aisle around
+            their booth clear, except by the arrangement with the show manager.{" "}
+          </p>
+          <p>
+            35) Carrying in/out, and administration of exhibits must be done by
+            the exhibitor at his own risk and expense.
+          </p>
+          <p>
+            36) It is not permissible for the exhibitors to damage partitions,
+            floor, or any other goods supplied by the contractors and the venue.
+          </p>
+          <p className="font-bold">
+            37) Each exhibitor is bound in all respects by these rules and
+            regulations. The show manager reserves the right to waive, add, or
+            alter any of these rules and regulations in the interest of the
+            exhibition either generally or in any particular case.{" "}
+          </p>
+          <p>
+            38) Should any questions arise whether provided for in these rules
+            and regulations or not, the decision of the show manager is final.{" "}
+          </p>
+          <p className="font-bold">
+            39) The exhibitors should take note of matters mentioned in this
+            Exhibitor Manual or communicated to him in any other way.
+          </p>
+        </div>
+      </div>
+    );
+  } else if (openItem === "rules.standard") {
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px] leading-loose">
+          <p className="font-bold">
+            Guidelines for exhibitors with rental of standard booth
+          </p>
+          <div className="ml-3 mb-3">
+            <p>
+              1. Do not move, make any addition or any change to the standard
+              booth. Should you wish to do so, please contact Cityneon for
+              further action.{" "}
+            </p>
+            <p>2. Do not apply spraying glue or silicone on the wall panel.</p>
+            <p>3. Do not paint, spray-paint, or write on the wall panel. </p>
+            <p>
+              4. Do not drill nail, perforate, tack down, staple or cause any
+              damage to the wall panel or any part of the standard booth. Should
+              you need to affix any exhibit or sign to the wall please use
+              approved double-sided tape or contact the exhibition organizer.
+            </p>
+            
+          </div>
+          <p className="font-bold">
+              Note: In case of violation of the above rules, official
+              contractors will be obliged to request the payment from exhibitors
+              for any damages caused at the rate of 3,000 Bath/panel
+            </p>
         </div>
       </div>
     );
