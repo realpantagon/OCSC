@@ -20,23 +20,20 @@ function Order() {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          "https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors",
+          `https://api.airtable.com/v0/appVADkxTuwcN78c6/Approve%20Exhibitors`,
           {
             headers: {
               Authorization:
                 "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
             },
+            params: {
+              filterByFormula: `AND({Username} = '${username}')`,
+            },
           }
         );
         const records = response.data.records;
-        console.log(response.data);
-        console.log(response.data.records);
-        const userRecord = records.find(
-          (record) => record.fields.Username === username
-        );
-
-        if (userRecord) {
-          setUserRecord(userRecord);
+        if (records.length > 0) {
+          setUserRecord(records[0].fields);
         } else {
           console.log("User record not found for username:", username);
         }
@@ -55,10 +52,7 @@ function Order() {
   const openJotForm = (formKey) => {
     console.log("User Record:", userRecord);
     console.log("Selected Form:", formKey);
-    console.log(
-      "Form URL:",
-      userRecord && userRecord.fields ? userRecord.fields[formKey] : null
-    );
+    console.log("Form URL:", userRecord ? userRecord[formKey] : null);
     setSelectedForm(formKey);
   };
 
@@ -68,90 +62,46 @@ function Order() {
       <div className="flex">
         <div className="w-1/4 p-4 bg-white">
           <ul>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r4 service(ExhibitorBadge)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r4 service(ExhibitorBadge)")}
-              >
-                Form 1: Exhibitor badge
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r5 service(Additionallogo)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r5 service(Additionallogo)")}
-              >
-                Form 2: Advertisement (media PR)
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r6 service(Form 3)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r6 service(Form 3)")}
-              >
-                Form 3: Booth assistant
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r1 service(Furniture)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r1 service(Furniture)")}
-              >
-                Form 4: Furniture & carpet
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r2 service(Electric)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r2 service(Electric)")}
-              >
-                Form 5: Electrical items
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r3 service(A/V&Computer)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r3 service(A/V&Computer)")}
-              >
-                Form 6: AV equipment
-              </button>
-            </li>
-            <li className="mb-2">
-              <button
-                className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
-                  selectedForm === "r7 service(VISA)"
-                    ? "bg-blue-700 text-white shadow-lg"
-                    : "bg-white text-black"
-                }`}
-                onClick={() => openJotForm("r7 service(VISA)")}
-              >
-                Form 7: Visa invitation letter
-              </button>
-            </li>
+            {[
+              {
+                key: "r4 service(ExhibitorBadge)",
+                label: "Form 1: Exhibitor badge",
+              },
+              {
+                key: "r5 service(Additionallogo)",
+                label: "Form 2: Advertisement (media PR)",
+              },
+              { key: "r6 service(Form 3)", label: "Form 3: Booth assistant" },
+              {
+                key: "r1 service(Furniture)",
+                label: "Form 4: Furniture & carpet",
+              },
+              {
+                key: "r2 service(Electric)",
+                label: "Form 5: Electrical items",
+              },
+              {
+                key: "r3 service(A/V&Computer)",
+                label: "Form 6: AV equipment",
+              },
+              {
+                key: "r7 service(VISA)",
+                label: "Form 7: Visa invitation letter",
+              },
+            ].map(({ key, label }) => (
+              <li key={key} className="mb-2">
+                <button
+                  className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                    selectedForm === key
+                      ? "bg-blue-700 text-white shadow-lg"
+                      : "bg-white text-black"
+                  }`}
+                  onClick={() => openJotForm(key)}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -184,12 +134,9 @@ function Order() {
                 </span>
               </div>
             </div>
-          ) : userRecord &&
-            userRecord.fields &&
-            selectedForm &&
-            userRecord.fields[selectedForm] ? (
+          ) : selectedForm && userRecord && userRecord[selectedForm] ? (
             <iframe
-              src={userRecord.fields[selectedForm]}
+              src={userRecord[selectedForm]}
               width="100%"
               height="800px"
               allowFullScreen
