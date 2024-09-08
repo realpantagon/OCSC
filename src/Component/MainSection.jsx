@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const MainSection = ({ userRecord, openItem }) => {
   const [formData, setFormData] = useState({
@@ -22,6 +22,207 @@ const MainSection = ({ userRecord, openItem }) => {
   const [showLogoUploadPopup, setShowLogoUploadPopup] = useState(false);
   const [showRequiredFieldsPopup, setShowRequiredFieldsPopup] = useState(false);
   const [requiredFieldsMessage, setRequiredFieldsMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [furnitureOrderData, setFurnitureOrderData] = useState([]);
+  const [electricOrderData, setElectricOrderData] = useState([]);
+  const [avOrderData, setAVOrderData] = useState([]);
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("ocscusername");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
+  // Define the fields you want to display
+  const ExceptFieldsfur = [
+    "num",
+    "Approve Exhibitors",
+    "Booth No.",
+    "Booth no for approve",
+    "Submission Date",
+    "Table Subtotal(THB)",
+    "Chair Subtotal(THB)",
+    "System Subtotal(THB)",
+    "Octanorm Subtotal(THB)",
+    "Organize Name",
+    "Street Address",
+    "Street Address Line 2",
+    "City",
+    "State / Province",
+    "Postal / Zip Code",
+    "TAX ID",
+    "Tel",
+    "Contact name",
+    "Email",
+    "Contact name",
+    "Username",
+    "OrderID(fur)",
+  ];
+
+  // Define the fields you want to display
+  const ExceptFieldselec = [
+    "num",
+    "Approve Exhibitors",
+    "Booth",
+    "Booth no for approve",
+    "Submission Date",
+    "Table Subtotal(THB)",
+    "Chair Subtotal(THB)",
+    "System Subtotal(THB)",
+    "Octanorm Subtotal(THB)",
+    "Organize Name",
+    "Street Address",
+    "Street Address Line 2",
+    "City",
+    "State / Province",
+    "Postal / Zip Code",
+    "TAX ID",
+    "Tel",
+    "Contact name",
+    "Email",
+    "Contact name",
+    "Username",
+    "OrderID(elec)",
+    "section A subtotal(Hide)",
+    "section B subtotal(Hide)",
+    "section C subtotal(Hide)",
+  ];
+
+  // Define the fields you want to display
+  const ExceptFieldsav = [
+    "num",
+    "Approve Exhibitors",
+    "Booth No.",
+    "Booth No. for approve",
+    "Submission Date",
+    "Table Subtotal(THB)",
+    "Chair Subtotal(THB)",
+    "System Subtotal(THB)",
+    "Octanorm Subtotal(THB)",
+    "Organize Name",
+    "Street Address",
+    "Street Address Line 2",
+    "City",
+    "State / Province",
+    "Postal / Zip Code",
+    "TAX ID",
+    "Tel",
+    "Contact name",
+    "Email",
+    "Contact name",
+    "Username",
+    "OrderID(av)",
+  ];
+
+  useEffect(() => {
+    if (openItem === "orderHistory-furOrder") {
+      fetchFurnitureOrderData();
+    } else if (openItem === "orderHistory-elecOrder") {
+      fetchElectricOrderData();
+    } else if (openItem === "orderHistory-avOrder") {
+      fetchAVOrderData();
+    }
+  }, [openItem, userRecord.fields]);
+
+  //fetch furniture table
+  const fetchFurnitureOrderData = async () => {
+    if (!username) return;
+
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Furniture%20Order?filterByFormula={Username}="${username}"`,
+        {
+          headers: {
+            Authorization:
+              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.records.length > 0) {
+        const sortedRecords = data.records
+          .map((record) => record.fields)
+          .sort((a, b) => {
+            // Extract the numeric part from the OrderID(fur) field
+            const aNum = parseInt(a["OrderID(fur)"].split("-")[1]);
+            const bNum = parseInt(b["OrderID(fur)"].split("-")[1]);
+            return aNum - bNum;
+          });
+        setFurnitureOrderData(sortedRecords);
+      } else {
+        setFurnitureOrderData([]);
+      }
+    } catch (error) {
+      console.error("Error fetching furniture order data:", error);
+    }
+  };
+
+  //fetch electric table
+  const fetchElectricOrderData = async () => {
+    if (!username) return;
+
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Electric%20Order?filterByFormula={Username}="${username}"`,
+        {
+          headers: {
+            Authorization:
+              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.records.length > 0) {
+        const sortedRecords = data.records
+          .map((record) => record.fields)
+          .sort((a, b) => {
+            // Extract the numeric part from the OrderID(fur) field
+            const aNum = parseInt(a["OrderID(elec)"].split("-")[1]);
+            const bNum = parseInt(b["OrderID(elec)"].split("-")[1]);
+            return aNum - bNum;
+          });
+        setElectricOrderData(sortedRecords);
+      } else {
+        setElectricOrderData([]);
+      }
+    } catch (error) {
+      console.error("Error fetching electric order data:", error);
+    }
+  };
+
+  //fetch A/V table
+  const fetchAVOrderData = async () => {
+    if (!username) return;
+
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appVADkxTuwcN78c6/AV%20component?filterByFormula={Username}="${username}"`,
+        {
+          headers: {
+            Authorization:
+              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.records.length > 0) {
+        const sortedRecords = data.records
+          .map((record) => record.fields)
+          .sort((a, b) => {
+            // Extract the numeric part from the OrderID(fur) field
+            const aNum = parseInt(a["OrderID(av)"].split("-")[1]);
+            const bNum = parseInt(b["OrderID(av)"].split("-")[1]);
+            return aNum - bNum;
+          });
+        setAVOrderData(sortedRecords);
+      } else {
+        setAVOrderData([]);
+      }
+    } catch (error) {
+      console.error("Error fetching a/v order data:", error);
+    }
+  };
 
   const openJotForm = (formType) => {
     if (formType === "Upload Logo") {
@@ -66,25 +267,7 @@ const MainSection = ({ userRecord, openItem }) => {
       ["Promotion Detail 2", "Promotion Detail 2 (from Booth No. for edit)"],
       ["Promotion Detail 3", "Promotion Detail 3 (from Booth No. for edit)"],
     ],
-    // "exhibitorProfile-scholarship": [
-    //   ["Scholarship", "Scholarship (from Booth No. for edit)"],
-    //   ["Scholarship Title", "Scholarship Title (from Booth No. for edit)"],
-    //   ["Scholarship Value", "Scholarship Value (from Booth No. for edit)"],
-    //   ["Scholarship Criteria", "Scholarship Criteria (from Booth No. for edit)"],
-    //   ["Scholarship Title 2", "Scholarship Title 2 (from Booth No. for edit)"],
-    //   ["Scholarship Value 2", "Scholarship Value 2 (from Booth No. for edit)"],
-    //   ["Scholarship Criteria 2", "Scholarship 2 (from Booth No. for edit)"],
-    //   ["Scholarship Title 3", "Scholarship Title 3 (from Booth No. for edit)"],
-    //   ["Scholarship Value 3", "Scholarship Value 3 (from Booth No. for edit)"],
-    //   ["Scholarship Criteria 3", "Scholarship 3 (from Booth No. for edit)"],
-    //   ["Scholarship Title 4", "Scholarship Title 4 (from Booth No. for edit)"],
-    //   ["Scholarship Value 4", "Scholarship Value 4 (from Booth No. for edit)"],
-    //   ["Scholarship Criteria 4", "Scholarship 4 (from Booth No. for edit)"],
-    //   ["Scholarship Title 5", "Scholarship Title 5 (from Booth No. for edit)"],
-    //   ["Scholarship Value 5", "Scholarship Value 5 (from Booth No. for edit)"],
-    //   ["Scholarship Criteria 5", "Scholarship 5 (from Booth No. for edit)"],
 
-    // ],
     billingInfo: [
       ["Organization Name", "Organization Name 2 (from Booth No. for edit)"],
       ["Street Address", "Street Address 2 (from Booth No. for edit)"],
@@ -804,6 +987,138 @@ const MainSection = ({ userRecord, openItem }) => {
           </table>
         </div>
       )}
+      {openItem === "orderHistory-furOrder" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Furniture Orders</h2>
+          {furnitureOrderData.length > 0 ? (
+            furnitureOrderData.map((order, index) => (
+              <div key={order["OrderID(fur)"]} className="mb-8">
+                <h3 className="text-xl font-semibold mb-2">
+                  Order ID: {order["OrderID(fur)"]}
+                </h3>
+                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Field
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                    {Object.entries(order)
+                      .filter(([key]) => !ExceptFieldsfur.includes(key))
+                      .map(([key, value]) => (
+                        <tr key={key} className="hover:bg-gray-50">
+                          <td className="px-6 py-4">{key}</td>
+                          <td className="px-6 py-4">{value}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p>No furniture order data found.</p>
+          )}
+        </div>
+      )}
+      {openItem === "orderHistory-elecOrder" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Electric Orders</h2>
+          {electricOrderData.length > 0 ? (
+            electricOrderData.map((order, index) => (
+              <div key={order["OrderID(elec)"]} className="mb-8">
+                <h3 className="text-xl font-semibold mb-2">
+                  Order ID: {order["OrderID(elec)"]}
+                </h3>
+                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Field
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                    {Object.entries(order)
+                      .filter(([key]) => !ExceptFieldselec.includes(key))
+                      .map(([key, value]) => (
+                        <tr key={key} className="hover:bg-gray-50">
+                          <td className="px-6 py-4">{key}</td>
+                          <td className="px-6 py-4">{value}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p>No electric order data found.</p>
+          )}
+        </div>
+      )}
+      {openItem === "orderHistory-avOrder" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">A/V Orders</h2>
+          {avOrderData.length > 0 ? (
+            avOrderData.map((order, index) => (
+              <div key={order["OrderID(av)"]} className="mb-8">
+                <h3 className="text-xl font-semibold mb-2">
+                  Order ID: {order["OrderID(av)"]}
+                </h3>
+                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Field
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                    {Object.entries(order)
+                      .filter(([key]) => !ExceptFieldsav.includes(key))
+                      .map(([key, value]) => (
+                        <tr key={key} className="hover:bg-gray-50">
+                          <td className="px-6 py-4">{key}</td>
+                          <td className="px-6 py-4">{value}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p>No a/v order data found.</p>
+          )}
+        </div>
+      )}
       {showConfirmDialog && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
@@ -885,6 +1200,7 @@ const MainSection = ({ userRecord, openItem }) => {
           </div>
         </div>
       )}
+
       {showRequiredFieldsPopup && (
         <RequiredFieldsPopup
           message={requiredFieldsMessage}

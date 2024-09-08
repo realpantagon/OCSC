@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Component/Navbar";
-import { useNavigate } from "react-router-dom";
-import "./welcome.css"
+import { Link, useNavigate } from "react-router-dom";
+import "./welcome.css";
 
 function Welcome() {
-
-
   return (
     <div className="App">
       <Navbar />
@@ -177,26 +175,33 @@ function Welcome() {
           </p>
         </div>
         <div className="text-base mt-3 ml-2">
-  <input
-    type="checkbox"
-    id="terms-checkbox"
-    checked={true}
-    onChange={() => {}}
-    className="checkbox-grey"
-  />
-  <label htmlFor="terms-checkbox" className="ml-2">
-    I agree to{" "}
-    <a
-      href="https://www.example.com/"
-      style={{ textDecoration: "underline", color: "blue" }}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      terms & conditions
-    </a>
-    .
-  </label>
-</div>
+          <input
+            type="checkbox"
+            id="terms-checkbox"
+            checked={true}
+            onChange={() => {}}
+            className="checkbox-grey"
+          />
+          <label htmlFor="terms-checkbox" className="ml-2">
+            I agree to{" "}
+            <a
+              href="https://www.example.com/"
+              style={{ textDecoration: "underline", color: "blue" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              terms & conditions
+            </a>
+            .
+          </label>
+        </div>
+        <div className="flex justify-center pb-4">
+          <Link to="/profile">
+            <button className="text-lg font-semibold mt-4 px-4 py-1 bg-yellow-300 text-black border-5 border-black rounded shadow-md hover:bg-yellow-400 transition-colors duration-200 ease-in-out">
+              Close
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

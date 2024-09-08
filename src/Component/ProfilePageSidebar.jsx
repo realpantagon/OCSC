@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
+  const [exhibitorProfileOpen, setExhibitorProfileOpen] = useState(true);
+  const [orderHistoryOpen, setOrderHistoryOpen] = useState(false);
+
   const toggleItem = (item) => {
-    setOpenItem(item);
+    if (item === "exhibitorProfile") {
+      setExhibitorProfileOpen(!exhibitorProfileOpen);
+      setOpenItem("exhibitorProfile-generalInfo"); // Changed this line
+    } else if (item === "orderHistory") {
+      setOrderHistoryOpen(!orderHistoryOpen);
+      setOpenItem("orderHistory-furOrder");
+    } else {
+      setOpenItem(item);
+    }
+  };
+
+  const isExhibitorProfileOpen = () => {
+    return openItem?.startsWith("exhibitorProfile");
+  };
+
+  const isOrderHistoryOpen = () => {
+    return openItem?.startsWith("orderHistory");
   };
 
   return (
@@ -16,12 +35,11 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 ? "active bg-blue-700 text-white"
                 : ""
             } w-full text-left font-semibold`}
-            onClick={() => toggleItem("exhibitorProfile-generalInfo")}
+            onClick={() => toggleItem("exhibitorProfile")}
           >
             Exhibitor Profile
           </button>
-          {(openItem === "exhibitorProfile" ||
-            openItem?.startsWith("exhibitorProfile")) && (
+          {exhibitorProfileOpen && isExhibitorProfileOpen() && (
             <ul className="mx-[30px]">
               <button
                 className={`mt-3 mb-3  ${
@@ -61,7 +79,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 } w-full text-left p-2`}
                 onClick={() => toggleItem("exhibitorProfile-shortcourse")}
               >
-                  &nbsp;&nbsp;Short Course
+                &nbsp;&nbsp;Short Course
               </button>
               <button
                 className={`mb-3 ${
@@ -117,6 +135,53 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
           >
             Billing Information
           </button>
+        </div>
+        <div className="">
+          <button
+            className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+              openItem === "orderHistory" ||
+              openItem?.startsWith("orderHistory")
+                ? "active bg-blue-700 text-white"
+                : ""
+            } w-full text-left font-semibold`}
+            onClick={() => toggleItem("orderHistory")}
+          >
+            Order History
+          </button>
+          {orderHistoryOpen && isOrderHistoryOpen() && (
+            <ul className="mx-[30px]">
+              <button
+                className={`mt-3 ${
+                  openItem === "orderHistory-furOrder"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("orderHistory-furOrder")}
+              >
+                &nbsp;&nbsp;Furniture Order
+              </button>
+              <button
+                className={`mt-3 ${
+                  openItem === "orderHistory-elecOrder"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("orderHistory-elecOrder")}
+              >
+                &nbsp;&nbsp;Electric Order
+              </button>
+              <button
+                className={`mt-3 ${
+                  openItem === "orderHistory-avOrder"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("orderHistory-avOrder")}
+              >
+                &nbsp;&nbsp;A/V Component Order
+              </button>
+            </ul>
+          )}
         </div>
       </div>
     </div>

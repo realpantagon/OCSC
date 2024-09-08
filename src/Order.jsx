@@ -82,7 +82,7 @@ function Order() {
               },
               {
                 key: "r3 service(A/V&Computer)",
-                label: "Form 6: AV equipment",
+                label: "Form 6: A/V equipment",
               },
               {
                 key: "r7 service(VISA)",
