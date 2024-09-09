@@ -4,15 +4,36 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   const [exhibitorProfileOpen, setExhibitorProfileOpen] = useState(true);
   const [orderHistoryOpen, setOrderHistoryOpen] = useState(false);
 
-  
-
+  // const toggleItem = (item) => {
+  //   if (item === "exhibitorProfile") {
+  //     setExhibitorProfileOpen(!exhibitorProfileOpen);
+  //     setOpenItem("exhibitorProfile-generalInfo"); // Changed this line
+  //   } else if (item === "orderHistory") {
+  //     setOrderHistoryOpen(!orderHistoryOpen);
+  //     setOpenItem("orderHistory-furOrder");
+  //   } else {
+  //     setOpenItem(item);
+  //   }
+  // };
   const toggleItem = (item) => {
     if (item === "exhibitorProfile") {
-      setExhibitorProfileOpen(!exhibitorProfileOpen);
-      setOpenItem("exhibitorProfile-generalInfo"); // Changed this line
+      setExhibitorProfileOpen(!exhibitorProfileOpen); // Toggle open/close
+      setOrderHistoryOpen(false); // Close order history when exhibitor profile is clicked
+      setOpenItem(exhibitorProfileOpen ? null : "exhibitorProfile-generalInfo");
     } else if (item === "orderHistory") {
-      setOrderHistoryOpen(!orderHistoryOpen);
-      setOpenItem("orderHistory-furOrder");
+      setOrderHistoryOpen(!orderHistoryOpen); // Toggle open/close
+      setExhibitorProfileOpen(false); // Close exhibitor profile when order history is clicked
+      setOpenItem(orderHistoryOpen ? null : "orderHistory-furOrder");
+    } else if (item === "exhibitorSpace") {
+      // Close both when another button is clicked
+      setExhibitorProfileOpen(false);
+      setOrderHistoryOpen(false);
+      setOpenItem(item);
+    } else if (item === "billingInfo") {
+      // Close both when another button is clicked
+      setExhibitorProfileOpen(false);
+      setOrderHistoryOpen(false);
+      setOpenItem(item);
     } else {
       setOpenItem(item);
     }

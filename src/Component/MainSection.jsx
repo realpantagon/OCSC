@@ -1174,7 +1174,7 @@ const MainSection = ({ userRecord, openItem }) => {
       )}
       {openItem === "orderHistory-Badge" && (
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Badge</h2>
+          <h2 className="text-2xl font-semibold mb-4">Exhibitor Badge</h2>
           {BadgeData.length > 0 ? (
             BadgeData.map((badge, index) => (
               <div key={badge["BadgeID"]} className="mb-8">
