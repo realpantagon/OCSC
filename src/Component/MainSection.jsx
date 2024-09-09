@@ -26,6 +26,7 @@ const MainSection = ({ userRecord, openItem }) => {
   const [furnitureOrderData, setFurnitureOrderData] = useState([]);
   const [electricOrderData, setElectricOrderData] = useState([]);
   const [avOrderData, setAVOrderData] = useState([]);
+  const [BadgeData, setBadgeData] = useState([]);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("ocscusername");
@@ -34,7 +35,7 @@ const MainSection = ({ userRecord, openItem }) => {
     }
   }, []);
 
-  // Define the fields you want to display
+  // Define the fields you want to Not showing
   const ExceptFieldsfur = [
     "num",
     "Approve Exhibitors",
@@ -60,7 +61,7 @@ const MainSection = ({ userRecord, openItem }) => {
     "OrderID(fur)",
   ];
 
-  // Define the fields you want to display
+  // Define the fields you want to Not showing
   const ExceptFieldselec = [
     "num",
     "Approve Exhibitors",
@@ -87,9 +88,10 @@ const MainSection = ({ userRecord, openItem }) => {
     "section A subtotal(Hide)",
     "section B subtotal(Hide)",
     "section C subtotal(Hide)",
+    "Please upload your utility point",
   ];
 
-  // Define the fields you want to display
+  // Define the fields you want to Not showing
   const ExceptFieldsav = [
     "num",
     "Approve Exhibitors",
@@ -115,6 +117,21 @@ const MainSection = ({ userRecord, openItem }) => {
     "OrderID(av)",
   ];
 
+  // Define the fields you want to Not showing
+  const ExceptFieldsBadge = [
+    "approve",
+    "Booth No.",
+    "booth for approve",
+    "Submission Date",
+    "Organize Name",
+    "Organization's Email",
+    "Tel",
+    "Email",
+    "Username",
+    "num",
+    "BadgeID",
+  ];
+
   useEffect(() => {
     if (openItem === "orderHistory-furOrder") {
       fetchFurnitureOrderData();
@@ -122,6 +139,8 @@ const MainSection = ({ userRecord, openItem }) => {
       fetchElectricOrderData();
     } else if (openItem === "orderHistory-avOrder") {
       fetchAVOrderData();
+    } else if (openItem === "orderHistory-Badge") {
+      fetchBadgeData();
     }
   }, [openItem, userRecord.fields]);
 
@@ -144,7 +163,6 @@ const MainSection = ({ userRecord, openItem }) => {
         const sortedRecords = data.records
           .map((record) => record.fields)
           .sort((a, b) => {
-            // Extract the numeric part from the OrderID(fur) field
             const aNum = parseInt(a["OrderID(fur)"].split("-")[1]);
             const bNum = parseInt(b["OrderID(fur)"].split("-")[1]);
             return aNum - bNum;
@@ -161,7 +179,6 @@ const MainSection = ({ userRecord, openItem }) => {
   //fetch electric table
   const fetchElectricOrderData = async () => {
     if (!username) return;
-
     try {
       const response = await fetch(
         `https://api.airtable.com/v0/appVADkxTuwcN78c6/Electric%20Order?filterByFormula={Username}="${username}"`,
@@ -177,7 +194,6 @@ const MainSection = ({ userRecord, openItem }) => {
         const sortedRecords = data.records
           .map((record) => record.fields)
           .sort((a, b) => {
-            // Extract the numeric part from the OrderID(fur) field
             const aNum = parseInt(a["OrderID(elec)"].split("-")[1]);
             const bNum = parseInt(b["OrderID(elec)"].split("-")[1]);
             return aNum - bNum;
@@ -221,6 +237,38 @@ const MainSection = ({ userRecord, openItem }) => {
       }
     } catch (error) {
       console.error("Error fetching a/v order data:", error);
+    }
+  };
+
+  const fetchBadgeData = async () => {
+    if (!username) return;
+
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Exhibitor%20Badge?filterByFormula={Username}="${username}"`,
+        {
+          headers: {
+            Authorization:
+              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.records.length > 0) {
+        const sortedRecords = data.records
+          .map((record) => record.fields)
+          .sort((a, b) => {
+            // Extract the numeric part from the OrderID(fur) field
+            const aNum = parseInt(a["BadgeID"].split("-")[1]);
+            const bNum = parseInt(b["BadgeID"].split("-")[1]);
+            return aNum - bNum;
+          });
+        setBadgeData(sortedRecords);
+      } else {
+        setBadgeData([]);
+      }
+    } catch (error) {
+      console.error("Error fetching badge order data:", error);
     }
   };
 
@@ -1063,7 +1111,12 @@ const MainSection = ({ userRecord, openItem }) => {
                       .map(([key, value]) => (
                         <tr key={key} className="hover:bg-gray-50">
                           <td className="px-6 py-4">{key}</td>
-                          <td className="px-6 py-4">{value}</td>
+                          <td className="px-6 py-4">
+                            {value}
+                            {/* {typeof value === "object" && value !== null
+                              ? JSON.stringify(value)
+                              : value} */}
+                          </td>
                         </tr>
                       ))}
                   </tbody>
@@ -1116,6 +1169,50 @@ const MainSection = ({ userRecord, openItem }) => {
             ))
           ) : (
             <p>No a/v order data found.</p>
+          )}
+        </div>
+      )}
+      {openItem === "orderHistory-Badge" && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Badge</h2>
+          {BadgeData.length > 0 ? (
+            BadgeData.map((badge, index) => (
+              <div key={badge["BadgeID"]} className="mb-8">
+                <h3 className="text-xl font-semibold mb-2">
+                  Badge Data: {index + 1}
+                </h3>
+                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Field
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-4 font-medium text-gray-900"
+                      >
+                        Value
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                    {Object.entries(badge)
+                      .filter(([key]) => !ExceptFieldsBadge.includes(key))
+                      .map(([key, value]) => (
+                        <tr key={key} className="hover:bg-gray-50">
+                          <td className="px-6 py-4">{key}</td>
+                          <td className="px-6 py-4">{value}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <p>No badge data found.</p>
           )}
         </div>
       )}

@@ -4,6 +4,8 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
   const [exhibitorProfileOpen, setExhibitorProfileOpen] = useState(true);
   const [orderHistoryOpen, setOrderHistoryOpen] = useState(false);
 
+  
+
   const toggleItem = (item) => {
     if (item === "exhibitorProfile") {
       setExhibitorProfileOpen(!exhibitorProfileOpen);
@@ -179,6 +181,16 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 onClick={() => toggleItem("orderHistory-avOrder")}
               >
                 &nbsp;&nbsp;A/V Component Order
+              </button>
+              <button
+                className={`mt-3 ${
+                  openItem === "orderHistory-Badge"
+                    ? "rounded-full bg-blue-700 text-white hover:text-black focus:outline-none transition duration-300 ease-in-out"
+                    : ""
+                } w-full text-left p-2`}
+                onClick={() => toggleItem("orderHistory-Badge")}
+              >
+                &nbsp;&nbsp;Exhibitor Badge
               </button>
             </ul>
           )}
