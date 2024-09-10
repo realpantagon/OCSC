@@ -27,6 +27,10 @@ const MainSection = ({ userRecord, openItem }) => {
   const [electricOrderData, setElectricOrderData] = useState([]);
   const [avOrderData, setAVOrderData] = useState([]);
   const [BadgeData, setBadgeData] = useState([]);
+  const [loadingfur, setLoadingfur] = useState(true);
+  const [loadingelec, setLoadingelec] = useState(true);
+  const [loadingav, setLoadingav] = useState(true);
+  const [loadingbadge, setLoadingbadge] = useState(true);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("ocscusername");
@@ -135,12 +139,32 @@ const MainSection = ({ userRecord, openItem }) => {
   useEffect(() => {
     if (openItem === "orderHistory-furOrder") {
       fetchFurnitureOrderData();
+      const timerfur = setTimeout(() => {
+        setLoadingfur(false);
+      }, 2000);
+
+      return () => clearTimeout(timerfur);
     } else if (openItem === "orderHistory-elecOrder") {
       fetchElectricOrderData();
+      const timerelec = setTimeout(() => {
+        setLoadingelec(false);
+      }, 1000);
+
+      return () => clearTimeout(timerelec);
     } else if (openItem === "orderHistory-avOrder") {
       fetchAVOrderData();
+      const timerav = setTimeout(() => {
+        setLoadingav(false);
+      }, 1000);
+
+      return () => clearTimeout(timerav);
     } else if (openItem === "orderHistory-Badge") {
       fetchBadgeData();
+      const timerbadge = setTimeout(() => {
+        setLoadingbadge(false);
+      }, 1000);
+
+      return () => clearTimeout(timerbadge);
     }
   }, [openItem, userRecord.fields]);
 
@@ -1038,7 +1062,9 @@ const MainSection = ({ userRecord, openItem }) => {
       {openItem === "orderHistory-furOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Furniture Orders</h2>
-          {furnitureOrderData.length > 0 ? (
+          {loadingfur ? (
+            <p>Loading Furniture Order...</p>
+          ) : furnitureOrderData.length > 0 ? (
             furnitureOrderData.map((order, index) => (
               <div key={order["OrderID(fur)"]} className="mb-8">
                 <h3 className="text-xl font-semibold mb-2">
@@ -1082,7 +1108,9 @@ const MainSection = ({ userRecord, openItem }) => {
       {openItem === "orderHistory-elecOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Electric Orders</h2>
-          {electricOrderData.length > 0 ? (
+          {loadingelec ? (
+            <p>Loading Electric Order...</p>
+          ) : electricOrderData.length > 0 ? (
             electricOrderData.map((order, index) => (
               <div key={order["OrderID(elec)"]} className="mb-8">
                 <h3 className="text-xl font-semibold mb-2">
@@ -1131,7 +1159,9 @@ const MainSection = ({ userRecord, openItem }) => {
       {openItem === "orderHistory-avOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">A/V Orders</h2>
-          {avOrderData.length > 0 ? (
+          {loadingav ? (
+            <p>Loading A/V Order...</p>
+          ) : avOrderData.length > 0 ? (
             avOrderData.map((order, index) => (
               <div key={order["OrderID(av)"]} className="mb-8">
                 <h3 className="text-xl font-semibold mb-2">
@@ -1175,11 +1205,13 @@ const MainSection = ({ userRecord, openItem }) => {
       {openItem === "orderHistory-Badge" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Exhibitor Badge</h2>
-          {BadgeData.length > 0 ? (
-            BadgeData.map((badge, index) => (
+          {loadingbadge ? (
+            <p>Loading Exhibitor Badge...</p>
+          ) : BadgeData.length > 0 ? (
+            BadgeData.map((badge, badgeindex) => (
               <div key={badge["BadgeID"]} className="mb-8">
                 <h3 className="text-xl font-semibold mb-2">
-                  Badge Data: {index + 1}
+                  Badge Data: {badgeindex + 1}
                 </h3>
                 <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
                   <thead className="bg-gray-50">
@@ -1201,12 +1233,40 @@ const MainSection = ({ userRecord, openItem }) => {
                   <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                     {Object.entries(badge)
                       .filter(([key]) => !ExceptFieldsBadge.includes(key))
-                      .map(([key, value]) => (
-                        <tr key={key} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">{key}</td>
-                          <td className="px-6 py-4">{value}</td>
-                        </tr>
-                      ))}
+                      .reduce((acc, [key, value]) => {
+                        const nameMatch = key.match(
+                          /^(First|Last) Name(\d+)?$/
+                        );
+                        if (nameMatch) {
+                          const nameIndex = nameMatch[2] || "1";
+                          const isFirstName = nameMatch[1] === "First";
+                          if (isFirstName) {
+                            acc.push(
+                              <tr
+                                key={`FullName${nameIndex}`}
+                                className="hover:bg-gray-50"
+                              >
+                                <td className="px-6 py-4">
+                                  Full Name {nameIndex}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {`${value} ${
+                                    badge[`Last Name${nameIndex}`] || ""
+                                  }`}
+                                </td>
+                              </tr>
+                            );
+                          }
+                        } else {
+                          acc.push(
+                            <tr key={key} className="hover:bg-gray-50">
+                              <td className="px-6 py-4">{key}</td>
+                              <td className="px-6 py-4">{value}</td>
+                            </tr>
+                          );
+                        }
+                        return acc;
+                      }, [])}
                   </tbody>
                 </table>
               </div>
