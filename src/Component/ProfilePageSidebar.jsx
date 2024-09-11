@@ -160,7 +160,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
           </button>
         </div>
         <div className="">
-          <button
+          {/* <button
             className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
               openItem === "orderHistory" ||
               openItem?.startsWith("orderHistory")
@@ -170,7 +170,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
             onClick={() => toggleItem("orderHistory")}
           >
             Order History
-          </button>
+          </button> */}
           {orderHistoryOpen && isOrderHistoryOpen() && (
             <ul className="mx-[30px]">
               <button
