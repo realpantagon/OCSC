@@ -18,7 +18,8 @@ const LoginPage = () => {
       const currentTime = Date.now();
       if (currentTime < parseInt(expirationTime)) {
         // Token is still valid, automatically log in the user
-        navigate("/welcome");
+        // navigate("/welcome");
+        navigate("/profile");
       } else {
         // Token has expired, remove it from local storage
         localStorage.removeItem("ocsctoken");
@@ -92,7 +93,8 @@ const handleSubmit = async (e) => {
         localStorage.setItem("ocscrecordid", recordId);
       }
 
-      navigate("/welcome");
+      // navigate("/welcome");
+      navigate("/profile");
     } else {
       setError("Invalid username or password");
     }

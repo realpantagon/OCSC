@@ -6,7 +6,7 @@ function Order() {
   const [userRecord, setUserRecord] = useState(null);
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedForm, setSelectedForm] = useState(null);
+  const [selectedForm, setSelectedForm] = useState("r4 service(ExhibitorBadge)");
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("ocscusername");
@@ -56,42 +56,44 @@ function Order() {
     setSelectedForm(formKey);
   };
 
+  const formList = [
+    {
+      key: "r4 service(ExhibitorBadge)",
+      label: "Form 1: Exhibitor badge",
+    },
+    {
+      key: "r5 service(Additionallogo)",
+      label: "Form 2: Advertisement (media PR)",
+    },
+    { key: "r6 service(Form 3)", label: "Form 3: Booth assistant" },
+    {
+      key: "r1 service(Furniture)",
+      label: "Form 4: Furniture & carpet",
+    },
+    {
+      key: "r2 service(Electric)",
+      label: "Form 5: Electrical items",
+    },
+    {
+      key: "r3 service(A/V&Computer)",
+      label: "Form 6: A/V equipment",
+    },
+    {
+      key: "r7 service(VISA)",
+      label: "Form 7: Visa invitation letter",
+    },
+  ];
+
   return (
     <div>
       <Navbar />
       <div className="flex">
         <div className="w-1/4 p-4 bg-white">
           <ul>
-            {[
-              {
-                key: "r4 service(ExhibitorBadge)",
-                label: "Form 1: Exhibitor badge",
-              },
-              {
-                key: "r5 service(Additionallogo)",
-                label: "Form 2: Advertisement (media PR)",
-              },
-              { key: "r6 service(Form 3)", label: "Form 3: Booth assistant" },
-              {
-                key: "r1 service(Furniture)",
-                label: "Form 4: Furniture & carpet",
-              },
-              {
-                key: "r2 service(Electric)",
-                label: "Form 5: Electrical items",
-              },
-              {
-                key: "r3 service(A/V&Computer)",
-                label: "Form 6: A/V equipment",
-              },
-              {
-                key: "r7 service(VISA)",
-                label: "Form 7: Visa invitation letter",
-              },
-            ].map(({ key, label }) => (
+            {formList.map(({ key, label }) => (
               <li key={key} className="mb-2">
                 <button
-                  className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out ${
+                  className={`border-2 border-slate-300 text-black hover:text-black w-full py-2 px-4 rounded-full focus:outline-none transition duration-300 ease-in-out  text-left font-bold ${
                     selectedForm === key
                       ? "bg-blue-700 text-white shadow-lg"
                       : "bg-white text-black"

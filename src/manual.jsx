@@ -182,7 +182,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <button
             onClick={() =>
               window.open(
-                "https://drive.google.com/file/d/1UMi4n5n05Yj1Va-WKmToiQgWFWaePEzb/view",
+                "https://drive.google.com/file/d/10ysnKXkIdV2FVJvVC5YtbHp-ElMLurx3/view",
                 "_blank"
               )
             }
@@ -219,7 +219,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <p>26 October 2024 :12:00 hrs. - 19:00 hrs.</p>
           <p>27 October 2024 :12:00 hrs. - 19:00 hrs.</p>
           <p>
-            (Exhibitors are allowed to access to the exhibition hall from 09:00
+            (Exhibitors are allowed to access to the exhibition hall from 08:00
             hrs. onwards.)
           </p>
           <p>
@@ -228,10 +228,10 @@ const MainSection = ({ userRecord, openItem }) => {
           </p>
           <p>(No air-conditioning during the set up)</p>
           <p>
-            26 October 2024 :09:00 hrs. - 12:00 hrs. (for standard booth's
+            26 October 2024 :08:00 hrs. - 11:00 hrs. (for standard booth's
             decoration)
           </p>
-          <p>27 October 2024 :19:00 hrs. - 24:00 hrs.</p>
+          <p>26 October 2024 :19:00 hrs. - 24:00 hrs.</p>
         </div>
       </div>
     );
@@ -240,7 +240,7 @@ const MainSection = ({ userRecord, openItem }) => {
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
           <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
-          <p>436/36-39, 436/87-95 Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
+          <p>436/36-39, 436/87-95, Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
           <p>Huaykwang Bangkok 10310 Thailand</p>
           <p>Tel: +66 2 690 2682-4 ext 17</p>
           <div className="flex flex-wrap">
@@ -263,17 +263,17 @@ const MainSection = ({ userRecord, openItem }) => {
           <p className="font-bold">Paragon Hall</p>
           <p>991 Siam Paragon Shopping Center, Rama 1 Road, Pathumwan, </p>
           <p> Bangkok 10330 Thailand </p>
-          <p>Tel: +66 2 610 8011 , Phone no.: +66 81-935-6154</p>
+          <p>Tel: +66 2 610 8011, Phone no.: +66 96-905-6179</p>
           <div className="flex flex-wrap">
             <p>E-mail:&nbsp;</p>
             <a
               className="underline underline-offset-2"
-              href="mailto:sirinapa.s@siamparagon.co.th"
+              href="mailto:Sudarat.s@siamparagon.co.th"
             >
-              sirinapa.s@siamparagon.co.th
+              Sudarat.s@siamparagon.co.th
             </a>
           </div>
-          <p>Contact: Ms. Sirinapa Sikarinporn, Sales Manager</p>
+          <p>Contact: Ms. Sudarat Saibun, Customer Service Executive</p>
         </div>
       </div>
     );
@@ -281,11 +281,28 @@ const MainSection = ({ userRecord, openItem }) => {
     content = (
       <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
         <div className="ml-[30px]">
-          <div className="">
-            <img className="object-contain h-36 w-36" src="/Novotel.png"></img>
+          <div className="leading-5 flex flex-col items-center text-center">
+            <img
+              className="object-contain h-15 w-44"
+              src="/Novotel.png"
+              alt="Novotel Logo"
+            />
+            <p className="font-bold">OFFICIAL & PREFERRED HOTEL</p>
+            <p>NOVOTEL BANGKOK ON SIAM SQUARE</p>
+            <a
+              href="https://maps.app.goo.gl/ovn3TjiMKq9YDTiEA"
+              className="text-blue-600 underline text-xs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://maps.app.goo.gl/ovn3TjiMKq9YDTiEA
+            </a>
+            <br />
+            <br />
           </div>
-          <p className="font-bold">SPECIAL RATE FOR OCSC EXHIBITORS</p>
-          <br />
+          <p className="font-bold underline underline-offset-2">
+            SPECIAL RATE FOR OCSC EXHIBITORS
+          </p>
           <p className="font-bold">
             Room with breakfast: Single and Twin or Double
           </p>
@@ -303,43 +320,55 @@ const MainSection = ({ userRecord, openItem }) => {
           </p>
           <p className="italic">including buffet breakfast.</p>
           <br />
+
+          <p className="font-bold underline underline-offset-2">
+            BOOKING STEPS&nbsp;
+          </p>
           <div className="flex flex-wrap">
-            <p className="font-bold">ONLINE BOOKING is available at&nbsp;</p>
+            <p className="">1.Go to hotel website at :&nbsp;</p>
             <a
-              href="https://novotelsiam.hotels-boutique.com/product/ocsc-expo-2024/"
+              href="https://www.novotelbkk.com/"
               style={{ textDecoration: "underline", color: "blue" }}
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://novotelsiam.hotels-boutique.com/product/ocsc-expo-2024/
+              novotelbkk.com
             </a>
           </div>
+          <p>
+            2.Select Special Rates and apply “ 24OCSC ” on Preferential code
+            (Rate applied for period between 25 – 28 October 2024 only)
+          </p>
+          <p>
+            3.Special offer will be appeared on website for further booking
+            process
+          </p>
           <br />
           <p className="font-bold ml-[30px]">ROOM TYPES:</p>
-          <br />
+
           <div className="flex flex-wrap">
             <div className="grid justify-items-center ml-[40px]">
               <img
-                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                className="drop-shadow-[4px_4px_4px_rgba(0,0,0,0.3)] object-contain h-36 w-36"
                 src="/Superior-Room-2.jpg"
               ></img>
-              <br />
               <p>Superior room</p>
             </div>
-            <div className="grid justify-items-center ml-[40px]">
+            <div className="grid justify-items-center ml-[60px]">
               <img
-                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                className="drop-shadow-[4px_4px_4px_rgba(0,0,0,0.3)] object-contain h-36 w-36"
                 src="/Deluxe-Room-Queen.jpg"
               ></img>
-              <br />
+
               <p>Deluxe room</p>
             </div>
-            <div className="grid justify-items-center ml-[40px]">
+            <div className="grid justify-items-center ml-[60px]">
               <img
-                className="drop-shadow-lg shadow-gray-600 object-contain h-36 w-36"
+                className="drop-shadow-[4px_4px_4px_rgba(0,0,0,0.3)] object-contain h-36 w-36"
                 src="/Bars-Restaurant-Bars-Restaurants-32.jpg"
-              ></img>
-              <br />
+                alt="The SQUARE"
+              />
+
               <p>The SQUARE</p>
             </div>
           </div>
@@ -423,15 +452,23 @@ const MainSection = ({ userRecord, openItem }) => {
           <br />
           <div className="ml-[50px]">
             <p className="font-bold">CITYNEON NETWORK CO., LTD.</p>
-            <p>436/36-39 Sol 20 Mithuna 11, 20 Mithuna Road.,</p>
+            <p>436/36-39,436/87-95, Soi 20 Mithuna 11, 20 Mithuna Road.,</p>
             <p className="mb-3">Huaykwang Bangkok 10310 Thailand</p>
-            <p>Tel: +66 2 690 2682-4 ext 17</p>
+            {/* <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
             <p>E-mail: ladda@cityneonthailand.com</p>
-            <p>Contact: Ms. Ladda Chaiprasert, Managing Director</p>
+            <p>Contact: Ms. Ladda Chaiprasert, Managing Director</p> */}
             <p>Tel: +66 2 690 2682 to 4 Ext. 20</p>
-            <p>E-mall: op@cityneonthalland.com</p>
-            <p>Contact: Ms. Pratchayaporn Phonwaritkul, Project</p>
-            <p> Manager</p>
+            <div className="flex flex-wrap">
+              <p>E-mail:&nbsp;</p>
+              <a
+                className="underline underline-offset-2"
+                href="mailto:op@cityneonthailand.com"
+              >
+                op@cityneonthailand.com
+              </a>
+            </div>
+            <p>Contact: Ms. Pratchayaporn Phonwaritkul, Project Manager</p>
+            <br />
           </div>
           <div className="flex flex-wrap">
             <p className="font-bold ml-[40px]">
@@ -692,13 +729,99 @@ const MainSection = ({ userRecord, openItem }) => {
               you need to affix any exhibit or sign to the wall please use
               approved double-sided tape or contact the exhibition organizer.
             </p>
-            
           </div>
           <p className="font-bold">
-              Note: In case of violation of the above rules, official
-              contractors will be obliged to request the payment from exhibitors
-              for any damages caused at the rate of 3,000 Bath/panel
+            Note: In case of violation of the above rules, official contractors
+            will be obliged to request the payment from exhibitors for any
+            damages caused at the rate of 3,000 Bath/panel
+          </p>
+        </div>
+      </div>
+    );
+  } else if (openItem === "rules.raw") {
+    content = (
+      <div className="ml-[50px] mr-[50px] mt-[20px] border-2 border-gray-300 rounded-lg p-6 bg-white">
+        <div className="ml-[30px] leading-5">
+          <p className="font-bold mt-2">
+            3. Special design booth or raw space electricity
+          </p><br/>
+          <div className="leading-5 indent-5">
+          <p className="">
+            3.1 Exhibitors who apply for “Space Only” to build up special
+            designed stands must submit their electrical order together with
+            their layout plan before the deadline.
+          </p><br/>
+          <p className="">
+            3.2 General Hall lighting will be provided by organizer. All power
+            supplies within the booths as well as for demonstrations can be
+            installed by your own electrical contractors upon the organizer’s
+            approval. Exhibitors should complete and return the order form with
+            full payment to A PLUS UTILITY MANAGEMENT Co., Ltd. within the
+            stated deadline. For safety’s sake, exhibitors are strictly not
+            allowed to connect their exhibits or lighting to the building’s main
+            distribution. The organizer reserves the right to stop power supply
+            in case of improper connections.
+          </p><br/>
+          <p className="">
+            3.3 The contractors appointed by exhibitors must submit details of
+            electrical installations, layout and specifications to the organizer
+            within the deadline indicated on the Order Form. The following
+            requirement must be stated, otherwise, the application may not be
+            considered.
+          </p><br/>
+          <div className="indent-14">
+            <p className="">3.3.1 Company name of the contractor.</p>
+            <p className="">
+              3.3.2 Names and identification card / passport number of the
+              attending electrical personnel.
             </p>
+            <p className="">
+              3.3.3 Specification and rating in watts per unit of the light
+              fitting.
+            </p>
+            <p className="">
+              3.3.4 Layout drawings made by the contractor.
+            </p>
+            <p className="">3.3.5 Completed Electrical Order Form.</p>
+          </div><br/>
+          <p className="">
+            3.4 Approved electricians can collect their personal badges/working
+            permits from the organizer’s show manager office in the exhibition
+            hall by providing their own identification cards in exchange.
+          </p><br/>
+          <p className="">
+            3.5 All proper power input terminals must be installed by the
+            approved contractor for inspection by A PLUS UTILITY MANAGEMENT Co.,
+            Ltd. prior to connection to the supply line.
+          </p><br/>
+          <p className="">
+            3.6 Priority will be given to those exhibitors who order their
+            electrical from A PLUS UTILITY MANAGEMENT Co., Ltd.
+          </p><br/>
+          <p className="">
+            3.7 Any illegal connection or adaptation, using of multiple outlet
+            adaptors, or any extension from the socket point found would yield
+            electrical disconnection without prior notification.
+          </p><br/>
+          <p className="">
+            3.8 No flashing lights will be permitted unless they from an
+            integral part.
+          </p><br/>
+          <p className="">
+            3.9 The organizer reserves the right to disconnect the electrical
+            supply to any installations, which in the opinion of A PLUS UTILITY
+            MANAGEMENT Co., Ltd., could be harmful or likely to cause annoyance
+            to visitors or other exhibitors.
+          </p><br/>
+          <p className="">
+            3.10 All electrical installations must conform strictly to the
+            required standard safety regulations without exception.
+          </p><br/>
+          <p className="text-red-600 font-bold text-center">
+           Violation of these rules may result in the immediate disconnection
+            by authorized agents.
+          </p>
+          </div>
         </div>
       </div>
     );

@@ -510,36 +510,36 @@ const MainSection = ({ userRecord, openItem }) => {
   };
 
   const handleSave = () => {
-    const requiredFields1 = [
-      "Organization highlight (for PR purpose) (from Booth No. for edit)",
-    ];
+    // const requiredFields1 = [
+    //   "Organization highlight (for PR purpose) (from Booth No. for edit)",
+    // ];
 
-    const requiredFields2 = [
-      "Subject (from Booth No. for edit)",
-      "Period (from Booth No. for edit)",
-      "Description (from Booth No. for edit)",
-      "Value (from Booth No. for edit)",
-    ];
+    // const requiredFields2 = [
+    //   "Subject (from Booth No. for edit)",
+    //   "Period (from Booth No. for edit)",
+    //   "Description (from Booth No. for edit)",
+    //   "Value (from Booth No. for edit)",
+    // ];
 
-    for (const field of requiredFields1) {
-      if (!formData[field]) {
-        const fieldName = field.replace(" (from Booth No. for edit)", "");
-        setRequiredFieldsMessage(
-          `Missing ${fieldName} in General Information.`
-        );
-        setShowRequiredFieldsPopup(true);
-        return;
-      }
-    }
+    // for (const field of requiredFields1) {
+    //   if (!formData[field]) {
+    //     const fieldName = field.replace(" (from Booth No. for edit)", "");
+    //     setRequiredFieldsMessage(
+    //       `Missing ${fieldName} in General Information.`
+    //     );
+    //     setShowRequiredFieldsPopup(true);
+    //     return;
+    //   }
+    // }
 
-    for (const field of requiredFields2) {
-      if (!formData[field]) {
-        const fieldName = field.replace(" (from Booth No. for edit)", "");
-        setRequiredFieldsMessage(`Missing ${fieldName} field in Short Course.`);
-        setShowRequiredFieldsPopup(true);
-        return;
-      }
-    }
+    // for (const field of requiredFields2) {
+    //   if (!formData[field]) {
+    //     const fieldName = field.replace(" (from Booth No. for edit)", "");
+    //     setRequiredFieldsMessage(`Missing ${fieldName} field in Short Course.`);
+    //     setShowRequiredFieldsPopup(true);
+    //     return;
+    //   }
+    // }
 
     console.log("Changed fields:");
     Object.entries(changedFields).forEach(([field, { oldValue, newValue }]) => {
@@ -709,9 +709,11 @@ const MainSection = ({ userRecord, openItem }) => {
                       {(openItem === "exhibitorProfile-shortcourse" ||
                         (openItem === "exhibitorProfile-generalInfo" &&
                           label ===
-                            "Organization highlight (for PR purpose)")) && (
-                        <span className="text-red-600 ml-1">*</span>
-                      )}
+                            "Organization highlight (for PR purpose)")) 
+                      //       && (
+                      //   <span className="text-red-600 ml-1">*</span>
+                      // )
+                      }
                     </td>
                     <td className="px-6 py-4">
                       {isEditing ? (
@@ -747,7 +749,7 @@ const MainSection = ({ userRecord, openItem }) => {
                 >
                   Organization highlight (for PR purpose)
                 </label>
-                <p className="text-red-600 ml-2 font-bold">*</p>
+                {/* <p className="text-red-600 ml-2 font-bold">*</p> */}
               </div>
               {isEditing ? (
                 <textarea
