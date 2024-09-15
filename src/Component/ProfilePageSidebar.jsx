@@ -171,7 +171,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
           >
             Order History
           </button> */}
-          {orderHistoryOpen && isOrderHistoryOpen() && (
+          {/* {orderHistoryOpen && isOrderHistoryOpen() && (
             <ul className="mx-[30px]">
               <button
                 className={`mt-3 ${
@@ -214,7 +214,7 @@ const ProfilePageSidebar = ({ userRecord, openItem, setOpenItem }) => {
                 &nbsp;&nbsp;Exhibitor Badge
               </button>
             </ul>
-          )}
+          )} */}
         </div>
       </div>
     </div>

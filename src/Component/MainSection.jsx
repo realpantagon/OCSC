@@ -40,261 +40,261 @@ const MainSection = ({ userRecord, openItem }) => {
   }, []);
 
   // Define the fields you want to Not showing
-  const ExceptFieldsfur = [
-    "num",
-    "Approve Exhibitors",
-    "Booth No.",
-    "Booth no for approve",
-    "Submission Date",
-    "Table Subtotal(THB)",
-    "Chair Subtotal(THB)",
-    "System Subtotal(THB)",
-    "Octanorm Subtotal(THB)",
-    "Organize Name",
-    "Street Address",
-    "Street Address Line 2",
-    "City",
-    "State / Province",
-    "Postal / Zip Code",
-    "TAX ID",
-    "Tel",
-    "Contact name",
-    "Email",
-    "Contact name",
-    "Username",
-    "OrderID(fur)",
-  ];
+  // const ExceptFieldsfur = [
+  //   "num",
+  //   "Approve Exhibitors",
+  //   "Booth No.",
+  //   "Booth no for approve",
+  //   "Submission Date",
+  //   "Table Subtotal(THB)",
+  //   "Chair Subtotal(THB)",
+  //   "System Subtotal(THB)",
+  //   "Octanorm Subtotal(THB)",
+  //   "Organize Name",
+  //   "Street Address",
+  //   "Street Address Line 2",
+  //   "City",
+  //   "State / Province",
+  //   "Postal / Zip Code",
+  //   "TAX ID",
+  //   "Tel",
+  //   "Contact name",
+  //   "Email",
+  //   "Contact name",
+  //   "Username",
+  //   "OrderID(fur)",
+  // ];
 
-  // Define the fields you want to Not showing
-  const ExceptFieldselec = [
-    "num",
-    "Approve Exhibitors",
-    "Booth",
-    "Booth no for approve",
-    "Submission Date",
-    "Table Subtotal(THB)",
-    "Chair Subtotal(THB)",
-    "System Subtotal(THB)",
-    "Octanorm Subtotal(THB)",
-    "Organize Name",
-    "Street Address",
-    "Street Address Line 2",
-    "City",
-    "State / Province",
-    "Postal / Zip Code",
-    "TAX ID",
-    "Tel",
-    "Contact name",
-    "Email",
-    "Contact name",
-    "Username",
-    "OrderID(elec)",
-    "section A subtotal(Hide)",
-    "section B subtotal(Hide)",
-    "section C subtotal(Hide)",
-    "Please upload your utility point",
-  ];
+  // // Define the fields you want to Not showing
+  // const ExceptFieldselec = [
+  //   "num",
+  //   "Approve Exhibitors",
+  //   "Booth",
+  //   "Booth no for approve",
+  //   "Submission Date",
+  //   "Table Subtotal(THB)",
+  //   "Chair Subtotal(THB)",
+  //   "System Subtotal(THB)",
+  //   "Octanorm Subtotal(THB)",
+  //   "Organize Name",
+  //   "Street Address",
+  //   "Street Address Line 2",
+  //   "City",
+  //   "State / Province",
+  //   "Postal / Zip Code",
+  //   "TAX ID",
+  //   "Tel",
+  //   "Contact name",
+  //   "Email",
+  //   "Contact name",
+  //   "Username",
+  //   "OrderID(elec)",
+  //   "section A subtotal(Hide)",
+  //   "section B subtotal(Hide)",
+  //   "section C subtotal(Hide)",
+  //   "Please upload your utility point",
+  // ];
 
-  // Define the fields you want to Not showing
-  const ExceptFieldsav = [
-    "num",
-    "Approve Exhibitors",
-    "Booth No.",
-    "Booth No. for approve",
-    "Submission Date",
-    "Table Subtotal(THB)",
-    "Chair Subtotal(THB)",
-    "System Subtotal(THB)",
-    "Octanorm Subtotal(THB)",
-    "Organize Name",
-    "Street Address",
-    "Street Address Line 2",
-    "City",
-    "State / Province",
-    "Postal / Zip Code",
-    "TAX ID",
-    "Tel",
-    "Contact name",
-    "Email",
-    "Contact name",
-    "Username",
-    "OrderID(av)",
-  ];
+  // // Define the fields you want to Not showing
+  // const ExceptFieldsav = [
+  //   "num",
+  //   "Approve Exhibitors",
+  //   "Booth No.",
+  //   "Booth No. for approve",
+  //   "Submission Date",
+  //   "Table Subtotal(THB)",
+  //   "Chair Subtotal(THB)",
+  //   "System Subtotal(THB)",
+  //   "Octanorm Subtotal(THB)",
+  //   "Organize Name",
+  //   "Street Address",
+  //   "Street Address Line 2",
+  //   "City",
+  //   "State / Province",
+  //   "Postal / Zip Code",
+  //   "TAX ID",
+  //   "Tel",
+  //   "Contact name",
+  //   "Email",
+  //   "Contact name",
+  //   "Username",
+  //   "OrderID(av)",
+  // ];
 
-  // Define the fields you want to Not showing
-  const ExceptFieldsBadge = [
-    "approve",
-    "Booth No.",
-    "booth for approve",
-    "Submission Date",
-    "Organize Name",
-    "Organization's Email",
-    "Tel",
-    "Email",
-    "Username",
-    "num",
-    "BadgeID",
-  ];
+  // // Define the fields you want to Not showing
+  // const ExceptFieldsBadge = [
+  //   "approve",
+  //   "Booth No.",
+  //   "booth for approve",
+  //   "Submission Date",
+  //   "Organize Name",
+  //   "Organization's Email",
+  //   "Tel",
+  //   "Email",
+  //   "Username",
+  //   "num",
+  //   "BadgeID",
+  // ];
 
-  useEffect(() => {
-    if (openItem === "orderHistory-furOrder") {
-      fetchFurnitureOrderData();
-      const timerfur = setTimeout(() => {
-        setLoadingfur(false);
-      }, 2000);
+  // useEffect(() => {
+  //   if (openItem === "orderHistory-furOrder") {
+  //     fetchFurnitureOrderData();
+  //     const timerfur = setTimeout(() => {
+  //       setLoadingfur(false);
+  //     }, 2000);
 
-      return () => clearTimeout(timerfur);
-    } else if (openItem === "orderHistory-elecOrder") {
-      fetchElectricOrderData();
-      const timerelec = setTimeout(() => {
-        setLoadingelec(false);
-      }, 1000);
+  //     return () => clearTimeout(timerfur);
+  //   } else if (openItem === "orderHistory-elecOrder") {
+  //     fetchElectricOrderData();
+  //     const timerelec = setTimeout(() => {
+  //       setLoadingelec(false);
+  //     }, 1000);
 
-      return () => clearTimeout(timerelec);
-    } else if (openItem === "orderHistory-avOrder") {
-      fetchAVOrderData();
-      const timerav = setTimeout(() => {
-        setLoadingav(false);
-      }, 1000);
+  //     return () => clearTimeout(timerelec);
+  //   } else if (openItem === "orderHistory-avOrder") {
+  //     fetchAVOrderData();
+  //     const timerav = setTimeout(() => {
+  //       setLoadingav(false);
+  //     }, 1000);
 
-      return () => clearTimeout(timerav);
-    } else if (openItem === "orderHistory-Badge") {
-      fetchBadgeData();
-      const timerbadge = setTimeout(() => {
-        setLoadingbadge(false);
-      }, 1000);
+  //     return () => clearTimeout(timerav);
+  //   } else if (openItem === "orderHistory-Badge") {
+  //     fetchBadgeData();
+  //     const timerbadge = setTimeout(() => {
+  //       setLoadingbadge(false);
+  //     }, 1000);
 
-      return () => clearTimeout(timerbadge);
-    }
-  }, [openItem, userRecord.fields]);
+  //     return () => clearTimeout(timerbadge);
+  //   }
+  // }, [openItem, userRecord.fields]);
 
-  //fetch furniture table
-  const fetchFurnitureOrderData = async () => {
-    if (!username) return;
+  // //fetch furniture table
+  // const fetchFurnitureOrderData = async () => {
+  //   if (!username) return;
 
-    try {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Furniture%20Order?filterByFormula={Username}="${username}"`,
-        {
-          headers: {
-            Authorization:
-              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-          },
-        }
-      );
-      const data = await response.json();
-      if (data.records.length > 0) {
-        const sortedRecords = data.records
-          .map((record) => record.fields)
-          .sort((a, b) => {
-            const aNum = parseInt(a["OrderID(fur)"].split("-")[1]);
-            const bNum = parseInt(b["OrderID(fur)"].split("-")[1]);
-            return aNum - bNum;
-          });
-        setFurnitureOrderData(sortedRecords);
-      } else {
-        setFurnitureOrderData([]);
-      }
-    } catch (error) {
-      console.error("Error fetching furniture order data:", error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Furniture%20Order?filterByFormula={Username}="${username}"`,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     if (data.records.length > 0) {
+  //       const sortedRecords = data.records
+  //         .map((record) => record.fields)
+  //         .sort((a, b) => {
+  //           const aNum = parseInt(a["OrderID(fur)"].split("-")[1]);
+  //           const bNum = parseInt(b["OrderID(fur)"].split("-")[1]);
+  //           return aNum - bNum;
+  //         });
+  //       setFurnitureOrderData(sortedRecords);
+  //     } else {
+  //       setFurnitureOrderData([]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching furniture order data:", error);
+  //   }
+  // };
 
-  //fetch electric table
-  const fetchElectricOrderData = async () => {
-    if (!username) return;
-    try {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Electric%20Order?filterByFormula={Username}="${username}"`,
-        {
-          headers: {
-            Authorization:
-              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-          },
-        }
-      );
-      const data = await response.json();
-      if (data.records.length > 0) {
-        const sortedRecords = data.records
-          .map((record) => record.fields)
-          .sort((a, b) => {
-            const aNum = parseInt(a["OrderID(elec)"].split("-")[1]);
-            const bNum = parseInt(b["OrderID(elec)"].split("-")[1]);
-            return aNum - bNum;
-          });
-        setElectricOrderData(sortedRecords);
-      } else {
-        setElectricOrderData([]);
-      }
-    } catch (error) {
-      console.error("Error fetching electric order data:", error);
-    }
-  };
+  // //fetch electric table
+  // const fetchElectricOrderData = async () => {
+  //   if (!username) return;
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Electric%20Order?filterByFormula={Username}="${username}"`,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     if (data.records.length > 0) {
+  //       const sortedRecords = data.records
+  //         .map((record) => record.fields)
+  //         .sort((a, b) => {
+  //           const aNum = parseInt(a["OrderID(elec)"].split("-")[1]);
+  //           const bNum = parseInt(b["OrderID(elec)"].split("-")[1]);
+  //           return aNum - bNum;
+  //         });
+  //       setElectricOrderData(sortedRecords);
+  //     } else {
+  //       setElectricOrderData([]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching electric order data:", error);
+  //   }
+  // };
 
-  //fetch A/V table
-  const fetchAVOrderData = async () => {
-    if (!username) return;
+  // //fetch A/V table
+  // const fetchAVOrderData = async () => {
+  //   if (!username) return;
 
-    try {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appVADkxTuwcN78c6/AV%20component?filterByFormula={Username}="${username}"`,
-        {
-          headers: {
-            Authorization:
-              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-          },
-        }
-      );
-      const data = await response.json();
-      if (data.records.length > 0) {
-        const sortedRecords = data.records
-          .map((record) => record.fields)
-          .sort((a, b) => {
-            // Extract the numeric part from the OrderID(fur) field
-            const aNum = parseInt(a["OrderID(av)"].split("-")[1]);
-            const bNum = parseInt(b["OrderID(av)"].split("-")[1]);
-            return aNum - bNum;
-          });
-        setAVOrderData(sortedRecords);
-      } else {
-        setAVOrderData([]);
-      }
-    } catch (error) {
-      console.error("Error fetching a/v order data:", error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/AV%20component?filterByFormula={Username}="${username}"`,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     if (data.records.length > 0) {
+  //       const sortedRecords = data.records
+  //         .map((record) => record.fields)
+  //         .sort((a, b) => {
+  //           // Extract the numeric part from the OrderID(fur) field
+  //           const aNum = parseInt(a["OrderID(av)"].split("-")[1]);
+  //           const bNum = parseInt(b["OrderID(av)"].split("-")[1]);
+  //           return aNum - bNum;
+  //         });
+  //       setAVOrderData(sortedRecords);
+  //     } else {
+  //       setAVOrderData([]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching a/v order data:", error);
+  //   }
+  // };
 
-  const fetchBadgeData = async () => {
-    if (!username) return;
+  // const fetchBadgeData = async () => {
+  //   if (!username) return;
 
-    try {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Exhibitor%20Badge?filterByFormula={Username}="${username}"`,
-        {
-          headers: {
-            Authorization:
-              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-          },
-        }
-      );
-      const data = await response.json();
-      if (data.records.length > 0) {
-        const sortedRecords = data.records
-          .map((record) => record.fields)
-          .sort((a, b) => {
-            // Extract the numeric part from the OrderID(fur) field
-            const aNum = parseInt(a["BadgeID"].split("-")[1]);
-            const bNum = parseInt(b["BadgeID"].split("-")[1]);
-            return aNum - bNum;
-          });
-        setBadgeData(sortedRecords);
-      } else {
-        setBadgeData([]);
-      }
-    } catch (error) {
-      console.error("Error fetching badge order data:", error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Exhibitor%20Badge?filterByFormula={Username}="${username}"`,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     if (data.records.length > 0) {
+  //       const sortedRecords = data.records
+  //         .map((record) => record.fields)
+  //         .sort((a, b) => {
+  //           // Extract the numeric part from the OrderID(fur) field
+  //           const aNum = parseInt(a["BadgeID"].split("-")[1]);
+  //           const bNum = parseInt(b["BadgeID"].split("-")[1]);
+  //           return aNum - bNum;
+  //         });
+  //       setBadgeData(sortedRecords);
+  //     } else {
+  //       setBadgeData([]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching badge order data:", error);
+  //   }
+  // };
 
   const openJotForm = (formType) => {
     if (formType === "Upload Logo") {
@@ -706,13 +706,13 @@ const MainSection = ({ userRecord, openItem }) => {
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
                       {label}
-                      {(openItem === "exhibitorProfile-shortcourse" ||
-                        (openItem === "exhibitorProfile-generalInfo" &&
-                          label ===
-                            "Organization highlight (for PR purpose)")) 
-                      //       && (
-                      //   <span className="text-red-600 ml-1">*</span>
-                      // )
+                      {
+                        openItem === "exhibitorProfile-shortcourse" ||
+                          (openItem === "exhibitorProfile-generalInfo" &&
+                            label === "Organization highlight (for PR purpose)")
+                        //       && (
+                        //   <span className="text-red-600 ml-1">*</span>
+                        // )
                       }
                     </td>
                     <td className="px-6 py-4">
@@ -1061,7 +1061,7 @@ const MainSection = ({ userRecord, openItem }) => {
           </table>
         </div>
       )}
-      {openItem === "orderHistory-furOrder" && (
+      {/* {openItem === "orderHistory-furOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Furniture Orders</h2>
           {loadingfur ? (
@@ -1106,8 +1106,8 @@ const MainSection = ({ userRecord, openItem }) => {
             <p>No furniture order data found.</p>
           )}
         </div>
-      )}
-      {openItem === "orderHistory-elecOrder" && (
+      )} */}
+      {/* {openItem === "orderHistory-elecOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Electric Orders</h2>
           {loadingelec ? (
@@ -1143,9 +1143,9 @@ const MainSection = ({ userRecord, openItem }) => {
                           <td className="px-6 py-4">{key}</td>
                           <td className="px-6 py-4">
                             {value}
-                            {/* {typeof value === "object" && value !== null
-                              ? JSON.stringify(value)
-                              : value} */}
+                            // {typeof value === "object" && value !== null
+                            //   ? JSON.stringify(value)
+                            //   : value}
                           </td>
                         </tr>
                       ))}
@@ -1157,8 +1157,8 @@ const MainSection = ({ userRecord, openItem }) => {
             <p>No electric order data found.</p>
           )}
         </div>
-      )}
-      {openItem === "orderHistory-avOrder" && (
+      )} */}
+      {/* {openItem === "orderHistory-avOrder" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">A/V Orders</h2>
           {loadingav ? (
@@ -1203,8 +1203,8 @@ const MainSection = ({ userRecord, openItem }) => {
             <p>No a/v order data found.</p>
           )}
         </div>
-      )}
-      {openItem === "orderHistory-Badge" && (
+      )} */}
+      {/* {openItem === "orderHistory-Badge" && (
         <div>
           <h2 className="text-2xl font-semibold mb-4">Exhibitor Badge</h2>
           {loadingbadge ? (
@@ -1277,7 +1277,7 @@ const MainSection = ({ userRecord, openItem }) => {
             <p>No badge data found.</p>
           )}
         </div>
-      )}
+      )} */}
       {showConfirmDialog && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
