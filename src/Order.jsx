@@ -578,49 +578,57 @@ function Order() {
       return <p>No data available.</p>;
     }
 
-    // Get all unique fields across all records
-    const allFields = [...new Set(data.flatMap((item) => Object.keys(item)))];
-
-    // Filter out excluded fields
-    let fields = allFields.filter((field) => !excludedFields.includes(field));
-
     // Special handling for exhibitorBadge
     if (selectedOrderHistoryItem === "exhibitorBadge") {
-      const nameFields = fields.filter(
-        (field) =>
-          field.startsWith("First Name") || field.startsWith("Last Name")
+      const groupedData = data
+        .map((item) => {
+          const groups = [];
+          for (let i = 0; i <= 10; i++) {
+            // Changed to start from 0
+            const suffix = i === 0 ? "" : i;
+            const fullName = `${item[`First Name${suffix}`] || ""} ${
+              item[`Last Name${suffix}`] || ""
+            }`.trim();
+            if (fullName) {
+              groups.push({
+                "Full Name": fullName,
+                Email: item[`Email${suffix}`] || "",
+                Food: Array.isArray(item[`Food${suffix}`])
+                  ? item[`Food${suffix}`].join(", ")
+                  : item[`Food${suffix}`] || "",
+              });
+            }
+          }
+          return groups;
+        })
+        .flat();
+
+      return (
+        <div className="space-y-8">
+          {groupedData.map((group, index) => (
+            <div key={index} className="mb-8">
+              <h3 className="text-lg font-semibold mb-2">Person {index + 1}</h3>
+              <table className="w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
+                <tbody>
+                  {Object.entries(group).map(([key, value]) => (
+                    <tr key={key} className="border-b">
+                      <th className="py-2 px-4 text-left bg-gray-100 w-1/3">
+                        {key}
+                      </th>
+                      <td className="py-2 px-4 w-2/3">{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
       );
-      const otherFields = fields.filter((field) => !nameFields.includes(field));
-
-      const fullNames = [];
-      data = data.map((item) => {
-        const newItem = { ...item };
-
-        for (let i = 0; i < 10; i++) {
-          const firstName = item[`First Name${i > 0 ? i + 1 : ""}`];
-          const lastName = item[`Last Name${i > 0 ? i + 1 : ""}`];
-          if (firstName || lastName) {
-            const fullName = `${firstName || ""} ${lastName || ""}`.trim();
-            fullNames[i] = `Full Name ${i + 1}`;
-            newItem[`Full Name ${i + 1}`] = fullName;
-          }
-        }
-
-        // Handle food fields
-        Object.keys(newItem).forEach((key) => {
-          if (
-            key.toLowerCase().startsWith("food") &&
-            Array.isArray(newItem[key])
-          ) {
-            newItem[key] = newItem[key].join(", ");
-          }
-        });
-
-        return newItem;
-      });
-
-      fields = [...fullNames.filter(Boolean), ...otherFields];
     }
+
+    // For other order history items, keep the existing logic
+    const allFields = [...new Set(data.flatMap((item) => Object.keys(item)))];
+    const fields = allFields.filter((field) => !excludedFields.includes(field));
 
     const renderTable = (item, index) => {
       const nonEmptyFields = fields.filter(
@@ -628,7 +636,7 @@ function Order() {
       );
 
       if (nonEmptyFields.length === 0) {
-        return null; // Don't render anything if all fields are empty
+        return null;
       }
 
       return (
