@@ -578,10 +578,11 @@ function Order() {
       return <p>No data available.</p>;
     }
 
-    let processedData = data;
-    let fields = Object.keys(data[0]).filter(
-      (field) => !excludedFields.includes(field)
-    );
+    // Get all unique fields across all records
+    const allFields = [...new Set(data.flatMap((item) => Object.keys(item)))];
+
+    // Filter out excluded fields
+    let fields = allFields.filter((field) => !excludedFields.includes(field));
 
     // Special handling for exhibitorBadge
     if (selectedOrderHistoryItem === "exhibitorBadge") {
@@ -592,12 +593,12 @@ function Order() {
       const otherFields = fields.filter((field) => !nameFields.includes(field));
 
       const fullNames = [];
-      processedData = data.map((item) => {
+      data = data.map((item) => {
         const newItem = { ...item };
 
         for (let i = 0; i < 10; i++) {
-          const firstName = item[`First Name${i >= 0 ? i + 1 : ""}`];
-          const lastName = item[`Last Name${i >= 0 ? i + 1 : ""}`];
+          const firstName = item[`First Name${i > 0 ? i + 1 : ""}`];
+          const lastName = item[`Last Name${i > 0 ? i + 1 : ""}`];
           if (firstName || lastName) {
             const fullName = `${firstName || ""} ${lastName || ""}`.trim();
             fullNames[i] = `Full Name ${i + 1}`;
@@ -656,9 +657,7 @@ function Order() {
 
     return (
       <div className="space-y-8">
-        {processedData
-          .map((item, index) => renderTable(item, index))
-          .filter(Boolean)}
+        {data.map((item, index) => renderTable(item, index)).filter(Boolean)}
       </div>
     );
   };
