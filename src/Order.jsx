@@ -593,9 +593,9 @@ function Order() {
               groups.push({
                 "Full Name": fullName,
                 Email: item[`Email${suffix}`] || "",
-                Food: Array.isArray(item[`Food${suffix}`])
-                  ? item[`Food${suffix}`].join(", ")
-                  : item[`Food${suffix}`] || "",
+                Food: Array.isArray(item[`food${suffix}`])
+                  ? item[`food${suffix}`].join(", ")
+                  : item[`food${suffix}`] || "",
               });
             }
           }
