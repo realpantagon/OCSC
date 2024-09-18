@@ -429,7 +429,7 @@ const MainSection = ({ userRecord, openItem }) => {
     ["Booth", "Booth"],
     [
       "Institution Name on Booth Fascia",
-      "Institution name to be put on booth fascia (from Booth No. for edit)",
+      "Institution name",
     ],
     [
       "National Flag on Booth & Media for PR",
