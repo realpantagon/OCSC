@@ -580,48 +580,109 @@ function Order() {
 
     // Special handling for exhibitorBadge
     if (selectedOrderHistoryItem === "exhibitorBadge") {
-      const groupedData = data
-        .map((item) => {
-          const groups = [];
-          for (let i = 0; i <= 10; i++) {
-            // Changed to start from 0
-            const suffix = i === 0 ? "" : i;
-            const fullName = `${item[`First Name${suffix}`] || ""} ${
-              item[`Last Name${suffix}`] || ""
-            }`.trim();
-            if (fullName) {
-              groups.push({
-                "Full Name": fullName,
-                Email: item[`Email${suffix}`] || "",
-                Food: Array.isArray(item[`food${suffix}`])
-                  ? item[`food${suffix}`].join(", ")
-                  : item[`food${suffix}`] || "",
-              });
-            }
+      const groupedData = data.map((item) => {
+        const groups = [];
+        for (let i = 0; i <= 10; i++) {
+          const suffix = i === 0 ? "" : i;
+          const fullName = `${item[`First Name${suffix}`] || ""} ${
+            item[`Last Name${suffix}`] || ""
+          }`.trim();
+          if (fullName) {
+            groups.push({
+              Name: fullName,
+              Email: item[`Email${suffix}`] || "",
+              Food: Array.isArray(item[`food${suffix}`])
+                ? item[`food${suffix}`].join(", ")
+                : item[`food${suffix}`] || "",
+              Action: "edit",
+            });
           }
-          return groups;
-        })
-        .flat();
+        }
+        return groups;
+      });
+
+      const totalBadges = groupedData.flat().length;
+      const numofbadge = data[0]?.NumofBadge || "N/A";
+      const urlofbadge = data[0]?.EditedBadge || "N/A";
+      const OrgName = data[0]?.["Organize Name"] || "N/A";
+      const country = data[0]?.Country || "N/A";
+
+      // Get all unique keys from the grouped data
+      const allKeys = ["Name", "Email", "Food", "Action"];
 
       return (
         <div className="space-y-8">
-          {groupedData.map((group, index) => (
-            <div key={index} className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Person {index + 1}</h3>
-              <table className="w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
-                <tbody>
-                  {Object.entries(group).map(([key, value]) => (
-                    <tr key={key} className="border-b">
-                      <th className="py-2 px-4 text-left bg-gray-100 w-1/3">
-                        {key}
-                      </th>
-                      <td className="py-2 px-4 w-2/3">{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="leading-9">
+            <div className="flex flex-wrap text-center items-baseline">
+              <h3 className="font-semibold text-3xl mr-3">{OrgName}</h3>
+              <h3 className="text-gray-400 text-lg">{country}</h3>
             </div>
-          ))}
+            <hr className="mb-2 mt-2 border-gray-300"></hr>
+            <div className="flex flex-wrap text-center items-baseline">
+              <h3 className="font-medium text-md">
+                Total Badge: {totalBadges} (Free Quota {numofbadge} Badges)
+              </h3>
+              <p className="font-bold text-red-500 text-sm">
+                &nbsp;Remark: You can purchase more badge at 107
+                THB/Badge(Include VAT).
+              </p>
+            </div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-2 px-4 text-left font-semibold">#</th>
+                  {allKeys.map((key) => (
+                    <th key={key} className="py-2 px-4 text-left font-semibold">
+                      {key}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {groupedData.flat().map((person, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+                  >
+                    <td className="py-2 px-4 text-sm">{index + 1}</td>
+                    {allKeys.map((key) => (
+                      <td key={key} className="py-2 px-4 text-sm">
+                        {key === "Action" ? (
+                          <a
+                            href={urlofbadge}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <button className="bg-[#2093EF] hover:bg-blue-600 text-white font-semibold py-2 px-2 rounded-md flex items-center justify-center text-sm">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-4 h-4"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                                />
+                              </svg>
+                              &nbsp;Edit
+                            </button>
+                          </a>
+                        ) : (
+                          person[key] || "-"
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       );
     }

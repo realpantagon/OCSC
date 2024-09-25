@@ -7,6 +7,7 @@ import Profile from './profile.jsx';
 import ProtectedRoute from './Component/ProtectedRoute.jsx';
 import Order from './Order.jsx';
 import FFaq from './FFaq.jsx';
+import matching from './matching.jsx';
 
 const App = () => {
   return (
@@ -31,6 +32,10 @@ const App = () => {
       <Route
         path="/faq"
         element={<ProtectedRoute element={FFaq} />}
+      />
+       <Route
+        path="/matching"
+        element={<ProtectedRoute element={matching} />}
       />
     </Routes>
   );
