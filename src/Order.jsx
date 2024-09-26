@@ -594,7 +594,7 @@ function Order() {
               Food: Array.isArray(item[`food${suffix}`])
                 ? item[`food${suffix}`].join(", ")
                 : item[`food${suffix}`] || "",
-              Action: "edit",
+              // Action: "edit",
             });
           }
         }
@@ -608,7 +608,9 @@ function Order() {
       const country = data[0]?.Country || "N/A";
 
       // Get all unique keys from the grouped data
-      const allKeys = ["Name", "Email", "Food", "Action"];
+      // const allKeys = ["Name", "Email", "Food", "Action"];
+
+      const allKeys = ["Name", "Email", "Food"];
 
       return (
         <div className="space-y-8">
