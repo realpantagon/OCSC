@@ -613,13 +613,13 @@ function Order() {
       const allKeys = ["Name", "Email", "Food"];
 
       return (
-        <div className="space-y-8">
+        <div className="space-y-3">
           <div className="leading-9">
             <div className="flex flex-wrap text-center items-baseline">
               <h3 className="font-semibold text-3xl mr-3">{OrgName}</h3>
               <h3 className="text-gray-400 text-lg">{country}</h3>
             </div>
-            <hr className="mb-2 mt-2 border-gray-300"></hr>
+            <hr className="mt-2 border-gray-300"></hr>
             <div className="flex flex-wrap text-center items-baseline">
               <h3 className="font-medium text-md">
                 Total Badge: {totalBadges} (Free Quota {numofbadge} Badges)
@@ -634,7 +634,9 @@ function Order() {
             <table className="w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 text-left font-semibold">#</th>
+                  <th className="py-2 px-4 text-left font-semibold">
+                    #
+                  </th>
                   {allKeys.map((key) => (
                     <th key={key} className="py-2 px-4 text-left font-semibold">
                       {key}

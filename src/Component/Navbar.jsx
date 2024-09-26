@@ -64,16 +64,29 @@ const Navbar = () => {
                 >
                   FAQ
                 </Link>
-                {/* <Link
-                  to="/matching"
-                  className={`${
-                    isActive("/matching")
-                      ? "bg-red-500 text-white rounded-3xl"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                  } px-3 py-2 rounded-md text-lg font-medium`}
+                {/* Hide Matching */}
+                {/* <a
+                  href="https://in2book.link/wp-login.php"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-transparent text-blue-500 hover:text-blue-700 hover:border-gray-300 px-3 py-2 rounded-md text-lg font-medium flex items-center space-x-1" // Use flex and items-center for alignment
                 >
-                  Matching
-                </Link> */}
+                  <span>Matching</span>{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-5 w-5 text-blue-500 hover:text-blue-700" 
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                    />
+                  </svg>
+                </a> */}
               </div>
             </div>
           </div>
