@@ -210,7 +210,7 @@ const MainSection = ({ userRecord, openItem }) => {
           <br />
           <p>Dismantlement:</p>
         </div>
-        <div className="leading-loose">
+        <div className="leading-loose -ml-10">
           <p>The OCSC International Education Expo 2024, Bangkok</p>
           <p>Paragon Hall, 5th Floor, Siam Paragon, Bangkok, Thailand</p>
           <p>Gross area 5,000 Sq.m.</p>
