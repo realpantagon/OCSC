@@ -407,7 +407,7 @@ const MainSection = ({ userRecord, openItem }) => {
     ["First Name", "First Name (from Booth No. for edit)"],
     ["Last Name", "Last Name (from Booth No. for edit)"],
     ["Position", "Position (from Booth No. for edit)"],
-    ["Email", "Email (from Booth No. for edit)"],
+    ["Email", "Email1"],
     ["Phone Number", "Phone Number (from Booth No. for edit)"],
     ["First Name2", "First Name2 (from Booth No. for edit)"],
     ["Last Name2", "Last Name2 (from Booth No. for edit)"],
