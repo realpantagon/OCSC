@@ -428,6 +428,7 @@ function Order() {
       "Username",
       "num",
       "BadgeID",
+      
     ],
     furniture: [
       "num",
@@ -452,6 +453,7 @@ function Order() {
       "Contact name",
       "Username",
       "OrderID(fur)",
+      "Approve Exhibitors 2",
     ],
     electric: [
       "num",
@@ -570,6 +572,7 @@ function Order() {
       "Email",
       "Contact name",
       "Username",
+      "Approve Exhibitors",
     ],
   };
 

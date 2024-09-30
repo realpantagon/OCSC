@@ -23,14 +23,6 @@ const MainSection = ({ userRecord, openItem }) => {
   const [showRequiredFieldsPopup, setShowRequiredFieldsPopup] = useState(false);
   const [requiredFieldsMessage, setRequiredFieldsMessage] = useState("");
   const [username, setUsername] = useState("");
-  const [furnitureOrderData, setFurnitureOrderData] = useState([]);
-  const [electricOrderData, setElectricOrderData] = useState([]);
-  const [avOrderData, setAVOrderData] = useState([]);
-  const [BadgeData, setBadgeData] = useState([]);
-  const [loadingfur, setLoadingfur] = useState(true);
-  const [loadingelec, setLoadingelec] = useState(true);
-  const [loadingav, setLoadingav] = useState(true);
-  const [loadingbadge, setLoadingbadge] = useState(true);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("ocscusername");
@@ -38,263 +30,6 @@ const MainSection = ({ userRecord, openItem }) => {
       setUsername(storedUsername);
     }
   }, []);
-
-  // Define the fields you want to Not showing
-  // const ExceptFieldsfur = [
-  //   "num",
-  //   "Approve Exhibitors",
-  //   "Booth No.",
-  //   "Booth no for approve",
-  //   "Submission Date",
-  //   "Table Subtotal(THB)",
-  //   "Chair Subtotal(THB)",
-  //   "System Subtotal(THB)",
-  //   "Octanorm Subtotal(THB)",
-  //   "Organize Name",
-  //   "Street Address",
-  //   "Street Address Line 2",
-  //   "City",
-  //   "State / Province",
-  //   "Postal / Zip Code",
-  //   "TAX ID",
-  //   "Tel",
-  //   "Contact name",
-  //   "Email",
-  //   "Contact name",
-  //   "Username",
-  //   "OrderID(fur)",
-  // ];
-
-  // // Define the fields you want to Not showing
-  // const ExceptFieldselec = [
-  //   "num",
-  //   "Approve Exhibitors",
-  //   "Booth",
-  //   "Booth no for approve",
-  //   "Submission Date",
-  //   "Table Subtotal(THB)",
-  //   "Chair Subtotal(THB)",
-  //   "System Subtotal(THB)",
-  //   "Octanorm Subtotal(THB)",
-  //   "Organize Name",
-  //   "Street Address",
-  //   "Street Address Line 2",
-  //   "City",
-  //   "State / Province",
-  //   "Postal / Zip Code",
-  //   "TAX ID",
-  //   "Tel",
-  //   "Contact name",
-  //   "Email",
-  //   "Contact name",
-  //   "Username",
-  //   "OrderID(elec)",
-  //   "section A subtotal(Hide)",
-  //   "section B subtotal(Hide)",
-  //   "section C subtotal(Hide)",
-  //   "Please upload your utility point",
-  // ];
-
-  // // Define the fields you want to Not showing
-  // const ExceptFieldsav = [
-  //   "num",
-  //   "Approve Exhibitors",
-  //   "Booth No.",
-  //   "Booth No. for approve",
-  //   "Submission Date",
-  //   "Table Subtotal(THB)",
-  //   "Chair Subtotal(THB)",
-  //   "System Subtotal(THB)",
-  //   "Octanorm Subtotal(THB)",
-  //   "Organize Name",
-  //   "Street Address",
-  //   "Street Address Line 2",
-  //   "City",
-  //   "State / Province",
-  //   "Postal / Zip Code",
-  //   "TAX ID",
-  //   "Tel",
-  //   "Contact name",
-  //   "Email",
-  //   "Contact name",
-  //   "Username",
-  //   "OrderID(av)",
-  // ];
-
-  // // Define the fields you want to Not showing
-  // const ExceptFieldsBadge = [
-  //   "approve",
-  //   "Booth No.",
-  //   "booth for approve",
-  //   "Submission Date",
-  //   "Organize Name",
-  //   "Organization's Email",
-  //   "Tel",
-  //   "Email",
-  //   "Username",
-  //   "num",
-  //   "BadgeID",
-  // ];
-
-  // useEffect(() => {
-  //   if (openItem === "orderHistory-furOrder") {
-  //     fetchFurnitureOrderData();
-  //     const timerfur = setTimeout(() => {
-  //       setLoadingfur(false);
-  //     }, 2000);
-
-  //     return () => clearTimeout(timerfur);
-  //   } else if (openItem === "orderHistory-elecOrder") {
-  //     fetchElectricOrderData();
-  //     const timerelec = setTimeout(() => {
-  //       setLoadingelec(false);
-  //     }, 1000);
-
-  //     return () => clearTimeout(timerelec);
-  //   } else if (openItem === "orderHistory-avOrder") {
-  //     fetchAVOrderData();
-  //     const timerav = setTimeout(() => {
-  //       setLoadingav(false);
-  //     }, 1000);
-
-  //     return () => clearTimeout(timerav);
-  //   } else if (openItem === "orderHistory-Badge") {
-  //     fetchBadgeData();
-  //     const timerbadge = setTimeout(() => {
-  //       setLoadingbadge(false);
-  //     }, 1000);
-
-  //     return () => clearTimeout(timerbadge);
-  //   }
-  // }, [openItem, userRecord.fields]);
-
-  // //fetch furniture table
-  // const fetchFurnitureOrderData = async () => {
-  //   if (!username) return;
-
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Furniture%20Order?filterByFormula={Username}="${username}"`,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (data.records.length > 0) {
-  //       const sortedRecords = data.records
-  //         .map((record) => record.fields)
-  //         .sort((a, b) => {
-  //           const aNum = parseInt(a["OrderID(fur)"].split("-")[1]);
-  //           const bNum = parseInt(b["OrderID(fur)"].split("-")[1]);
-  //           return aNum - bNum;
-  //         });
-  //       setFurnitureOrderData(sortedRecords);
-  //     } else {
-  //       setFurnitureOrderData([]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching furniture order data:", error);
-  //   }
-  // };
-
-  // //fetch electric table
-  // const fetchElectricOrderData = async () => {
-  //   if (!username) return;
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Electric%20Order?filterByFormula={Username}="${username}"`,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (data.records.length > 0) {
-  //       const sortedRecords = data.records
-  //         .map((record) => record.fields)
-  //         .sort((a, b) => {
-  //           const aNum = parseInt(a["OrderID(elec)"].split("-")[1]);
-  //           const bNum = parseInt(b["OrderID(elec)"].split("-")[1]);
-  //           return aNum - bNum;
-  //         });
-  //       setElectricOrderData(sortedRecords);
-  //     } else {
-  //       setElectricOrderData([]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching electric order data:", error);
-  //   }
-  // };
-
-  // //fetch A/V table
-  // const fetchAVOrderData = async () => {
-  //   if (!username) return;
-
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/AV%20component?filterByFormula={Username}="${username}"`,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (data.records.length > 0) {
-  //       const sortedRecords = data.records
-  //         .map((record) => record.fields)
-  //         .sort((a, b) => {
-  //           // Extract the numeric part from the OrderID(fur) field
-  //           const aNum = parseInt(a["OrderID(av)"].split("-")[1]);
-  //           const bNum = parseInt(b["OrderID(av)"].split("-")[1]);
-  //           return aNum - bNum;
-  //         });
-  //       setAVOrderData(sortedRecords);
-  //     } else {
-  //       setAVOrderData([]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching a/v order data:", error);
-  //   }
-  // };
-
-  // const fetchBadgeData = async () => {
-  //   if (!username) return;
-
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.airtable.com/v0/appVADkxTuwcN78c6/Exhibitor%20Badge?filterByFormula={Username}="${username}"`,
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (data.records.length > 0) {
-  //       const sortedRecords = data.records
-  //         .map((record) => record.fields)
-  //         .sort((a, b) => {
-  //           // Extract the numeric part from the OrderID(fur) field
-  //           const aNum = parseInt(a["BadgeID"].split("-")[1]);
-  //           const bNum = parseInt(b["BadgeID"].split("-")[1]);
-  //           return aNum - bNum;
-  //         });
-  //       setBadgeData(sortedRecords);
-  //     } else {
-  //       setBadgeData([]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching badge order data:", error);
-  //   }
-  // };
 
   const openJotForm = (formType) => {
     if (formType === "Upload Logo") {
@@ -322,10 +57,46 @@ const MainSection = ({ userRecord, openItem }) => {
     ],
 
     "exhibitorProfile-levelOfStudies": [
-      [
-        "Level of Studies Offered",
-        "Level of Studies Offered (from Booth No. for edit)",
-      ],
+      // [
+      //   "1.",
+      //   "Level 1",
+      // ],
+      // [
+      //   "2.",
+      //   "Level 2",
+      // ],
+      // [
+      //   "3.",
+      //   "Level 3",
+      // ],
+      // [
+      //   "4.",
+      //   "Level 4",
+      // ],
+      // [
+      //   "5.",
+      //   "Level 5",
+      // ],
+      // [
+      //   "6.",
+      //   "Level 6",
+      // ],
+      // [
+      //   "7.",
+      //   "Level 7",
+      // ],
+      // [
+      //   "8.",
+      //   "Level 8",
+      // ],
+      // [
+      //   "9.",
+      //   "Level 9",
+      // ],
+      // [
+      //   "10.",
+      //   "Level 10",
+      // ],
     ],
     "exhibitorProfile-shortcourse": [
       ["Subject", "Subject (from Booth No. for edit)"],
@@ -683,7 +454,8 @@ const MainSection = ({ userRecord, openItem }) => {
               </div>
             </div>
           )}
-          {openItem !== "exhibitorProfile-topMajors" && (
+
+          {openItem !== "exhibitorProfile-topMajors" || "exhibitorProfile-levelOfStudies" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
                 <tr>
@@ -785,6 +557,51 @@ const MainSection = ({ userRecord, openItem }) => {
                 ></textarea>
               )}
             </div>
+          )}
+
+          {openItem === "exhibitorProfile-levelOfStudies" && (
+            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-4 font-medium text-gray-900"
+                  >
+                    Level of Studies
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+                {[...Array(10)].map((_, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center">
+                        <span className="mr-2">{index + 1}.</span>
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            name={`Level ${
+                              index + 1
+                            }`}
+                            value={
+                              formData[
+                                `Levels ${index + 1}`
+                              ] || ""
+                            }
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          />
+                        ) : (
+                          formData[
+                            `Level ${index + 1}`
+                          ] || "-"
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
 
           {openItem === "exhibitorProfile-topMajors" && (
