@@ -53,12 +53,10 @@ const MainSection = ({ userRecord, openItem }) => {
       ["City", "City (from Booth No. for edit)"],
       ["State / Province", "State / Province (from Booth No. for edit)"],
       ["Postal / Zip Code", "Postal / Zip Code (from Booth No. for edit)"],
-      ["Country", "Country (from Booth No. for edit)"],
+      ["Country", "Country"],
     ],
 
-    "exhibitorProfile-levelOfStudies": [
-      
-    ],
+    "exhibitorProfile-levelOfStudies": [],
     "exhibitorProfile-shortcourse": [
       ["Subject", "Subject (from Booth No. for edit)"],
       ["Period", "Period (from Booth No. for edit)"],
@@ -416,9 +414,9 @@ const MainSection = ({ userRecord, openItem }) => {
             </div>
           )}
 
-         
 
-          {openItem !== "exhibitorProfile-topMajors" && (
+
+          {openItem !== "exhibitorProfile-topMajors" && openItem !== "exhibitorProfile-levelOfStudies" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
               <thead className="bg-gray-50">
                 <tr>
@@ -443,8 +441,8 @@ const MainSection = ({ userRecord, openItem }) => {
                       {label}
                       {
                         openItem === "exhibitorProfile-shortcourse" ||
-                          (openItem === "exhibitorProfile-generalInfo" &&
-                            label === "Organization highlight (for PR purpose)")
+                        (openItem === "exhibitorProfile-generalInfo" &&
+                          label === "Organization highlight (for PR purpose)")
                         //       && (
                         //   <span className="text-red-600 ml-1">*</span>
                         // )
@@ -462,7 +460,7 @@ const MainSection = ({ userRecord, openItem }) => {
                             openItem === "exhibitorProfile-shortcourse" ||
                             (openItem === "exhibitorProfile-generalInfo" &&
                               label ===
-                                "Organization highlight (for PR purpose)")
+                              "Organization highlight (for PR purpose)")
                           }
                         />
                       ) : (
@@ -494,7 +492,7 @@ const MainSection = ({ userRecord, openItem }) => {
                   maxLength={400}
                   value={
                     formData[
-                      "Organization highlight (for PR purpose) (from Booth No. for edit)"
+                    "Organization highlight (for PR purpose) (from Booth No. for edit)"
                     ]
                   }
                   onChange={handleChange}
@@ -510,7 +508,7 @@ const MainSection = ({ userRecord, openItem }) => {
                   maxLength={400}
                   value={
                     formData[
-                      "Organization highlight (for PR purpose) (from Booth No. for edit)"
+                    "Organization highlight (for PR purpose) (from Booth No. for edit)"
                     ]
                   }
                   className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none resize-none"
@@ -522,50 +520,48 @@ const MainSection = ({ userRecord, openItem }) => {
             </div>
           )}
 
-          {openItem === "exhibitorProfile-levelOfStudies" && (
-            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-4 font-medium text-gray-900"
-                  >
-                    Level of Studies
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {[...Array(10)].map((_, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center">
-                        <span className="mr-2">{index + 1}.</span>
-                        {isEditing ? (
-                          <input
-                            type="text"
-                            name={`Level ${
-                              index + 1
-                            }`}
-                            value={
-                              formData[
-                                `Levels ${index + 1}`
-                              ] || ""
-                            }
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-                          />
-                        ) : (
-                          formData[
-                            `Level ${index + 1}`
-                          ] || "-"
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+{openItem === "exhibitorProfile-levelOfStudies" && (
+  <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead className="bg-gray-50">
+      <tr>
+        <th
+          scope="col"
+          className="px-6 py-4 font-medium text-gray-900"
+        >
+          Level of Studies
+        </th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+      {[...Array(10)].map((_, index) => (
+        <tr key={index} className="hover:bg-gray-50">
+          <td className="px-6 py-4">
+            <div className="flex items-center">
+              <span className="mr-2">{index + 1}.</span>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name={`Level ${index + 1}`}
+                  value={
+                    formData[
+                      `Level ${index + 1}`
+                    ] || ""
+                  }
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              ) : (
+                formData[
+                  `Level ${index + 1}`
+                ] || "-"
+              )}
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
 
           {openItem === "exhibitorProfile-topMajors" && (
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -588,12 +584,11 @@ const MainSection = ({ userRecord, openItem }) => {
                         {isEditing ? (
                           <input
                             type="text"
-                            name={`Famous #${
-                              index + 1
-                            } (from Booth No. for edit)`}
+                            name={`Famous #${index + 1
+                              } (from Booth No. for edit)`}
                             value={
                               formData[
-                                `Famous #${index + 1} (from Booth No. for edit)`
+                              `Famous #${index + 1} (from Booth No. for edit)`
                               ] || ""
                             }
                             onChange={handleChange}
@@ -601,7 +596,7 @@ const MainSection = ({ userRecord, openItem }) => {
                           />
                         ) : (
                           formData[
-                            `Famous #${index + 1} (from Booth No. for edit)`
+                          `Famous #${index + 1} (from Booth No. for edit)`
                           ] || "-"
                         )}
                       </div>
@@ -735,9 +730,8 @@ const MainSection = ({ userRecord, openItem }) => {
               }, [])
               .map((personFields, personIndex) => (
                 <div key={personIndex}>
-                  <h3 className="text-xl font-semibold mb-2">{`Person ${
-                    personIndex + 1
-                  }`}</h3>
+                  <h3 className="text-xl font-semibold mb-2">{`Person ${personIndex + 1
+                    }`}</h3>
                   <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
                     <thead className="bg-gray-50">
                       <tr>
@@ -841,223 +835,7 @@ const MainSection = ({ userRecord, openItem }) => {
           </table>
         </div>
       )}
-      {/* {openItem === "orderHistory-furOrder" && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Furniture Orders</h2>
-          {loadingfur ? (
-            <p>Loading Furniture Order...</p>
-          ) : furnitureOrderData.length > 0 ? (
-            furnitureOrderData.map((order, index) => (
-              <div key={order["OrderID(fur)"]} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">
-                  Order ID: {order["OrderID(fur)"]}
-                </h3>
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Field
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Value
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {Object.entries(order)
-                      .filter(([key]) => !ExceptFieldsfur.includes(key))
-                      .map(([key, value]) => (
-                        <tr key={key} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">{key}</td>
-                          <td className="px-6 py-4">{value}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p>No furniture order data found.</p>
-          )}
-        </div>
-      )} */}
-      {/* {openItem === "orderHistory-elecOrder" && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Electric Orders</h2>
-          {loadingelec ? (
-            <p>Loading Electric Order...</p>
-          ) : electricOrderData.length > 0 ? (
-            electricOrderData.map((order, index) => (
-              <div key={order["OrderID(elec)"]} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">
-                  Order ID: {order["OrderID(elec)"]}
-                </h3>
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Field
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Value
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {Object.entries(order)
-                      .filter(([key]) => !ExceptFieldselec.includes(key))
-                      .map(([key, value]) => (
-                        <tr key={key} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">{key}</td>
-                          <td className="px-6 py-4">
-                            {value}
-                            // {typeof value === "object" && value !== null
-                            //   ? JSON.stringify(value)
-                            //   : value}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p>No electric order data found.</p>
-          )}
-        </div>
-      )} */}
-      {/* {openItem === "orderHistory-avOrder" && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">A/V Orders</h2>
-          {loadingav ? (
-            <p>Loading A/V Order...</p>
-          ) : avOrderData.length > 0 ? (
-            avOrderData.map((order, index) => (
-              <div key={order["OrderID(av)"]} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">
-                  Order ID: {order["OrderID(av)"]}
-                </h3>
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Field
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Value
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {Object.entries(order)
-                      .filter(([key]) => !ExceptFieldsav.includes(key))
-                      .map(([key, value]) => (
-                        <tr key={key} className="hover:bg-gray-50">
-                          <td className="px-6 py-4">{key}</td>
-                          <td className="px-6 py-4">{value}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p>No a/v order data found.</p>
-          )}
-        </div>
-      )} */}
-      {/* {openItem === "orderHistory-Badge" && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Exhibitor Badge</h2>
-          {loadingbadge ? (
-            <p>Loading Exhibitor Badge...</p>
-          ) : BadgeData.length > 0 ? (
-            BadgeData.map((badge, badgeindex) => (
-              <div key={badge["BadgeID"]} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">
-                  Badge Data: {badgeindex + 1}
-                </h3>
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Field
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 font-medium text-gray-900"
-                      >
-                        Value
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {Object.entries(badge)
-                      .filter(([key]) => !ExceptFieldsBadge.includes(key))
-                      .reduce((acc, [key, value]) => {
-                        const nameMatch = key.match(
-                          /^(First|Last) Name(\d+)?$/
-                        );
-                        if (nameMatch) {
-                          const nameIndex = nameMatch[2] || "1";
-                          const isFirstName = nameMatch[1] === "First";
-                          if (isFirstName) {
-                            acc.push(
-                              <tr
-                                key={`FullName${nameIndex}`}
-                                className="hover:bg-gray-50"
-                              >
-                                <td className="px-6 py-4">
-                                  Full Name {nameIndex}
-                                </td>
-                                <td className="px-6 py-4">
-                                  {`${value} ${
-                                    badge[`Last Name${nameIndex}`] || ""
-                                  }`}
-                                </td>
-                              </tr>
-                            );
-                          }
-                        } else {
-                          acc.push(
-                            <tr key={key} className="hover:bg-gray-50">
-                              <td className="px-6 py-4">{key}</td>
-                              <td className="px-6 py-4">{value}</td>
-                            </tr>
-                          );
-                        }
-                        return acc;
-                      }, [])}
-                  </tbody>
-                </table>
-              </div>
-            ))
-          ) : (
-            <p>No badge data found.</p>
-          )}
-        </div>
-      )} */}
+
       {showConfirmDialog && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen">
