@@ -1,15 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [showMatching, setShowMatching] = useState(false);
+  const username = localStorage.getItem("ocscusername");
+
+  useEffect(() => {
+    const matchingStatus = localStorage.getItem("showMatching");
+    if (matchingStatus !== null) {
+      setShowMatching(JSON.parse(matchingStatus));
+    } else {
+      fetchPlacementData();
+    }
+  }, [username]);
+
+  const fetchPlacementData = async () => {
+    if (!username) return;
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appVADkxTuwcN78c6/Placement%20Institution?filterByFormula={Username}="${username}"`,
+        {
+          headers: {
+            Authorization:
+              "Bearer pat3vTotU6pMKB49f.2f3cd894e728c2c7c2c3656b056fc3cf5381ebbe04fa33c870ac7f7700ab59d2",
+          },
+        }
+      );
+      const data = await response.json();
+      const hasMatching = data.records.length > 0;
+      setShowMatching(hasMatching);
+      localStorage.setItem("showMatching", JSON.stringify(hasMatching));
+    } catch (error) {
+      console.error("Error fetching Placement data:", error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("ocsctoken");
     localStorage.removeItem("ocscusername");
     localStorage.removeItem("rememberMe");
     localStorage.removeItem("ocscrecordid");
+    localStorage.removeItem("showMatching"); // Clear matching status on logout
     navigate("/");
   };
 
@@ -64,29 +97,30 @@ const Navbar = () => {
                 >
                   FAQ
                 </Link>
-                {/* Hide Matching */}
-                {/* <a
-                  href="https://in2book.link/wp-login.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-transparent text-blue-500 hover:text-blue-700 hover:border-gray-300 px-3 py-2 rounded-md text-lg font-medium flex items-center space-x-1" // Use flex and items-center for alignment
-                >
-                  <span>Matching</span>{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-5 w-5 text-blue-500 hover:text-blue-700" 
+                {/* {showMatching && (
+                  <a
+                    href="https://in2book.link/wp-login.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-transparent text-blue-500 hover:text-blue-700 hover:border-gray-300 px-3 py-2 rounded-md text-lg font-medium flex items-center space-x-1"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                    />
-                  </svg>
-                </a> */}
+                    <span>Matching</span>{" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="h-5 w-5 text-blue-500 hover:text-blue-700"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                      />
+                    </svg>
+                  </a>
+                )} */}
               </div>
             </div>
           </div>
