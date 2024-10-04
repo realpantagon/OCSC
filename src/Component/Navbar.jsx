@@ -97,14 +97,14 @@ const Navbar = () => {
                 >
                   FAQ
                 </Link>
-                {/* {showMatching && (
+                {showMatching && (
                   <a
                     href="https://in2book.link/wp-login.php"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="border-transparent text-blue-500 hover:text-blue-700 hover:border-gray-300 px-3 py-2 rounded-md text-lg font-medium flex items-center space-x-1"
                   >
-                    <span>Matching</span>{" "}
+                    <span>Placement</span>{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -120,7 +120,7 @@ const Navbar = () => {
                       />
                     </svg>
                   </a>
-                )} */}
+                )}
               </div>
             </div>
           </div>
