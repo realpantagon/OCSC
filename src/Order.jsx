@@ -428,7 +428,6 @@ function Order() {
       "Username",
       "num",
       "BadgeID",
-      
     ],
     furniture: [
       "num",
@@ -585,7 +584,7 @@ function Order() {
     if (selectedOrderHistoryItem === "exhibitorBadge") {
       const groupedData = data.map((item) => {
         const groups = [];
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= 60; i++) {
           const suffix = i === 0 ? "" : i;
           const fullName = `${item[`First Name${suffix}`] || ""} ${
             item[`Last Name${suffix}`] || ""
@@ -637,9 +636,7 @@ function Order() {
             <table className="w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 text-left font-semibold">
-                    #
-                  </th>
+                  <th className="py-2 px-4 text-left font-semibold">#</th>
                   {allKeys.map((key) => (
                     <th key={key} className="py-2 px-4 text-left font-semibold">
                       {key}
