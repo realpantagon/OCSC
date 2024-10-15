@@ -618,12 +618,12 @@ function Order() {
         <div className="space-y-3">
           <div className="leading-9">
             <div className="flex flex-wrap text-center items-baseline">
-              <h3 className="font-semibold text-3xl mr-3">{OrgName}</h3>
-              <h3 className="text-gray-400 text-lg">{country}</h3>
+              <h3 className="font-semibold text-3xl mr-3 text-left">{OrgName}</h3>
+              <h3 className="text-gray-400 text-lg text-left">{country}</h3>
             </div>
             <hr className="mt-2 border-gray-300"></hr>
             <div className="flex flex-wrap text-center items-baseline">
-              <h3 className="font-medium text-md">
+              <h3 className="font-medium text-md text-left">
                 Total Badge: {totalBadges} (Free Quota {numofbadge} Badges)
               </h3>
               <p className="font-bold text-red-500 text-sm">
